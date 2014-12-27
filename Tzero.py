@@ -1,6 +1,7 @@
 from subprocess import Popen
 from time import sleep
 import os
+import re
 
 class Tzero:
 
@@ -100,3 +101,11 @@ class Tzero:
 	def close(self):
 		self.send('QUIT')
 		self.send('Y')
+
+def make_filename(s):
+	s = s.upper()
+	result = s[0]+re.subn(r'([AEIOU]|\W)', '', s[1:])[0]
+	return result[:8]
+
+if __name__=='__main__':
+	print make_filename('UpRiver.')
