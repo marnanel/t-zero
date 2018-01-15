@@ -40,14 +40,18 @@ class Tzero:
 		look at converse().
 		"""
 
-		args = ['xte']
-		args.append('str '+command)
+		#args = ['xte']
+		args = []
+		for arg in command.split(' '):
+			args.append('str %s ' % (arg,))
 		if pressEnter:
 			args.append('key Return')
 			#args.extend(['keydown Control_L', 'key m', 'keyup Control_L'])
 
-		Popen(args).wait()
-		sleep(1)
+		print args
+		for a in args:
+			Popen(['xte', a]).wait()
+			sleep(1)
 
 	def converse(self, command, pressEnter=True):
 		"""
@@ -75,7 +79,9 @@ class Tzero:
 
 	def restore(self, filename):
 		# just for parallelism
-		return self.converse('RESTORE '+filename)
+		print 'Restoring: ',filename
+		result = self.converse('RESTORE '+filename)
+		return result
 
 	def move(self, direction):
 		"""
@@ -92,7 +98,7 @@ class Tzero:
 		# result[0] is the command we just gave.
 		# The last few lines of result are the next prompt.
 		# If result[1] is empty, then the move was successful.
-		if result[1]=='':
+		if len(result)>1 and result[1]=='':
 			return '\n'.join(result[2:-2])
 		else:
 			return '!'+'\n'.join(result[1:-4])
@@ -106,6 +112,33 @@ def make_filename(s):
 	s = s.upper()
 	result = s[0]+re.subn(r'([AEIOU]|\W)', '', s[1:])[0]
 	return result[:8]
+
+def solve(game):
+	def move(cmd):
+		return game.converse(cmd)
+	move('NW')
+	move('EXAMINE POPPY')
+	move('GET SEED')
+	move('S')
+	move('LEAVE NO STONE UNTURNED')
+	move('GET CLAW')
+	# there must be an easier way; this takes ages
+	while True:
+		result = move('STONE TERNS')
+		if 'vortex' in result:
+			break
+	move('GET FEATHER')
+
+	# now go to the coldhouse
+	move('SE')
+	move('S')
+	move('E')
+	move('NE')
+	move('PULL LEVER')
+	move('GET LEVER')
+	move('GET TOKEN')
+
+
 
 if __name__=='__main__':
 	print make_filename('UpRiver.')
