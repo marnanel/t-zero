@@ -2,66 +2,165 @@ import subprocess
 import select
 import os
 import argparse
+import sys
+import tempfile
+import glob
+import time
+import signal
+
+def copy_in_original(source, target):
+
+	# The target given is a directory for drives.
+	# Everything we're doing is on drive C,
+	# so just create that.
+	target = os.path.join(target, 'c')
+	os.mkdir(target)
+
+	for filename in [
+		'HINT.DAT',
+		'T-0.DAT',
+		'T-ZERO.DAT',
+		'T-ZERO.EXE',
+		'dosemu.conf',
+		]:
+
+		source_filename = os.path.join(source, filename)
+		target_filename = os.path.join(target, filename)
+
+		contents = open(source_filename).read()
+		open(target_filename, 'wb').write(contents)
+
+###########################
 
 class Implementation(object):
 
-	def __init__(self):
-		self._monitors = []
+    def __init__(self):
+        self._monitors = []
 
-	def addMonitor(self, monitor):
-		self._monitors.append(monitor)
-		monitor.setImplementation(self)
+    def addMonitor(self, monitor):
+	self._monitors.append(monitor)
+	monitor.setImplementation(self)
 
-class DosVersion(Implmementation):
+    def run(self):
+        raise NotYetImplementedError()
 
-	def __init__(self):
-		self._sub = subprocess.Popen(
-			args = ['python', 't0dos.py'],
-			stdin = subprocess.PIPE,
-			stdout = subprocess.PIPE,
-			)
-		self._monitors = []
+    def close(self):
+	for monitor in self._monitors:
+	    monitor.close()
 
-	def read(self):
-		buffer = ''
-		while not buffer.endswith('>>'):
-			ready = select.select([self._sub.stdout],
-				[],
-				[self._sub.stdout])
+class DosVersion(Implementation):
 
-			buffer += os.read(self._sub.stdout.fileno(), 1024)
+    # Number of seconds to wait for the game to start up.
+    SLEEP_WAIT = 14
 
-			if buffer.endswith('***MORE***'):
-				print '(more)'
-				buffer = buffer[:-10]
-				self._sub.stdin.write('\n')
+    def __init__(self):
 
-		return buffer
+        Implementation.__init__(self)
 
-	def write(self, command):
-		self._sub.stdin.write(command + '\n')
+	self._emu = None
+	self._rlist = [sys.stdin]
 
-	def _pushToMonitors(self, command, response):
+	self._contents_dir = tempfile.mkdtemp(prefix='temp_t0dos')
+
+	# FIXME: original directory should be configurable
+	copy_in_original(source='orig', target=self._contents_dir)
+
+	self._emu = subprocess.Popen(
+		args = [
+			'dosemu',
+			'-f'+os.path.join(self._contents_dir, 'c', 'dosemu.conf'),
+			'-quiet',
+			'-dumb',
+			'--Fimagedir',
+			self._contents_dir,
+			'T-ZERO',
+			],
+		stdin = subprocess.PIPE,
+                stdout = subprocess.PIPE,
+                )
+
+        def sigterm_handler(signum, frame):
+    	    print '--- SIGTERM received ---'
+	    emu.close()
+	    sys.exit()
+
+        # XXX why is this not set on the child process?
+        signal.signal(signal.SIGTERM, sigterm_handler)
+
+	time.sleep(1)
+
+	for startup_command in [
+			'T-ZERO',
+			'',
+			'SCRIPT',
+		]:
+
+		self._emu.stdin.write(startup_command+'\r\n')
+
+		if startup_command=='T-ZERO':
+			print
+			print 'Now sleeping for', self.SLEEP_WAIT, 'seconds while the game starts up.'
+			print
+			time.sleep(self.SLEEP_WAIT)
+			print 'Sleep finished.'
+		else:
+			time.sleep(1)
+
+
+    def read(self):
+            buffer = ''
+            while True:
+
+		ready = select.select(
+			[self._emu.stdout],
+			[], # wlist
+			[], # xlist
+                        4, # timeout in seconds
+		)
+
+		if self._emu.stdout in ready[0]:
+			received = self._emu.stdout.read(1)
+                        buffer += received
+
+			if buffer.endswith('\n'):
+			    buffer = buffer[:-1]+'\r\n'
+
+                        if buffer.endswith('***MORE***'):
+                            buffer = buffer[:-10]
+                            self._emu.stdin.write('\n')
+
+                        if buffer.endswith('>>'):
+                            # got it; return, but strip the prompt
+                            return buffer[:-3]
+                else:
+                    # we timed out
+                    print '(timeout)'
+                    return buffer
+
+
+    def write(self, command):
+	self._emu.stdin.write(command + '\r\n')
+
+    def _pushToMonitors(self, command, response):
 		for monitor in self._monitors:
 		    monitor.handle(command, response)
 
-	def run(self):
+    def run(self):
 		print 'Beginning run.'
 
 		startupText = self.read()
-		print startupText
 		self._pushToMonitors('', '')
 
-	def do(self,
+    def do(self,
 		command,
 		expect=None):
-		
+
 		self.write(command)
 		response = self.read()
 
 		if expect is not None and not expect in response:
 			self.close()
-			raise Exception('"%s" was not found in:\n=== %s\n%s' % (
+			raise ValueError('"%s" was not found in:\n=== %s\n%s' % (
 				expect,
 				command,
 				response))
@@ -69,14 +168,13 @@ class DosVersion(Implmementation):
 		self._pushToMonitors(command, response)
 		return response
 
-	def close(self):
-		print 'Terminating process', self._sub.pid, 'here'
-		self._sub.terminate()
-		print 'Waiting...'
-		self._sub.wait()
+    def close(self):
+	print 'Terminating process', self._emu.pid, 'here'
+	self._emu.terminate()
+	print 'Waiting...'
+	self._emu.wait()
 
-		for monitor in self._monitors:
-		    monitor.close()
+        Implementation.close(self)
 
 class Monitor(object):
 	"""
@@ -90,7 +188,7 @@ class Monitor(object):
 		self._implementation = implementation
 
 	def handle(self, command, response):
-		raise Exception("Abstract method called")
+		raise NotImplementedError("Abstract method called")
 
 	def close(self):
 		pass
