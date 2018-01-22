@@ -36,13 +36,71 @@ class Implementation(object):
 
     def __init__(self):
         self._monitors = []
+        self._prompt = '>'
 
     def addMonitor(self, monitor):
 	self._monitors.append(monitor)
 	monitor.setImplementation(self)
 
+    def read(self):
+            buffer = ''
+            while True:
+
+		ready = select.select(
+			[self._emu.stdout],
+			[], # wlist
+			[], # xlist
+                        4, # timeout in seconds
+		)
+
+		if self._emu.stdout in ready[0]:
+			received = self._emu.stdout.read(1)
+                        buffer += received
+
+			if buffer.endswith('\n'):
+			    buffer = buffer[:-1]+'\r\n'
+
+                        if buffer.endswith('***MORE***'):
+                            buffer = buffer[:-10]
+                            self._emu.stdin.write('\n')
+
+                        if buffer.endswith(self._prompt):
+                            # got it; return, but strip the prompt
+                            return buffer[:-len(self._prompt)]
+                else:
+                    # we timed out
+                    print '(timeout)'
+                    return buffer
+
+    def write(self, command):
+	self._emu.stdin.write(command + '\r\n')
+
     def run(self):
-        raise NotYetImplementedError()
+		print 'Beginning run.'
+
+		startupText = self.read()
+		self._pushToMonitors('', '')
+
+    def _pushToMonitors(self, command, response):
+		for monitor in self._monitors:
+		    monitor.handle(command, response)
+
+    def do(self,
+		command,
+		expect=None):
+
+		self.write(command)
+		response = self.read()
+
+		if expect is not None and not expect in response:
+			self.close()
+			raise ValueError('"%s" was not found in:\n=== %s\n%s' % (
+				expect,
+				command,
+				response))
+
+		self._pushToMonitors(command, response)
+		return response
 
     def close(self):
 	for monitor in self._monitors:
@@ -58,6 +116,7 @@ class DosVersion(Implementation):
         Implementation.__init__(self)
 
 	self._emu = None
+        self._prompt = '>>>'
 	self._rlist = [sys.stdin]
 
 	self._contents_dir = tempfile.mkdtemp(prefix='temp_t0dos')
@@ -107,66 +166,6 @@ class DosVersion(Implementation):
 			time.sleep(1)
 
 
-    def read(self):
-            buffer = ''
-            while True:
-
-		ready = select.select(
-			[self._emu.stdout],
-			[], # wlist
-			[], # xlist
-                        4, # timeout in seconds
-		)
-
-		if self._emu.stdout in ready[0]:
-			received = self._emu.stdout.read(1)
-                        buffer += received
-
-			if buffer.endswith('\n'):
-			    buffer = buffer[:-1]+'\r\n'
-
-                        if buffer.endswith('***MORE***'):
-                            buffer = buffer[:-10]
-                            self._emu.stdin.write('\n')
-
-                        if buffer.endswith('>>'):
-                            # got it; return, but strip the prompt
-                            return buffer[:-3]
-                else:
-                    # we timed out
-                    print '(timeout)'
-                    return buffer
-
-
-    def write(self, command):
-	self._emu.stdin.write(command + '\r\n')
-
-    def _pushToMonitors(self, command, response):
-		for monitor in self._monitors:
-		    monitor.handle(command, response)
-
-    def run(self):
-		print 'Beginning run.'
-
-		startupText = self.read()
-		self._pushToMonitors('', '')
-
-    def do(self,
-		command,
-		expect=None):
-
-		self.write(command)
-		response = self.read()
-
-		if expect is not None and not expect in response:
-			self.close()
-			raise ValueError('"%s" was not found in:\n=== %s\n%s' % (
-				expect,
-				command,
-				response))
-
-		self._pushToMonitors(command, response)
-		return response
 
     def close(self):
 	print 'Terminating process', self._emu.pid, 'here'
@@ -175,6 +174,25 @@ class DosVersion(Implementation):
 	self._emu.wait()
 
         Implementation.close(self)
+
+class Z5Version(Implementation):
+
+    def __init__(self):
+
+        Implementation.__init__(self)
+
+	self._rlist = [sys.stdin]
+        self._prompt = '> >'
+
+	self._emu = subprocess.Popen(
+		args = [
+			'dfrotz',
+                        'game/t-zero.z5',
+			],
+		stdin = subprocess.PIPE,
+                stdout = subprocess.PIPE,
+                )
+
 
 class Monitor(object):
 	"""
@@ -435,8 +453,6 @@ class Playthrough(Monitor):
 		impl.do('w', expect='West-East Hall')
 		impl.do('open door', expect='Opened')
 
-
-
 class Logger(Monitor):
 
 	def __init__(self,
@@ -514,7 +530,7 @@ def main():
             help='run the original DOS implementation')
         args = parser.parse_args()
 
-        implementation = DosVersion()
+        implementation = Z5Version()
 	implementation.addMonitor(Playthrough())
 	implementation.addMonitor(Logger(
 		to_stdout = True,
