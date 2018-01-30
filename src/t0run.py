@@ -231,7 +231,7 @@ class Playthrough(Monitor):
 		impl.do('inventory', expect = 'in your possession')
 		impl.do('x slip', expect='walking papers')
 		impl.do('read slip', expect='too near completion')
-		impl.do('x compass', expect='cardinal directions')
+		impl.do('x compass', expect='cardinal')
 		impl.do('x me', expect='fade into the woodwork')
 		impl.do('x journal page', expect='cryptic')
 		impl.do('x fatigues', expect='commodious')
@@ -527,10 +527,15 @@ def main():
             description='test an implementation of T-Zero')
         parser.add_argument(
             '-d', '--dos', 
-            help='run the original DOS implementation')
+            help='run the original DOS implementation',
+            action="store_true")
         args = parser.parse_args()
 
-        implementation = Z5Version()
+        if args.dos:
+            implementation = DosVersion()
+        else:
+            implementation = Z5Version()
+
 	implementation.addMonitor(Playthrough())
 	implementation.addMonitor(Logger(
 		to_stdout = True,
