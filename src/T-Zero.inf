@@ -1,0 +1,87 @@
+Constant Story "T-ZERO";
+Constant Headline "^an adventure for the time being^in memoriam Dennis M. Cunningham^";
+Constant DEBUG;
+
+Include "parser";
+Include "verblib";
+Include "grammar";
+
+Include "Present.inf";
+Include "Objects.inf";
+Include "Library.inf";
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! Inventory
+
+Extend 'inv' replace
+    * -> InvT0;
+
+[ InvT0Sub o;
+
+    print "You have in your possession:^";
+
+    ! How do you mark an object as not needing an article?
+
+    objectloop (o in player) {
+            if (o hasnt worn) {
+                print "  ";
+                if (o hasnt pluralname) {
+                    print "A ";
+                }
+                print (name) o;
+                print ".^";
+            }
+    }
+
+    print "You cut a dashing figure in:^";
+
+    objectloop (o in player) {
+            if (o has worn) {
+                print "  ";
+                if (o hasnt pluralname) {
+                    print "A ";
+                }
+                print (name) o;
+                print ".^";
+            }
+    }
+
+    AfterRoutines();
+];
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+[ Initialise;
+    location = RiverBed;
+
+    move CompassThing to Player;
+    move PinkSlip to Player;
+    move JournalPage to Player;
+    move KhakiFatigues to Player;
+    move RedSuspenders to Player;
+
+    print "^^^
+You awake from uneasy dreams.  Since you're no longer on easy street,
+maybe that's the way your dreams are going to be from now on.  Exactly
+where you are becomes clear as you sort out the sounds of the river to
+the east, the rustlings of birds to the north and west, and the sweet
+scent of sleep-inducing poppies wafting down from the northwest.
+Apparently, after a day of determined walking about, you burrowed down
+next to the river and let consciousness drift.^^
+
+What exactly induced this bout of walking?  Well, two nights ago,
+Count Zero handed you your walking papers and extracted your latchkey
+to the museum in exchange (little does he know that you keep a spare
+hidden in the topiary).  It's just as well that you were dismissed
+from the museum--your duties as combination custodian and librarian
+involved either re-shelving books and dusting off clocks or rewinding
+timepieces and dusting off books.  However, you were onto something.
+Exactly what is unclear since the pieces of the puzzle seem to
+disconnect with sleep.  You resolve not to sleep until you've
+recollected and reconnected their jagged edges.  You can be just
+as calculating as the Count.  You can even reach beyond the Zero . . .
+^^^";
+
+];
+

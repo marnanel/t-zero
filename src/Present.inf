@@ -1,0 +1,1204 @@
+Object Cave "Cave."
+has light
+with
+up_to
+    EntranceToCave,
+s_to
+    EntranceToCave,
+! No obvious cant_go value: explore dict is {u'UP': u'ENTRNCTC', u'E': u'!A seeping cave wall thwarts movement in that direction.', u'SW': u'!A seeping cave wall thwarts movement in that direction.', u'NE': u'!You rebound against a bulging boulder that blocks further passage.', u'N': u'!You rebound against a bulging boulder that blocks further passage.', u'DOWN': u'!There is only ground below you.', u'S': u'ENTRNCTC', u'W': u'!A seeping cave wall thwarts movement in that direction.', u'fullname': u'Cave.', u'SE': u'!A seeping cave wall thwarts movement in that direction.', u'NW': u'!You rebound against a bulging boulder that blocks further passage.'}
+    description
+        "An age-old cave-in prevents further access to the cave's interior.
+In particular, the arched entry to the adjoining cavern is blocked
+by a huge pock-marked boulder.
+";
+
+Object EntranceToCave "Entrance to Cave."
+has light
+with
+n_to
+    Cave,
+down_to
+    Cave,
+s_to
+    Woods,
+! No obvious cant_go value: explore dict is {u'UP': u'!The ledge is beyond your reach.', u'E': u'!The woods are dark and deep in that direction.', u'SW': u'!The woods are dark and deep in that direction.', u'NE': u'!The cave wall blocks your movement.', u'N': u'CV', u'DOWN': u'CV', u'S': u'WDS', u'W': u'!The woods are dark and deep in that direction.', u'fullname': u'Entrance to Cave.', u'SE': u'!The woods are dark and deep in that direction.', u'NW': u'!The cave wall blocks your movement.'}
+    description
+        "You stand before a cavernous entrance--the jagged mouth of a cave is
+entwined with the gnarled roots of an ancient yew which grows from a
+ledge above.
+";
+
+Object Woods "Woods."
+has light
+with
+up_to
+    WoodsyCorridor,
+sw_to
+    BlacksmithS,
+n_to
+    EntranceToCave,
+down_to
+    EntranceToCave,
+s_to
+    WoodsyCorridor,
+   cant_go
+        "The woods are dark and deep in that direction.",
+    description
+        "The woods here are dark and deep.  They invoke a sense of reverence
+in you that is disturbed by slight scurryings at the periphery of
+your perception.
+";
+
+Object WoodsyCorridor "Woodsy Corridor."
+has light
+with
+up_to
+    ShallowDepression,
+n_to
+    Woods,
+down_to
+    Woods,
+s_to
+    ShallowDepression,
+nw_to
+    BlacksmithS,
+   cant_go
+        "The woods are dark and deep in that direction.",
+    description
+        "You are on a wide path through an old forest.  The trees, few and
+far between, are so massive that only a little light haunts the
+upper reaches of the nave-like corridor which slopes down from
+south to north.
+";
+
+Object ShallowDepression "Shallow Depression."
+has light
+with
+up_to
+    EastEdgeOfPond,
+sw_to
+    MoebiusStrip,
+n_to
+    WoodsyCorridor,
+down_to
+    WoodsyCorridor,
+se_to
+    EastEdgeOfPond,
+! No obvious cant_go value: explore dict is {u'UP': u'ESTDGFPN', u'E': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'SW': u'MBSSTRP', u'NE': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'N': u'WDSYCRRD', u'DOWN': u'WDSYCRRD', u'S': u"!You try to scrabble up to the crater but can't get past\nthe eroded lip.", u'W': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'fullname': u'Shallow Depression.', u'SE': u'ESTDGFPN', u'NW': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.'}
+    description
+        "A shallow depression, about 30 feet across and 10 feet deep, is
+permanently etched in solid rock.  The ridged edge of the small
+crater gives way to a rounded interior.  The north lip has eroded
+away.
+";
+
+Object MoebiusStrip "Moebius Strip."
+has light
+with
+e_to
+    Pond,
+ne_to
+    ShallowDepression,
+se_to
+    SouthEdgeOfPondPitstop,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'E': u'PND', u'SW': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'NE': u'SHLLWDPR', u'N': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'DOWN': u'!There is only ground below you.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'S': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'W': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'fullname': u'Moebius Strip.', u'SE': u'STHDGFPN', u'NW': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running'}
+    description
+        "The racing strip here twists in on itself to form a continuous band
+without inside or out.  Contenders, defying gravity, adhere to the
+track whether right-side up or upside down.
+";
+
+Object Pond "Pond."
+has light
+with
+w_to
+    MoebiusStrip,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!There is not another nearby pod to step across.', u'SW': u'!There is not another nearby pod to step across.', u'NE': u'!There is not another nearby pod to step across.', u'N': u'!There is not another nearby pod to step across.', u'DOWN': u'!If you want to jump in the pond, by all means, jump in the pond!', u'S': u'!There is not another nearby pod to step across.', u'W': u'MBSSTRP', u'fullname': u'Pond.', u'SE': u'!There is not another nearby pod to step across.', u'NW': u'!There is not another nearby pod to step across.'}
+    description
+        "The pond is an unsettling broth of vegetable slime with a tangled
+network of vines just below the surface.  The vines support the
+heart-shaped pods which serve as stepping-stones across the pond.
+You stand on such a pod.
+";
+
+Object EastEdgeOfPond "East Edge of Pond."
+has light
+with
+sw_to
+    SouthEdgeOfPondPitstop,
+down_to
+    ShallowDepression,
+nw_to
+    ShallowDepression,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!Lesser patches of reeds lie in that direction.', u'SW': u'STHDGFPN', u'NE': u'!Lesser patches of reeds lie in that direction.', u'N': u'!Lesser patches of reeds lie in that direction.', u'DOWN': u'SHLLWDPR', u'S': u'!Lesser patches of reeds lie in that direction.', u'W': u'!Reeds, like a barrier of stiff spears, block your progress\ntoward the pond.', u'fullname': u'East Edge of Pond.', u'SE': u'!Lesser patches of reeds lie in that direction.', u'NW': u'SHLLWDPR'}
+    description
+        "A pond is visible to the west but inaccessible due to a bank of
+tall reeds.
+";
+
+Object SouthEdgeOfPondPitstop "South Edge of Pond (Pitstop)."
+has light
+with
+up_to
+    HillSlope,
+sw_to
+    HillSlope,
+ne_to
+    EastEdgeOfPond,
+down_to
+    PathToPond,
+se_to
+    PathToPond,
+nw_to
+    MoebiusStrip,
+! No obvious cant_go value: explore dict is {u'UP': u'HLLSLP', u'E': u'!The tarry residue becomes thick, impeding travel in that\ndirection.', u'SW': u'HLLSLP', u'NE': u'ESTDGFPN', u'N': u'!The tarry residue becomes thick, impeding travel in that\ndirection.\n\nSouth Edge of Pond (Pitstop).', u'DOWN': u'PTHTPND', u'S': u'!The sunken ridge frowns inscrutably upon your intrusion.', u'W': u'!The tarry residue becomes thick, impeding travel in that\ndirection.', u'fullname': u'South Edge of Pond (Pitstop).', u'SE': u'PTHTPND', u'NW': u'MBSSTRP'}
+    description
+        "The path here skirts a sunken ridge to the south where fossilized
+images phosphoresce in spidery patterns.  A residual tarry substance
+adheres to the ground.
+";
+
+Object HillSlope "Hill Slope."
+has light
+with
+up_to
+    ObeliskPlateau,
+sw_to
+    ObeliskPlateau,
+ne_to
+    SouthEdgeOfPondPitstop,
+down_to
+    SouthEdgeOfPondPitstop,
+   cant_go
+        "Don't fight it, simply go with the slope.",
+    description
+        "The slope of the hill varies here, being gentle to the northeast
+and steep to the southwest.
+";
+
+Object ObeliskPlateau "Obelisk Plateau."
+has light
+with
+ne_to
+    HillSlope,
+down_to
+    HillSlope,
+se_to
+    OverTheHill,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'SW': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'NE': u'HLLSLP', u'N': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'DOWN': u'HLLSLP', u'S': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'W': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'fullname': u'Obelisk Plateau.', u'SE': u'OVRTHHLL', u'NW': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.'}
+    description
+        "A good portion of the hill has been truncated here to form a stark
+elliptical plateau.  This serves as a platform for a sleek black
+obelisk that pierces the sky and dominates the surrounding landscape.
+";
+
+Object PathToPond "Path to Pond."
+has light
+with
+up_to
+    SouthEdgeOfPondPitstop,
+ne_to
+    PathThroughOutskirtsOfMeadow,
+down_to
+    PathThroughOutskirtsOfMeadow,
+nw_to
+    SouthEdgeOfPondPitstop,
+   cant_go
+        "You decide to stick to the path.",
+    description
+        "The path veers away from the cliff to approach an upland pond.
+";
+
+Object PathThroughOutskirtsOfMeadow "Path Through Outskirts of Meadow."
+has light
+with
+up_to
+    PathToPond,
+sw_to
+    PathToPond,
+ne_to
+    Viewpoint,
+down_to
+    MeanderingMeadowPath,
+se_to
+    MeanderingMeadowPath,
+   cant_go
+        "You decide to stick to the path.",
+    description
+        "The meadow flowers thin out as the path approaches a cliff with a
+viewpoint over the river to the northeast.
+";
+
+Object Viewpoint "Viewpoint."
+has light
+with
+description
+    "XXX FIXME";
+
+Object MeanderingMeadowPath "Meandering Meadow Path."
+has light
+with
+up_to
+    PathThroughOutskirtsOfMeadow,
+down_to
+    FieldOfPoppies,
+s_to
+    FieldOfPoppies,
+se_to
+    Upriver,
+nw_to
+    PathThroughOutskirtsOfMeadow,
+   cant_go
+        "You decide to stick to the path.",
+    description
+        "The path wanders hither and thither, carefree and aimless,
+populated by stray meadow poppies and dented with potholes.
+";
+
+Object FieldOfPoppies "Field of Poppies."
+has light
+with
+up_to
+    MeanderingMeadowPath,
+e_to
+    Upriver,
+n_to
+    MeanderingMeadowPath,
+down_to
+    Upriver,
+s_to
+    FieldOfStone,
+se_to
+    Riverbed,
+   cant_go
+        "You dutifully refrain from trampling the poppies.",
+    description
+        "Either your vision is becoming near-sighted or this scene has all
+the pointillist charm of a Monet painting.  A subdued green and
+violet background is punctuated by bright orange meadow poppies.
+They waft a fragrance which makes you slightly sleepy.
+";
+
+Object Upriver "UpRiver."
+has light
+with
+up_to
+    FieldOfPoppies,
+sw_to
+    FieldOfStone,
+s_to
+    Riverbed,
+w_to
+    FieldOfPoppies,
+nw_to
+    MeanderingMeadowPath,
+! No obvious cant_go value: explore dict is {u'UP': u'FLDFPPPS', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'SW': u'FLDFSTN', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'N': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'DOWN': u'!There is only ground below you.\n\nUpRiver.\n', u'S': u'RVRBD', u'W': u'FLDFPPPS', u'fullname': u'UpRiver.', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'NW': u'MNDRNGMD'}
+    description
+        "A river emerges from parallel cliffs to the northwest, reaches the
+level clearing here, and enters the mouth of a canyon some distance
+to the south-southeast.  Shallow pools dot the river shore.
+";
+
+Object OverTheHill "Over the Hill."
+has light
+with
+e_to
+    Hill,
+down_to
+    Hill,
+se_to
+    AbandonedMill,
+nw_to
+    ObeliskPlateau,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'HLL', u'SW': u"!Don't fight it, simply go with the slope.", u'NE': u"!Don't fight it, simply go with the slope.", u'N': u"!Don't fight it, simply go with the slope.", u'DOWN': u'HLL', u'S': u"!Don't fight it, simply go with the slope.", u'W': u"!Don't fight it, simply go with the slope.", u'fullname': u'Over the Hill.', u'SE': u'ABNDNDML', u'NW': u'OBLSKPLT'}
+    description
+        "You may not be over the hill yet but you are over its first hump.
+The going may not get easier as you ascend, but at least you know
+the ropes better.
+";
+
+Object Hill "Hill."
+has light
+with
+up_to
+    OverTheHill,
+e_to
+    FieldOfStone,
+w_to
+    OverTheHill,
+! No obvious cant_go value: explore dict is {u'UP': u'OVRTHHLL', u'E': u'FLDFSTN', u'SW': u'!The hill is too slippery to proceed SW.\n\nHill.', u'NE': u'!The hill is too slippery to proceed NE.\n\nHill.', u'N': u'!The hill is too slippery to proceed N.\n\nHill.', u'DOWN': u'!There is only ground below you.\n\nHill.', u'S': u'!The hill is too slippery to proceed S.\n\nHill.', u'W': u'OVRTHHLL', u'fullname': u'Hill.', u'SE': u'!The hill is too slippery to proceed SE.\n\nHill.', u'NW': u'!The hill is too slippery to proceed NW.\n\nHill.'}
+    description
+        "The hill here rises from the spine of the landscape, with smooth
+contours culminating in a curvaceous hump.
+";
+
+Object FieldOfStone "Field of Stone."
+has light
+with
+e_to
+    Riverbed,
+sw_to
+    AbandonedMill,
+ne_to
+    Upriver,
+n_to
+    FieldOfPoppies,
+down_to
+    Riverbed,
+w_to
+    Hill,
+se_to
+    DesolateField,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'RVRBD', u'SW': u'ABNDNDML', u'NE': u'UPRVR', u'N': u'FLDFPPPS', u'DOWN': u'RVRBD', u'S': u'!For fear of triggering an avalanche, you hold your ground.', u'W': u'HLL', u'fullname': u'Field of Stone.', u'SE': u'DSLTFLD', u'NW': u'!For fear of triggering an avalanche, you hold your ground.'}
+    description
+        "You are on a gently sloping field of stones.  Terns swoop
+interminably in slow arcs across the sky.  The stones look as if
+they could be overturned.
+";
+
+Object Riverbed "River Bed."
+has light
+with
+up_to
+    FieldOfStone,
+sw_to
+    DesolateField,
+n_to
+    Upriver,
+w_to
+    FieldOfStone,
+nw_to
+    FieldOfPoppies,
+! No obvious cant_go value: explore dict is {u'UP': u'FLDFSTN', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'SW': u'DSLTFLD', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'N': u'UPRVR', u'DOWN': u'!There is only ground below you.\n\nRiver Bed.', u'S': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'W': u'FLDFSTN', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'NW': u'FLDFPPPS'}
+    description
+        "You are on the bed of a swiftly moving river.
+";
+
+Object AbandonedMill "Abandoned Mill."
+has light
+with
+sw_to
+    Windmill,
+ne_to
+    FieldOfStone,
+nw_to
+    OverTheHill,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!A morass of sawdust mulch bogs your progress down.', u'SW': u'WNDMLL', u'NE': u'FLDFSTN', u'N': u'!A morass of sawdust mulch bogs your progress down.', u'DOWN': u'!There is only ground below you.', u'S': u'!A morass of sawdust mulch bogs your progress down.', u'W': u'!A morass of sawdust mulch bogs your progress down.', u'fullname': u'Abandoned Mill.', u'SE': u'!A morass of sawdust mulch bogs your progress down.', u'NW': u'OVRTHHLL'}
+    description
+        "Yellow dew-drenched mushrooms pop through the scattered timbers
+and redwood sawdust that mark the site of an abandoned mill.
+";
+
+Object Windmill "Windmill."
+has light
+with
+description
+    "XXX FIXME";
+
+Object DesolateField "Desolate Field."
+has light
+with
+ne_to
+    Riverbed,
+s_to
+    BackOfMuseum,
+nw_to
+    FieldOfStone,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The desolation merely worsens in that direction.', u'SW': u'!The desolation merely worsens in that direction.', u'NE': u'RVRBD', u'N': u'!The desolation merely worsens in that direction.', u'DOWN': u'!There is only ground below you.', u'S': u'BCKFMSM', u'W': u'!The desolation merely worsens in that direction.', u'fullname': u'Desolate Field.', u'SE': u'!The desolation merely worsens in that direction.', u'NW': u'FLDFSTN'}
+    description
+        "You are in a desolate field whose only distinguishing mark is its
+complete and utter barrenness.  Nothing, not even a weed, thrives
+here.
+";
+
+Object MuseumStairs "Museum Stairs."
+has light
+with
+up_to
+    PorticoOfMuseum,
+n_to
+    PorticoOfMuseum,
+nw_to
+    Cornerstone,
+! No obvious cant_go value: explore dict is {u'UP': u'PRTCFMSM', u'E': u'!The stairs do not sweep you in that direction.', u'SW': u'!The stairs do not sweep you in that direction.', u'NE': u'!The stairs do not sweep you in that direction.', u'N': u'PRTCFMSM', u'DOWN': u'!There is only ground below you.', u'S': u'!The stairs do not sweep you in that direction.', u'W': u'!The stairs do not sweep you in that direction.', u'fullname': u'Museum Stairs.', u'SE': u'!The stairs do not sweep you in that direction.', u'NW': u'CRNRSTN'}
+    description
+        "The double wings of the decrepit staircase fronting the museum
+do not exactly sweep (that was your job!) but they do seem to
+embrace anyone about to ascend.
+";
+
+Object Cornerstone "Cornerstone."
+has light
+with
+description
+   "XXX FIXME";
+
+Object PorticoOfMuseum "Portico of Museum."
+has light
+with
+down_to
+    MuseumStairs,
+s_to
+    MuseumStairs,
+! No obvious cant_go value: explore dict is {u'UP': u"!There's a ceiling in the way.", u'E': u'!The case stops you.', u'SW': u'!The shoulders of the staircase stop you.', u'NE': u'!The museum stops you.', u'N': u'!The door is closed.', u'DOWN': u'MSMSTRS', u'S': u'MSMSTRS', u'W': u'!The shoulders of the staircase stop you.', u'fullname': u'Portico of Museum.', u'SE': u'!The shoulders of the staircase stop you.', u'NW': u'!The museum stops you.'}
+    description
+        "You are in the open-air portico of a stately museum.  To the south
+are the double wings of a spiral staircase.  To the north are double
+oak doors extracted from a medieval monastery.  To the east is a
+display case proffered as a tawdry enticement to the charms inside.
+Since the covered portico only admits morning and evening light,
+a sundial is curiously placed in its center.
+";
+
+Object BackOfMuseum "Back of Museum."
+has light
+with
+e_to
+    Greenhouse,
+sw_to
+    WestSideOfMuseum,
+n_to
+    DesolateField,
+s_to
+    LoadingStage,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'GRNHS', u'SW': u'WSTSDFMS', u'NE': u'!There is nothing but desolate scruff in that direction.', u'N': u'DSLTFLD', u'DOWN': u'!There is only ground below you.', u'S': u'LDNGSTG', u'W': u'!There is nothing but desolate scruff in that direction.', u'fullname': u'Back of Museum.', u'SE': u'!There is nothing but desolate scruff in that direction.', u'NW': u'!There is nothing but desolate scruff in that direction.'}
+    description
+        "A wide loading ramp leads from a well-worn turnaround to a square
+loading stage.
+";
+
+Object Greenhouse "Greenhouse."
+has light
+with
+description
+   "XXX FIXME";
+
+Object EnglishGarden "English Garden."
+has light
+with
+ne_to
+    PlatformOverRiver,
+n_to
+    TopiaryOfTime,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'SW': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NE': u'PLTFRMVR', u'N': u'TPRYFTM', u'DOWN': u'!There is only ground below you.', u'S': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'W': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'fullname': u'English Garden.', u'SE': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NW': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.'}
+    description
+        "The intrepid English gardener who tends to this plot of symmetric
+flowerbeds is fighting a losing battle.  Beds spill over into paths,
+paths peter out into beds, and the trampled marigolds are going to
+pot.
+";
+
+Object TopiaryOfTime "Topiary of Time."
+has light
+with
+n_to
+    FountainCourt,
+s_to
+    EnglishGarden,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.\n\nTopiary of Time.', u'E': u'!As you enter the topiary of time, you hear the dry rustling of\nleaves as the creatures, shape-shifters all, assume imposing\npostures.\n\nTopiary of Time.\nA cockogriff squats to the Northeast.\nA vampboon glowers to the Northwest.\nA crocodactyl moans to the Southwest.', u'SW': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.', u'NE': u'!An unhacked hedge bounds the topiary in that direction.', u'N': u'FNTNCRT', u'DOWN': u'!There is only ground below you.\n\nTopiary of Time.', u'S': u'ENGLSHGR', u'W': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.', u'fullname': u'Topiary of Time.', u'SE': u'!An unhacked hedge bounds the topiary in that direction.', u'NW': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.'}
+    description
+        "The hedges here have been hacked away into imperfectly rendered
+imitations of fabled mythological creatures.  Seemingly surrendering
+to the adjacent museum's theme of time, the grounds are overgrown
+and seedy.
+There is a sign posted here.
+";
+
+Object FountainCourt "Fountain Court."
+has light
+with
+ne_to
+    Greenhouse,
+s_to
+    TopiaryOfTime,
+nw_to
+    Greenhouse,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!There are many exits from this place.  E is not one of them.', u'SW': u'!There are many exits from this place.  SW is not one of them.', u'NE': u'GRNHS', u'N': u"!There's a wall in the way.", u'DOWN': u'!There is only ground below you.', u'S': u'TPRYFTM', u'W': u'!There are many exits from this place.  W is not one of them.', u'fullname': u'Fountain Court.', u'SE': u'!There are many exits from this place.  SE is not one of them.', u'NW': u'GRNHS'}
+    description
+        "The statue of some amorphous amphibian, centered in a limestone ring,
+is poised to spew forth water from a pouting mouth.  Nonetheless,
+only a paltry trickle dribbles down its vented gills.
+";
+
+Object  "=1154"
+has light
+with
+! no explore data
+    description
+        "On one hand, arabesques of glass, and on the other, wicker slats,
+distinguish the Victorian conservatory's two halves.  The hothouse
+lies northwest and the coldhouse lies northeast.
+";
+
+Object CaretakerSCottage "Caretaker's Cottage."
+has light
+with
+! no explore data
+    description
+        "This is a cozy cottage with a homey hearth.  Scattered throughout
+are knickknacks, pilfered, over time, from the museum.
+";
+
+Object Shed "Shed."
+has light
+with
+w_to
+    Greenhouse,
+! No obvious cant_go value: explore dict is {u'UP': u"!There's a ceiling in the way.", u'E': u"!There's a wall in the way.", u'SW': u"!There's a wall in the way.", u'NE': u"!There's a wall in the way.", u'N': u"!There's a wall in the way.", u'DOWN': u"!There's a floor in the way.", u'S': u"!There's a wall in the way.", u'W': u'GRNHS', u'fullname': u'Shed.', u'SE': u"!There's a wall in the way.", u'NW': u"!There's a wall in the way."}
+    description
+        "This ramshackle shed has a sod floor and a comfortable musty air
+about it.  Although shelves and hooks abound, most of them seem
+to be empty.
+";
+
+Object PlatformOverRiver "Platform Over River."
+has light
+with
+sw_to
+    EnglishGarden,
+se_to
+    Downstream,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u"!You can't go that way.\n\nPlatform Over River.", u'SW': u'ENGLSHGR', u'NE': u'!Something about this suspension bridge makes your usually animated\nself slow down ... to molasses-like ... sloth ... ful ... ness ...\nand come slowly ... sl-ow-ly ... to a standstill.\n\nSuspension Bridge.\nFrom twin towers, a delicate mesh of metal descends, forming a\nperfectly wrought footpath across canyon-like depths.  A crooked', u'N': u"!You can't go that way.\n\nPlatform Over River.", u'DOWN': u'!The platform covers the shaft directly below you.', u'S': u"!You can't go that way.", u'W': u'!The exit from the topiary lies in that direction.', u'fullname': u'Platform Over River.', u'SE': u'DWNSTRM', u'NW': u"!You can't go that way."}
+    description
+        "A platform juts out over the river here, providing an entry
+point to the bridge to the northeast.  The platform has no
+apparent purpose.
+";
+
+Object Downstream "DownStream."
+has light
+with
+nw_to
+    PlatformOverRiver,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The abyss would willingly swallow you if you went that way.', u'SW': u'!The prospect in that direction is uninspiring.', u'NE': u'!The abyss would willingly swallow you if you went that way.', u'N': u'!The abyss would willingly swallow you if you went that way.', u'DOWN': u'!There is only ground below you.', u'S': u'!The prospect in that direction is uninspiring.', u'W': u'!The prospect in that direction is uninspiring.', u'fullname': u'DownStream.', u'SE': u'!The abyss would willingly swallow you if you went that way.', u'NW': u'PLTFRMVR'}
+    description
+        "You sense the nearness of the sea as the river far below you
+plummets over a cliff into unseen depths.  However, since you
+stand on the precipice of an abyss, you also undergo a sense
+of vertigo.
+";
+
+Object SuspensionBridge "Suspension Bridge."
+has light
+with
+! no explore data
+    description
+        "From twin towers, a delicate mesh of metal descends, forming a
+perfectly wrought footpath across canyon-like depths.  A crooked
+stanchion sticks out of the side of the suspension bridge like
+a sore thumb.
+";
+
+Object AcrossTheRiver "Across the River."
+has light
+with
+! no explore data
+    description
+        "There seems to be little on this side of the river that would
+warrant the presence of a bridge.  Yet here you stand as if in
+a vacuum.
+";
+
+Object Junkyard "Junkyard."
+has light
+with
+! no explore data
+    description
+        "This once pristine spot has become the dumping grounds for some
+arcane cult.  There is a stack, a dump, and a heap here.
+Bugs are crawling all over the place.
+";
+
+Object MoebiusStripOnTheTrack "Moebius Strip, on the Track."
+has light
+with
+! no explore data
+    description
+        "You are running on a moebius beltway.  The tortoise is ahead of you
+and the hare is behind.
+
+You reach the spot where the tortoise was, but, in the meantime, the
+tortoise has inched ahead.  The hare reaches the spot where you were,
+but, in the meantime, you have zoomed ahead.
+";
+
+Object  "=1491"
+has light
+with
+! no explore data
+    description
+        "The windmill here, former power supply to the adjacent mill, has
+a slight list and is capped by a clapboard contrivance which
+prevents its blades from turning in the ample breeze.
+";
+
+Object  "=1141"
+has light
+with
+! no explore data
+    description
+        "The arabesques of glass that enclose this humid room are patterned
+after French trefoils.  Their many facets combine to create a solar
+sweltering.  The resulting climate is used to display the lush
+vegetation of the tropics.
+";
+
+Object  "=1151"
+has light
+with
+! no explore data
+    description
+        "A clever lateral arrangement of wicker slats directs all sorts of
+drafts into this chilly room which is built on a base of naturally
+cold bedrock.  The resulting climate is used to display the sparse
+vegetation of the tundra.  An indentation mars the smooth floor.
+";
+
+Object  "=1506"
+has light
+with
+! no explore data
+    description
+        "This lookout point is nestled on the edge of a cliff overlooking
+a canyon.  The glorious view it affords includes glimpses of
+mysterious sparklings from an opposite ledge.  A protective
+guardrail is all that separates you from a precipitous drop
+to a deep chasm below.
+There is a sign here.
+";
+
+Object  "=1482"
+has light
+with
+! no explore data
+    description
+        "A crumbled, moss-covered cornerstone lies here, separated from
+the foundation of the museum by a foot or two.  The engraved
+words etched in the granite are lost in spongy curves of moss.
+";
+
+Object WestSideOfMuseum "West Side of Museum."
+has light
+with
+ne_to
+    BackOfMuseum,
+s_to
+    Cornerstone,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!You decide that travel to the E would be a waste of time.', u'SW': u'!You decide that travel to the SW would be a waste of time.', u'NE': u'BCKFMSM', u'N': u'!You decide that travel to the N would be a waste of time.', u'DOWN': u'!There is only ground below you.', u'S': u'CRNRSTN', u'W': u'!You decide that travel to the W would be a waste of time.', u'fullname': u'West Side of Museum.', u'SE': u'!You decide that travel to the SE would be a waste of time.', u'NW': u'!You decide that travel to the NW would be a waste of time.'}
+    description
+        "A scruffy side path skirts the museum which is decked out in a
+vast array of windows.
+";
+
+Object  "=3039"
+has light
+with
+! no explore data
+    description
+        "You are running on a moebius beltway.  A tortoise plods along in
+the opposite direction.
+";
+
+Object  "=3039"
+has light
+with
+! no explore data
+    description
+        "You are running on a moebius beltway.  The tortoise is ahead of you.
+You reach the spot where the tortoise was, but, in the meantime, the
+tortoise has inched ahead.
+";
+
+Object  "=3039"
+has light
+with
+! no explore data
+    description
+        "You are running on a moebius beltway.  The tortoise is behind you.
+The tortoise reaches the spot where you were, but, in the meantime,
+you have zoomed ahead.
+";
+
+Object  "=3039"
+has light
+with
+! no explore data
+    description
+        "You are the lone runner on a moebius beltway.
+";
+
+Object Foyer "Foyer."
+has light
+with
+! no explore data
+    description
+        "The walls here sport a three-part fresco, lit by ~8light from the
+skylight above.
+";
+
+Object HallOfClocks "Hall of Clocks."
+has light
+with
+! no explore data
+    description
+        "Clocks of all shapes and sizes, ordered roughly by nationality,
+tick-tock with well-regulated syncopation.  Along the east wall,
+a Swiss carousel and a German cuckoo catch your fleeting attention.
+A Tibetan gong stands in silent counterpoint to the west.
+";
+
+Object CounterClockwiseRoom "Counter-Clockwise Room."
+has light
+with
+! no explore data
+    description
+        "This room seems to run counter to all your expectations, sweeping
+you in along a path that proceeds counter-clockwise along the room's
+circular perimeter.
+";
+
+Object SupplyRoom "Supply Room."
+has light
+with
+! no explore data
+    description
+        "Antiseptic and orderly, this room reminds you of a lemon-scented
+linen closet.  You shake off the fact that the stock is transparent
+and the smell quite vile.
+";
+
+Object ComputerRoom "Computer Room."
+has light
+with
+! no explore data
+    description
+        "The banks of lights here blink with the soporific rhythm of uneasy
+dreams.  You sense the presence of a powerful processor but can see
+no controls.  Your eyes rapidly move across the zigzag of lights.
+";
+
+Object CountDownBooth "Count-Down Booth."
+has light
+with
+! no explore data
+    description
+        "You feel as if you've been gravitating to this locale for many a
+moon.  However, now that you're here, all that presents itself to
+your view is a huge screen that doubles as a digital readout.
+";
+
+Object AdministrativeOffices "Administrative Offices."
+has light
+with
+! no explore data
+    description
+        "This well-appointed office has all the posh trappings of power--
+from brushed leather to oiled mahogany to shiny chrome.  Ignorant
+of trappings, a nicked-up roll-top desk is tucked away in the corner.
+Mounted on the wall is an almost-complete butterfly collection.
+";
+
+Object WestEastHall "West-East Hall."
+has light
+with
+! no explore data
+    description
+        "This long hall proceeds from west to east with passageways on
+all sides.
+";
+
+Object TurnInHall "Turn in Hall."
+has light
+with
+! no explore data
+    description
+        "The two branches of the hall merge here in a right-angle turn.
+";
+
+Object SouthNorthHall "South-North Hall."
+has light
+with
+! no explore data
+    description
+        "This short hall proceeds from south to north with passageways on
+all sides except west.
+";
+
+Object SpiralStaircase "Spiral Staircase."
+has light
+with
+! no explore data
+    description
+        "Taking its cue from the counter-clockwise room below, the staircase
+here turns in on itself for a single flight up and a single flight
+down.
+";
+
+Object BellTurret "Bell Turret."
+has light
+with
+! no explore data
+    description
+        "Octagonal and enclosed, this turret is dominated by a massive
+bell connected via a pulley to rope.  You are presented with a
+scenic view in each and every direction you look.
+";
+
+Object ClockwiseRoom "Clockwise Room."
+has light
+with
+! no explore data
+    description
+        "This room sweeps you in along a path that proceeds clockwise along
+the room's circular perimeter.
+";
+
+Object  "=3017"
+has light
+with
+! no explore data
+    description
+        "Well, you've been over the hill and lived to tell about it!
+The going may not get easier as you descend, but at least you
+know the ropes better.
+";
+
+Object CloakCloset "Cloak Closet."
+has light
+with
+! no explore data
+    description
+        "There are no garments in this cloak closet--just a lowly timepunch
+used to keep track of employees.
+";
+
+Object OnTheRocks "On the Rocks."
+has light
+with
+! no explore data
+    description
+        "Humpbacked rocks here protrude from the river's frothy flow.  Being
+on the rocks, you are slightly shaky, but you nevertheless steady
+your spirits and peer downstream towards the sea.  To the west,
+across the river, is the entrance to a shaft.
+";
+
+Object AmazingSpace "Amazing Space."
+has light
+with
+! no explore data
+    description
+        "This space was designed by the maker of the labyrinth to give the
+adventurer a well-deserved pause.  A monstrous lopped-off stump,
+with concentric rings exposed, dominates the space.
+";
+
+Object LoadingStage "Loading Stage."
+has light
+with
+n_to
+    BackOfMuseum,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The ramp lies to the N.', u'SW': u'!The museum stops you.', u'NE': u'!The ramp lies to the N.', u'N': u'BCKFMSM', u'DOWN': u'!There is only ground below you.', u'S': u'!The door is closed.', u'W': u'!The ramp lies to the N.', u'fullname': u'Loading Stage.', u'SE': u'!The museum stops you.', u'NW': u'!The ramp lies to the N.'}
+    description
+        "This barren square of concrete is formed by the leveling off of
+the delivery ramp to the north.
+";
+
+Object Pantry1 "Pantry."
+has light
+with
+! no explore data
+    description
+        "The cupboards in this chilly pantry are bare.
+";
+
+Object Pantry2 "Pantry."
+has light
+with
+! no explore data
+    description
+        "You are in a pantry whose cupboards are filled from floor to
+ceiling with jar upon jar of scrumptious fruit jam.
+";
+
+Object BlacksmithS "Blacksmith's."
+has light
+with
+ne_to
+    Woods,
+se_to
+    WoodsyCorridor,
+! No obvious cant_go value: explore dict is {u'UP': u"!There's a ceiling in the way.", u'E': u"!There's a wall in the way.", u'SW': u"!There's a wall in the way.", u'NE': u'WDS', u'N': u"!There's a wall in the way.", u'DOWN': u"!There's a floor in the way.", u'S': u"!There's a wall in the way.", u'W': u"!There's a wall in the way.", u'fullname': u"Blacksmith's.", u'SE': u'WDSYCRRD', u'NW': u"!There's a wall in the way."}
+    description
+        "An anvil and a fiery forge dominate this workshop.  A blacksmith
+seems intent on hammering black materials into flinty arrowheads.
+He works beneath an overarching sign.
+";
+
+Object FieldOfPoppies2 "Field of Poppies."
+has light
+with
+up_to
+    MeanderingMeadowPath,
+e_to
+    Upriver,
+n_to
+    MeanderingMeadowPath,
+down_to
+    Upriver,
+s_to
+    FieldOfStone,
+se_to
+    Riverbed,
+   cant_go
+        "You dutifully refrain from trampling the poppies.",
+    description
+        "Either you're becoming especially keen-sighted or this scene has
+all the clarity of a Mondrian.  Abstract splotches of green and
+violet burst with healthy orange meadow poppies that waft an eye-
+opening fragrance which keeps you wide awake.
+";
+
+Object Upriver2 "UpRiver."
+has light
+with
+up_to
+    FieldOfPoppies,
+sw_to
+    FieldOfStone,
+s_to
+    Riverbed,
+w_to
+    FieldOfPoppies,
+nw_to
+    MeanderingMeadowPath,
+! No obvious cant_go value: explore dict is {u'UP': u'FLDFPPPS', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'SW': u'FLDFSTN', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'N': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'DOWN': u'!There is only ground below you.\n\nUpRiver.\n', u'S': u'RVRBD', u'W': u'FLDFPPPS', u'fullname': u'UpRiver.', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'NW': u'MNDRNGMD'}
+    description
+        "=4016
+";
+
+Object FieldOfStone2 "Field of Stone."
+has light
+with
+e_to
+    Riverbed,
+sw_to
+    AbandonedMill,
+ne_to
+    Upriver,
+n_to
+    FieldOfPoppies,
+down_to
+    Riverbed,
+w_to
+    Hill,
+se_to
+    DesolateField,
+! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'RVRBD', u'SW': u'ABNDNDML', u'NE': u'UPRVR', u'N': u'FLDFPPPS', u'DOWN': u'RVRBD', u'S': u'!For fear of triggering an avalanche, you hold your ground.', u'W': u'HLL', u'fullname': u'Field of Stone.', u'SE': u'DSLTFLD', u'NW': u'!For fear of triggering an avalanche, you hold your ground.'}
+    description
+        "You are on a gently sloping field of stones.  There are no terns
+in the sky since they have all returned to the sea.  The stones
+are still here.
+";
+
+Object Riverbed2 "Riverbed."
+has light
+with
+up_to
+    FieldOfStone,
+sw_to
+    DesolateField,
+n_to
+    Upriver,
+w_to
+    FieldOfStone,
+nw_to
+    FieldOfPoppies,
+! No obvious cant_go value: explore dict is {u'UP': u'FLDFSTN', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'SW': u'DSLTFLD', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'N': u'UPRVR', u'DOWN': u'!There is only ground below you.\n\nRiver Bed.', u'S': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'W': u'FLDFSTN', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'NW': u'FLDFPPPS'}
+    description
+        "=4020
+";
+
+Object DesolationRow "Desolation Row."
+has light
+with
+! no explore data
+    description
+        "Nothing is here, neither hint nor whisper--nothing but the dour
+wind of desolation.
+";
+
+Object Graveyard "Graveyard."
+has light
+with
+! no explore data
+    description
+        "Crumbling walls outline the room divisions that once formed a
+monumental museum of time.  In the weedy spaces between the
+outlines, flagstones serve as gravemarkers.  A shack lies to the
+East.
+";
+
+Object Tombstone "Tombstone."
+has light
+with
+! no explore data
+    description
+        "An oblong tongue of stone rises from the earth to form a tombstone
+here.  An inscription might be made out amidst the graffiti.
+";
+
+Object Shack "Shack."
+has light
+with
+! no explore data
+    description
+        "This is the ultimate hacker's hut--a chair, a table, and a computer
+in a skunkworks shack.
+";
+
+Object OnTheRiver "On the River."
+has light
+with
+! no explore data
+    description
+        "You are cradled in a tortoise shell that floats down a swiftly moving
+river.  You swirl to the south-southeast as you approach the mouth of
+the canyon that the river enters.
+";
+
+Object OnTheRiverBetweenCanyons "On the River, Between Canyons."
+has light
+with
+! no explore data
+    description
+        "Your tortoise shell boat is dwarfed by the sheer immensity of
+towering canyon walls but nevertheless manages to steer a clear,
+unwavering path over foamy rapids.
+";
+
+Object  "=3081"
+has light
+with
+! no explore data
+    description
+        "You have emerged from a canyon in your continuing trek down a
+swiftly moving river.  Ahead of you, a twin-towered suspension
+bridge rises only to disappear in a billow of clouds.
+";
+
+Object OnTheRiverUnderBridge "On the River, Under Bridge."
+has light
+with
+! no explore data
+    description
+        "Your tortoise shell bark navigates past a humpbacked rock that
+lies beneath a suspension bridge.  The cloudy shadow of the bridge
+casts a dark brow across your path.  The entrance to a shaft lies
+to the West.
+";
+
+Object  "=3081"
+has light
+with
+! no explore data
+    description
+        "You continue your journey down the river.  The onrushing roar of
+a waterfall assaults you from ahead.
+";
+
+Object OverTheFalls "Over the Falls."
+has light
+with
+! no explore data
+    description
+        "You are plummeting over dappled falls, the tortoise shell serving
+as a toboggan.  Your face is sprayed with a refreshing mist from
+the falls.
+";
+
+Object TidesOfTime "Tides of Time."
+has light
+with
+! no explore data
+    description
+        "You are on a beach overlooking the sea.  Ebb tide is at hand.
+Terns gracefully sweep the sky, scavengers and overseers alike.
+";
+
+Object Ramp "Ramp."
+has light
+with
+! no explore data
+    description
+        "A boat ramp slopes down here from riverbed to river.
+";
+
+Object  "=1482"
+has light
+with
+! no explore data
+    description
+        "A crumbled cornerstone lies here, separated from the foundation
+of the museum by a foot or two.  The moss has been scraped from
+the cornerstone to reveal an age-old inscription.
+";
+
+Object  "=3021"
+has light
+with
+! no explore data
+    description
+        "The redwood sawdust has been blown from the scattered timbers here.
+Dusty yellow mushrooms dot the scene.
+";
+
+Object  "=1491"
+has light
+with
+! no explore data
+    description
+        "=4156
+";
+
+Object GreenRoom "Green Room."
+has light
+with
+! no explore data
+    description
+        "This room is dominated by a door to the north with an inset window.
+Looking into the window, you see a subaquarium universe of bottle
+glass green, stirred by cold black currents.  There is a sign here.
+";
+
+Object Archives "Archives."
+has light
+with
+! no explore data
+    description
+        "A vast army of carpenter ants has turned the archives into a ratty
+hive of paper pulp, furred with wispy corrugations of gnawed cardboard.
+Even the air is papery and sharp, you can feel paper cuts crisscrossing
+your skin.  The records are ruined!  Black ants crawl all over the
+place.
+";
+
+Object  "=3097"
+has light
+with
+! no explore data
+    description
+        "The records have been recovered!  Neatly stacked ledgers of ancient
+origin line the room.  Three in particular catch your attention.
+";
+
+Object CrossroadsInTheSky "Crossroads in the Sky."
+has light
+with
+! no explore data
+    description
+        "You are suspended in the sky, at a junction point where clouds, winds,
+and pressure-points conspire to create your everyday weather.  Directly
+below you lies the Museum of Time.
+";
+

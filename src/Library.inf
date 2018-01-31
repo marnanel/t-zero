@@ -1,0 +1,69 @@
+Global LibraryLight = 0;
+
+[ LibraryPrintLight ;
+   switch (LibraryLight) {
+
+    0: "The room is pitch-black.";
+    1: "The room is steeped in darkroom red.";
+    2: "An eerie green permeates the room.";
+    3: "The room is alight with elegant amber.";
+    4: "The room is charged with electric cobalt.";
+    5: "Soft magenta envelopes the room.";
+    6: "The room in saturated with soft cyan.";
+    7: "Blinding white light floods the room.";
+    default: "(impossible)";
+   }
+];
+
+Class Button
+has scenery
+with number 0, ! value of relevant bit in LibraryLight
+   name "button",
+   before [; Push:
+
+   	if ((LibraryLight & self.number)==0) {
+	    ! turning it on
+	    LibraryLight = LibraryLight | self.number;
+	} else {
+	    ! turning it off
+	    LibraryLight = LibraryLight & (~self.number);
+	}
+
+       LibraryPrintLight();
+       rtrue;
+   ];
+
+
+Object Library "Library."
+has light
+with
+! no explore data
+    description [;
+        print "This cavernous interior is partitioned by long rows of book-shelves
+which reach to the rafters.  The books are arranged by the color of
+their spines.  Three buttons are set on a plaque near the entrance.
+^^";
+	LibraryPrintLight();
+	rtrue;
+
+];
+
+Nearby "red button"
+class Button,
+with
+   name "red",
+   number 1;
+
+Nearby "green button"
+class Button,
+with
+   name "green",
+   number 2;
+
+Nearby "blue button"
+class Button,
+with
+   name "blue",
+   number 4;
+
+

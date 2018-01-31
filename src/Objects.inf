@@ -1,0 +1,81 @@
+Attribute legible;
+[ ReadSub;
+    << Examine noun >>;
+    ];
+Extend 'read' first * legible -> Read;
+
+Object CompassThing "Compass"
+with
+   name "compass",
+   initial "There is a strange geo-temporal compass here.",
+   description "The compass contains a needle balanced on a central pivot.
+Superimposed on the rim are two concentric sets of markings.
+One indicates the 8 cardinal directions.  The other indicates
+the 24 hours of the day.  Thus, north corresponds to high 
+noon and south to midnight.  A stopwatch-like plunger and a
+dual-setting slider cap the whole affair.";
+
+Object PinkSlip "Pink Slip"
+has
+    legible
+with
+   name "pink" "slip",
+   initial "A pink slip has been hastily abandoned here.",
+   description "A faint scribbling, pink on pink, is visible on the slip.  You
+remember being handed your walking papers--and, indeed, you have
+been walking!",
+    before [;
+        Consult, Read:
+        "In dark pink script, the light pink slip officiously reads:^^
+        
+        ~Our project is too near completion to allow us to keep in our
+        employment a custodian who is prone to sweep subatomic particles
+        under the carpet along with the dust.  Also, after repeated
+        warnings, you have approached the restricted areas once too
+        often.  You may not enter the museum again--your personal
+        effects will be delivered to you.~^^
+        
+        The missive closes with ~Counting down from ten~ and is signed
+        with the name Count Zero followed by a flourish and a slashed zero.
+        In addition, a single word has been faintly outlined in bold
+        capital letters by an impression from light blue carbon paper.
+        However, with all that red upon red, the word is not readable in
+        the current light.";
+    ];
+
+Object JournalPage "Journal Page"
+with
+    name "journal" "page",
+    ! XXX this isn't just the initial
+    initial "A page from your journal has been left here where anyone could read it!",
+    description "On the journal page you've scribbled the following cryptic instructions:
+    ^^
+    Shadow the sun . . .
+    ^^
+    A spire to the sky at noon.^
+    Into no man's land at nine.^^
+    
+    Read in the red light at noon.^
+    Transcribe from the violet light at nine.";
+
+Object KhakiFatigues "Khaki Fatigues"
+has
+    worn proper pluralname
+with
+    name "khaki" "fatigues" "pants",
+    description "As befits the acquisitive adventurer,
+    your khaki fatigues are
+    commodious. Two pockets in particular catch your attention--
+    a fob pocket and a thigh pocket.";
+
+Object RedSuspenders "Red Suspenders"
+has
+    worn proper pluralname
+with
+    name "red" "suspenders" "braces",
+    description "Your red suspenders are real snappy.
+    Their two elastic bands can be
+    crossed over your back to clasp your pants in place.";
+
+
+
