@@ -7,6 +7,7 @@ import tempfile
 import glob
 import time
 import signal
+import re
 
 def copy_in_original(source, target):
 
@@ -92,12 +93,14 @@ class Implementation(object):
 		self.write(command)
 		response = self.read()
 
-		if expect is not None and not expect in response:
+                checking_response = re.sub(r'\s+', ' ', response)
+
+		if expect is not None and not expect in checking_response:
 			self.close()
 			raise ValueError('"%s" was not found in:\n=== %s\n%s' % (
 				expect,
 				command,
-				response))
+				checking_response))
 
 		self._pushToMonitors(command, response)
 		return response
@@ -187,7 +190,7 @@ class Z5Version(Implementation):
 	self._emu = subprocess.Popen(
 		args = [
 			'dfrotz',
-                        'game/t-zero.z5',
+                        't-zero.z5',
 			],
 		stdin = subprocess.PIPE,
                 stdout = subprocess.PIPE,

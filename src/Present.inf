@@ -1,7 +1,7 @@
 Object Cave "Cave."
 has light
 with
-up_to
+u_to
     EntranceToCave,
 s_to
     EntranceToCave,
@@ -17,7 +17,7 @@ has light
 with
 n_to
     Cave,
-down_to
+d_to
     Cave,
 s_to
     Woods,
@@ -31,13 +31,13 @@ ledge above.
 Object Woods "Woods."
 has light
 with
-up_to
+u_to
     WoodsyCorridor,
 sw_to
     BlacksmithS,
 n_to
     EntranceToCave,
-down_to
+d_to
     EntranceToCave,
 s_to
     WoodsyCorridor,
@@ -52,11 +52,11 @@ your perception.
 Object WoodsyCorridor "Woodsy Corridor."
 has light
 with
-up_to
+u_to
     ShallowDepression,
 n_to
     Woods,
-down_to
+d_to
     Woods,
 s_to
     ShallowDepression,
@@ -74,13 +74,13 @@ south to north.
 Object ShallowDepression "Shallow Depression."
 has light
 with
-up_to
+u_to
     EastEdgeOfPond,
 sw_to
     MoebiusStrip,
 n_to
     WoodsyCorridor,
-down_to
+d_to
     WoodsyCorridor,
 se_to
     EastEdgeOfPond,
@@ -126,7 +126,7 @@ has light
 with
 sw_to
     SouthEdgeOfPondPitstop,
-down_to
+d_to
     ShallowDepression,
 nw_to
     ShallowDepression,
@@ -139,13 +139,13 @@ tall reeds.
 Object SouthEdgeOfPondPitstop "South Edge of Pond (Pitstop)."
 has light
 with
-up_to
+u_to
     HillSlope,
 sw_to
     HillSlope,
 ne_to
     EastEdgeOfPond,
-down_to
+d_to
     PathToPond,
 se_to
     PathToPond,
@@ -161,13 +161,13 @@ adheres to the ground.
 Object HillSlope "Hill Slope."
 has light
 with
-up_to
+u_to
     ObeliskPlateau,
 sw_to
     ObeliskPlateau,
 ne_to
     SouthEdgeOfPondPitstop,
-down_to
+d_to
     SouthEdgeOfPondPitstop,
    cant_go
         "Don't fight it, simply go with the slope.",
@@ -181,7 +181,7 @@ has light
 with
 ne_to
     HillSlope,
-down_to
+d_to
     HillSlope,
 se_to
     OverTheHill,
@@ -195,11 +195,11 @@ obelisk that pierces the sky and dominates the surrounding landscape.
 Object PathToPond "Path to Pond."
 has light
 with
-up_to
+u_to
     SouthEdgeOfPondPitstop,
 ne_to
     PathThroughOutskirtsOfMeadow,
-down_to
+d_to
     PathThroughOutskirtsOfMeadow,
 nw_to
     SouthEdgeOfPondPitstop,
@@ -212,13 +212,13 @@ nw_to
 Object PathThroughOutskirtsOfMeadow "Path Through Outskirts of Meadow."
 has light
 with
-up_to
+u_to
     PathToPond,
 sw_to
     PathToPond,
 ne_to
     Viewpoint,
-down_to
+d_to
     MeanderingMeadowPath,
 se_to
     MeanderingMeadowPath,
@@ -238,14 +238,14 @@ description
 Object MeanderingMeadowPath "Meandering Meadow Path."
 has light
 with
-up_to
+u_to
     PathThroughOutskirtsOfMeadow,
-down_to
+d_to
     FieldOfPoppies,
 s_to
     FieldOfPoppies,
 se_to
-    Upriver,
+    Upriver1,
 nw_to
     PathThroughOutskirtsOfMeadow,
    cant_go
@@ -258,14 +258,14 @@ populated by stray meadow poppies and dented with potholes.
 Object FieldOfPoppies "Field of Poppies."
 has light
 with
-up_to
+u_to
     MeanderingMeadowPath,
 e_to
-    Upriver,
+    Upriver1,
 n_to
     MeanderingMeadowPath,
-down_to
-    Upriver,
+d_to
+    Upriver1,
 s_to
     FieldOfStone,
 se_to
@@ -279,10 +279,10 @@ violet background is punctuated by bright orange meadow poppies.
 They waft a fragrance which makes you slightly sleepy.
 ";
 
-Object Upriver "UpRiver."
+Object Upriver1 "UpRiver."
 has light
 with
-up_to
+u_to
     FieldOfPoppies,
 sw_to
     FieldOfStone,
@@ -304,7 +304,7 @@ has light
 with
 e_to
     Hill,
-down_to
+d_to
     Hill,
 se_to
     AbandonedMill,
@@ -320,7 +320,7 @@ the ropes better.
 Object Hill "Hill."
 has light
 with
-up_to
+u_to
     OverTheHill,
 e_to
     FieldOfStone,
@@ -340,10 +340,10 @@ e_to
 sw_to
     AbandonedMill,
 ne_to
-    Upriver,
+    Upriver1,
 n_to
     FieldOfPoppies,
-down_to
+d_to
     Riverbed,
 w_to
     Hill,
@@ -359,12 +359,12 @@ they could be overturned.
 Object Riverbed "River Bed."
 has light
 with
-up_to
+u_to
     FieldOfStone,
 sw_to
     DesolateField,
 n_to
-    Upriver,
+    Upriver1,
 w_to
     FieldOfStone,
 nw_to
@@ -414,7 +414,7 @@ here.
 Object MuseumStairs "Museum Stairs."
 has light
 with
-up_to
+u_to
     PorticoOfMuseum,
 n_to
     PorticoOfMuseum,
@@ -436,7 +436,7 @@ description
 Object PorticoOfMuseum "Portico of Museum."
 has light
 with
-down_to
+d_to
     MuseumStairs,
 s_to
     MuseumStairs,
@@ -938,14 +938,14 @@ He works beneath an overarching sign.
 Object FieldOfPoppies2 "Field of Poppies."
 has light
 with
-up_to
+u_to
     MeanderingMeadowPath,
 e_to
-    Upriver,
+    Upriver2,
 n_to
     MeanderingMeadowPath,
-down_to
-    Upriver,
+d_to
+    Upriver2,
 s_to
     FieldOfStone,
 se_to
@@ -962,7 +962,7 @@ opening fragrance which keeps you wide awake.
 Object Upriver2 "UpRiver."
 has light
 with
-up_to
+u_to
     FieldOfPoppies,
 sw_to
     FieldOfStone,
@@ -985,10 +985,10 @@ e_to
 sw_to
     AbandonedMill,
 ne_to
-    Upriver,
+    Upriver2,
 n_to
     FieldOfPoppies,
-down_to
+d_to
     Riverbed,
 w_to
     Hill,
@@ -1004,12 +1004,12 @@ are still here.
 Object Riverbed2 "Riverbed."
 has light
 with
-up_to
+u_to
     FieldOfStone,
 sw_to
     DesolateField,
 n_to
-    Upriver,
+    Upriver2,
 w_to
     FieldOfStone,
 nw_to

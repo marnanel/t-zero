@@ -60,13 +60,29 @@ with
 
 Object KhakiFatigues "Khaki Fatigues"
 has
-    worn proper pluralname
+    worn proper pluralname container open
 with
     name "khaki" "fatigues" "pants",
     description "As befits the acquisitive adventurer,
     your khaki fatigues are
     commodious. Two pockets in particular catch your attention--
     a fob pocket and a thigh pocket.";
+
+Object FobPocket "Fob Pocket." KhakiFatigues
+has
+    container open
+with
+    name "fob" "pocket",
+    description "Your fob pocket is just the right size for a compass.";
+
+Object ThighPocket "Thigh Pocket." KhakiFatigues
+has
+    container open
+with
+    name "thigh" "pocket",
+    description
+    "Your thigh pocket is not especially spacious and seems to have
+    a mind of its own about what goes in and out.";
 
 Object RedSuspenders "Red Suspenders"
 has
