@@ -1,8 +1,11 @@
 Attribute legible;
+
 [ ReadSub;
     << Examine noun >>;
     ];
 Extend 'read' first * legible -> Read;
+
+Attribute thighpocketwants; ! Your thigh pocket wants this
 
 Object CompassThing "Compass"
 with
@@ -82,7 +85,14 @@ with
     name "thigh" "pocket",
     description
     "Your thigh pocket is not especially spacious and seems to have
-    a mind of its own about what goes in and out.";
+    a mind of its own about what goes in and out.",
+    react_before [;
+        Take: if (noun has thighpocketwants) {
+                move noun to self;
+                "You put the bad seed in your pocket.  Actually, it's more like
+                your pocket swoops out of its lining to grab the bad seed.";
+            }
+    ];
 
 Object RedSuspenders "Red Suspenders."
 has
@@ -94,25 +104,46 @@ with
     crossed over your back to clasp your pants in place.";
 
 Object Poppy "Poppy" FieldOfPoppies
+has
+    scenery
 with
+    name "poppy" "flower",
     description "Although brighter than anything else in this muted landscape,
     the poppies still have a washed-out look.  Their crinkled petals
     are slightly brown at the edges and the dry rattleheads of the
-    seedpods have scattered without bursting.";
+    seedpods have scattered without bursting.",
+    after [;
+        Examine:
+            print "^";
+            give DryHusk ~concealed;
+            print (string) DryHusk.initial;
+    ];
 
 Object DryHusk "Dry Husk." FieldOfPoppies
-! XXX this is invisible only until some unidentified condition is met
+has
+    concealed
 with
+    name "dry" "husk" "seed" "seedpod",
     initial "The dry husk of a hard seedpod, previously unremarked,
-    almost escapes your notice.";
+    almost escapes your notice.",
+    before [;
+        print "As you take the seed, the seedpod bursts.^^";
+        move BadSeed to location;
+        remove self;
 
-! XXX When you take DryHusk, it turns into BadSeed:
-!As you take the seed, the seedpod bursts.
+        << Take BadSeed >>;
+        ];
+
+Object BadSeed "Bad Seed."
+has
+    thighpocketwants
+with
+    initial "A bad seed lies here, not merely dormant, but dead.",
+    description
+    "This is a bad seed. Even with the fertilizer from a herd of
+    elephants, it's not about to grow.";
 
 ! XXX BadSeed has some attribute that means your thigh pocket
 ! will take it
-
-!You put the bad seed in your pocket.  Actually, it's more like
-!your pocket swoops out of its lining to grab the bad seed.
 
 
