@@ -1,5 +1,47 @@
-Replace DrawStatusLine;
 
-[DrawStatusLine;
+! The status line looks like this:
 
+!  River Bed.                 6:00AM * Day 1 * Present * 0/0
+!  ^ left aligned             ^ right aligned
+
+! The "*"s are square bullets.
+! A move takes five minutes (always?)
+! There is no indication of the direction of time flow.
+! The first of the final pair of numbers is the score;
+! the second is the number of moves.
+
+[ DrawStatusLine x;
+
+    @split_window 1; @set_window 1;
+
+    ! clear the line
+    @set_cursor 1 1; style reverse;
+    spaces (0->33);
+
+    ! write room name
+    @set_cursor 1 2;  PrintShortName(location);
+
+    ! calculate length of other stuff
+
+    x = 0->33; ! width of window
+    ! XXX When we have the other stuff working,
+    ! calculate the width of it here.
+    ! For now, we'll just guess wildly.
+    x = x - 40;
+
+    ! print the other stuff
+    @set_cursor 1 x;
+    ! XXX Here we have to break the "gametime"
+    ! variable down to get the time and day numbers.
+    print "6:00AM @>> Day 1 @>> ";
+
+    ! XXX we don't actually track the era at present
+    print "Present @>> ";
+
+    print sline1; ! score
+    print " / ";
+    print sline2; ! moves
+
+    ! back to the main window
+    @set_cursor 1 1; style roman; @set_window 0;
 ];

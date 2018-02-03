@@ -2,10 +2,13 @@ Constant Story "T-ZERO";
 Constant Headline "^an adventure for the time being^in memoriam Dennis M. Cunningham^";
 Constant DEBUG;
 
+Replace DrawStatusLine;
+
 Include "parser";
 Include "verblib";
 Include "grammar";
 
+Include "Calendar.inf";
 Include "Present.inf";
 Include "Objects.inf";
 Include "Library.inf";
