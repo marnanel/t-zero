@@ -84,7 +84,7 @@ with
     "Your thigh pocket is not especially spacious and seems to have
     a mind of its own about what goes in and out.";
 
-Object RedSuspenders "Red Suspenders"
+Object RedSuspenders "Red Suspenders."
 has
     worn proper pluralname
 with
@@ -93,5 +93,26 @@ with
     Their two elastic bands can be
     crossed over your back to clasp your pants in place.";
 
+Object Poppy "Poppy" FieldOfPoppies
+with
+    description "Although brighter than anything else in this muted landscape,
+    the poppies still have a washed-out look.  Their crinkled petals
+    are slightly brown at the edges and the dry rattleheads of the
+    seedpods have scattered without bursting.";
+
+Object DryHusk "Dry Husk." FieldOfPoppies
+! XXX this is invisible only until some unidentified condition is met
+with
+    initial "The dry husk of a hard seedpod, previously unremarked,
+    almost escapes your notice.";
+
+! XXX When you take DryHusk, it turns into BadSeed:
+!As you take the seed, the seedpod bursts.
+
+! XXX BadSeed has some attribute that means your thigh pocket
+! will take it
+
+!You put the bad seed in your pocket.  Actually, it's more like
+!your pocket swoops out of its lining to grab the bad seed.
 
 
