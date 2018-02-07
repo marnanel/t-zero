@@ -125,7 +125,7 @@ class DosVersion(Implementation):
         Implementation.__init__(self)
 
 	self._emu = None
-        self._prompt = '>>>'
+        self._prompt = '>>'
 	self._rlist = [sys.stdin]
 
 	self._contents_dir = tempfile.mkdtemp(prefix='temp_t0dos')
