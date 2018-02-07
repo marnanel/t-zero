@@ -3,7 +3,7 @@ Objects.inf parser.h Present.inf T0english.h T-Zero.inf \
 verblib.h verblibm.h
 
 t-zero.z5: ${SOURCES}
-	inform +language_name=T0english T-Zero.inf t-zero.z5
+	inform -D +language_name=T0english T-Zero.inf t-zero.z5
 
 play: t-zero.z5
 	frotz t-zero.z5

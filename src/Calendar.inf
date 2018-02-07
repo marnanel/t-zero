@@ -1,16 +1,23 @@
+! Time elapsed during the game, in five-minute units.
+! Not the same as a count of moves, because time can
+! flow backwards.
+Global timeInGame = 0;
+
+! Direction of flow of time. 1 is forwards, and
+! -1 is backwards.
+Global timeDirection = 1;
 
 ! The status line looks like this:
 
 !  River Bed.                 6:00AM * Day 1 * Present * 0/0
 !  ^ left aligned             ^ right aligned
-
-! The "*"s are square bullets.
+! The "*"s are square bullets, which we can't do in ZSCII.
 ! A move takes five minutes (always?)
 ! There is no indication of the direction of time flow.
 ! The first of the final pair of numbers is the score;
 ! the second is the number of moves.
 
-[ DrawStatusLine x;
+[ DrawStatusLine x t hours mins ampm daynum;
 
     @split_window 1; @set_window 1;
 
@@ -23,20 +30,60 @@
 
     ! calculate length of other stuff
 
+    ! the 72 is because the game begins at 6am,
+    ! not midnight
+    t = timeInGame + 72;
+
+    mins = (t % 12) * 5;
+    t = t / 12;
+    hours = t % 12;
+    t = t / 12;
+    ampm = t % 2;
+    t = t / 2;
+    daynum = t;
+
+    if (hours==0) {
+            hours = 12;
+    }
+
     x = 0->33; ! width of window
     ! XXX When we have the other stuff working,
     ! calculate the width of it here.
     ! For now, we'll just guess wildly.
     x = x - 40;
 
+    if (hours>9) {
+            x = x - 1; ! extra hours digit
+    }
+
     ! print the other stuff
     @set_cursor 1 x;
-    ! XXX Here we have to break the "gametime"
-    ! variable down to get the time and day numbers.
-    print "6:00AM @>> Day 1 @>> ";
+
+    print hours;
+
+    print ":";
+
+    if (mins < 10) {
+            print "0";
+    }
+    print mins;
+
+    if (ampm==0) {
+            print "AM";
+    } else {
+            print "PM";
+    }
+
+    print " @>> Day ";
+    
+    print daynum;
+
+    print " @>> ";
 
     ! XXX we don't actually track the era at present
-    print "Present @>> ";
+    print "Present";
+    
+    print " @>> ";
 
     print sline1; ! score
     print " / ";

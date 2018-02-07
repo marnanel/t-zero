@@ -3,6 +3,7 @@ Constant Headline "^an adventure for the time being^in memoriam Dennis M. Cunnin
 Constant DEBUG;
 
 Replace DrawStatusLine;
+Replace AdvanceWorldClock;
 
 Include "parser";
 Include "verblib";
@@ -55,7 +56,31 @@ Extend 'inv' replace
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+Object Custodian "(self object)"
+has
+    animate concealed proper transparent
+with
+    short_name  [; return L__M(##Miscellany, 18); ],
+    description
+        "You are a diminutive figure-- sort of
+    a wallflower embossed on wallpaper that's about to fade
+    into the woodwork.  You try to perk up your image with
+    snappy red suspenders but the only thing they actually
+    hold up are your pants.  Lately, you've been working in
+    the museum as a combination custodian/librarian.
+    Your memory prior to this job is cloudy.";
+
+[ AdvanceWorldClock ;
+
+        timeInGame = timeInGame + timeDirection;
+
+        turns++;
+];
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 [ Initialise;
+    player = Custodian;
     location = RiverBed;
 
     move CompassThing to Player;
@@ -63,14 +88,6 @@ Extend 'inv' replace
     move JournalPage to Player;
     move KhakiFatigues to Player;
     move RedSuspenders to Player;
-
-    player.description = "You are a diminutive figure-- sort of
-    a wallflower embossed on wallpaper that's about to fade
-    into the woodwork.  You try to perk up your image with
-    snappy red suspenders but the only thing they actually
-    hold up are your pants.  Lately, you've been working in
-    the museum as a combination custodian/librarian.
-    Your memory prior to this job is cloudy.";
 
     print "^^^
 You awake from uneasy dreams.  Since you're no longer on easy street,
