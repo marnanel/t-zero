@@ -535,6 +535,33 @@ class RoomNoticer(Monitor):
 	def _enterRoom(self, name, firstTime):
 	    print 'Room name is [%s]. First? %d.' % (name, firstTime)
 
+class MakeInteractive(Monitor):
+
+    def __init__(self, start_at = 2):
+
+        super(MakeInteractive, self).__init__()
+
+        self._start_at = start_at
+
+    def handle(self, command_number, command, response):
+
+
+        if command_number != self._start_at:
+            return
+
+        print
+        print '=== The game is now interactive'
+        print 'Give commands at stdin. EOF will continue game.'
+        print
+
+        while True:
+            try:
+                command = raw_input('>')
+            except EOFError:
+                return
+
+            self._implementation.do(command)
+
 def main():
 
         parser = argparse.ArgumentParser(
@@ -543,6 +570,11 @@ def main():
             '-d', '--dos', 
             help='run the original DOS implementation',
             action="store_true")
+        parser.add_argument(
+            '-i', '--interactive', 
+            help='become interactive after command COMMAND (1-based)',
+            metavar='COMMAND',
+            type=int)
         args = parser.parse_args()
 
         if args.dos:
@@ -555,6 +587,10 @@ def main():
 		to_stdout = True,
 		to_filename = 't0run.log',
 		))
+
+        if args.interactive is not None:
+            implementation.addMonitor(MakeInteractive(start_at=args.interactive))
+
 	implementation.run()
 	implementation.close()
 
