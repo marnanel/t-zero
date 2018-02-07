@@ -214,10 +214,9 @@ class Monitor(object):
 	def close(self):
 		pass
 
-
-class Playthrough(Monitor):
+class GameScript(Monitor):
 	"""
-	Playthrough watches for the beginning of the game,
+	This watches for the beginning of the game,
 	then injects the commands to play the
 	whole game through.
 	"""
@@ -227,6 +226,11 @@ class Playthrough(Monitor):
 		    # at the beginning of the run;
 		    # start the playthrough
 		    self.run()
+
+class Playthrough(GameScript):
+	"""
+        Play the whole game through.
+	"""
 
 	def run(self):
 		impl = self._implementation
