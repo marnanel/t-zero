@@ -38,6 +38,7 @@ class Implementation(object):
     def __init__(self):
         self._monitors = []
         self._prompt = '>'
+        self._command_count = 0
 
     def addMonitor(self, monitor):
 	self._monitors.append(monitor)
@@ -83,12 +84,17 @@ class Implementation(object):
 		self._pushToMonitors('', '')
 
     def _pushToMonitors(self, command, response):
-		for monitor in self._monitors:
-		    monitor.handle(command, response)
+        for monitor in self._monitors:
+            monitor.handle(
+                    self._command_count,
+                    command,
+                    response)
 
     def do(self,
 		command,
 		expect=None):
+
+                self._command_count += 1
 
 		self.write(command)
 		response = self.read()
@@ -208,7 +214,7 @@ class Monitor(object):
 	def setImplementation(self, implementation):
 		self._implementation = implementation
 
-	def handle(self, command, response):
+	def handle(self, command_number, command, response):
 		raise NotImplementedError("Abstract method called")
 
 	def close(self):
@@ -221,8 +227,8 @@ class GameScript(Monitor):
 	whole game through.
 	"""
 
-	def handle(self, command, reponse):
-		if command=='':
+	def handle(self, command_number, command, reponse):
+            if command_number==0:
 		    # at the beginning of the run;
 		    # start the playthrough
 		    self.run()
@@ -475,9 +481,10 @@ class Logger(Monitor):
 		else:
 		    	self._logfile = None
 
-	def handle(self, command, response):
+	def handle(self, command_number, command, response):
 
-		content = '==== %s\n%s\n' % (
+		content = '==== %4d == %s\n%s\n' % (
+                        command_number,
 			command,
 			response)
 
@@ -505,7 +512,7 @@ class RoomNoticer(Monitor):
 
 		self._seenRooms = set()
 
-	def handle(self, command, response):
+	def handle(self, command_number, command, response):
 
 		if not command.lower() in MOVEMENTS:
 		    return
