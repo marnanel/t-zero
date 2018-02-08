@@ -100,14 +100,14 @@ with
     commodious. Two pockets in particular catch your attention--
     a fob pocket and a thigh pocket.";
 
-Object FobPocket "Fob Pocket." KhakiFatigues
+Object FobPocket "Fob Pocket" KhakiFatigues
 has
     container open
 with
     name "fob" "pocket",
     description "Your fob pocket is just the right size for a compass.";
 
-Object ThighPocket "Thigh Pocket." KhakiFatigues
+Object ThighPocket "Thigh Pocket" KhakiFatigues
 has
     container open
 with
@@ -123,7 +123,7 @@ with
             }
     ];
 
-Object RedSuspenders "Red Suspenders."
+Object RedSuspenders "Red Suspenders"
 has
     worn proper pluralname
 with
@@ -148,7 +148,7 @@ with
             print (string) DryHusk.initial;
     ];
 
-Object DryHusk "Dry Husk." FieldOfPoppies
+Object DryHusk "Dry Husk" FieldOfPoppies
 has
     concealed
 with
@@ -164,7 +164,7 @@ with
         << Take BadSeed >>;
         ];
 
-Object BadSeed "Bad Seed."
+Object BadSeed "Bad Seed"
 has
     thighpocketwants
 with
