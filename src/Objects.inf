@@ -1,9 +1,38 @@
 Attribute legible;
 
+! XXX Objects in room descriptions should ALWAYS
+!      use the "initial" property and never show
+!      the name
+! XXX Split out grammar extensions to separate file
+
+Extend 'read' first * legible -> Read;
+
+Extend 'leave' first
+    * 'no' 'stone' 'unturned' -> LeaveNoStone;
+
 [ ReadSub;
     << Examine noun >>;
     ];
-Extend 'read' first * legible -> Read;
+
+[ LeaveNoStoneSub;
+
+    if (Claw has general) {
+        ! We've been here before
+        "Once again, you overturn every stone, but to no avail--not even
+a nestling centipede is forthcoming.  Every underside becomes a
+topside but the overall pattern of stones remains constant.";
+
+    }
+
+    move Claw to location;
+    give Claw general;
+
+    "With reckless abandon, you turn over every stone in sight,
+avoiding the many small avalanches you launch in the process.
+Under the last, overturned stone you find what looks like
+the disembodied claw of some prehistoric bird.";
+
+];
 
 Attribute thighpocketwants; ! Your thigh pocket wants this
 
@@ -127,6 +156,7 @@ with
     initial "The dry husk of a hard seedpod, previously unremarked,
     almost escapes your notice.",
     before [;
+        Take:
         print "As you take the seed, the seedpod bursts.^^";
         move BadSeed to location;
         remove self;
@@ -143,7 +173,24 @@ with
     "This is a bad seed. Even with the fertilizer from a herd of
     elephants, it's not about to grow.";
 
-! XXX BadSeed has some attribute that means your thigh pocket
-! will take it
+Object Stone "Stone" FieldOfStone
+has
+    scenery
+with
+    name "stone" "stones",
+    description
+        "The innumerable stones are evenly spaced across the sloping field.",
+    before [;
+        Exit:
+            ! "Leave stone"
+            "Leave well enough alone.";
+            ! "Leave no stone unturned" is handled
+            ! by LeaveNoStoneSub, q.v.
+        ];
 
+Object Claw "Prehistoric Claw"
+with
+    name "prehistoric" "claw",
+    description
+        "The webbed husk of leathery, prehistoric claw curls in on itself here.";
 
