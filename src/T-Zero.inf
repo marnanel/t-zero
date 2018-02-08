@@ -1,6 +1,9 @@
 Constant Story "T-ZERO";
 Constant Headline "^an adventure for the time being^in memoriam Dennis M. Cunningham^";
 Constant DEBUG;
+Constant DEATH_MENTION_UNDO;
+
+Include "Scoring.inf";
 
 Replace DrawStatusLine;
 Replace AdvanceWorldClock;

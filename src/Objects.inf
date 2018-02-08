@@ -27,6 +27,8 @@ topside but the overall pattern of stones remains constant.";
     move Claw to location;
     give Claw general;
 
+    Achieved(0);
+
     "With reckless abandon, you turn over every stone in sight,
 avoiding the many small avalanches you launch in the process.
 Under the last, overturned stone you find what looks like
