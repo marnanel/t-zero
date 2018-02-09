@@ -562,6 +562,10 @@ class MakeInteractive(Monitor):
 
             self._implementation.do(command)
 
+SCRIPTS = {
+        'playthrough': Playthrough,
+        }
+
 def main():
 
         parser = argparse.ArgumentParser(
@@ -575,6 +579,12 @@ def main():
             help='become interactive after command COMMAND (1-based)',
             metavar='COMMAND',
             type=int)
+        parser.add_argument(
+            'scripts',
+            help='play through the game with script SCRIPT (can be used multiply). Defaults to "playthrough"',
+            nargs='*',
+            metavar='SCRIPT',
+            type=str)
         args = parser.parse_args()
 
         if args.dos:
@@ -582,7 +592,15 @@ def main():
         else:
             implementation = Z5Version()
 
-	implementation.addMonitor(Playthrough())
+        if len(args.scripts)==0:
+            implementation.addMonitor(Playthrough())
+
+        for script in args.scripts:
+            if script not in SCRIPTS:
+                raise ValueError(script+' is not a known script')
+
+            implementation.addMonitor(SCRIPTS[script]())
+
 	implementation.addMonitor(Logger(
 		to_stdout = True,
 		to_filename = 't0run.log',
