@@ -511,13 +511,17 @@ class RoomNoticer(Monitor):
 		super(RoomNoticer, self).__init__()
 
 		self._seenRooms = set()
+                self._noticing = False
 
 	def handle(self, command_number, command, response):
+
+                if self._noticing:
+                    self.notice(command_number, command, response)
 
 		if not command.lower() in MOVEMENTS:
 		    return
 
-		response = response.split('\n')
+		response = response.replace('\r','').split('\n')
 
 		# Either the room name is at the end
 		# of the text, with blank lines around it
@@ -525,15 +529,56 @@ class RoomNoticer(Monitor):
 		# or it's on the first nonblank line
 		# (in the case that we did).
 
-		roomName = response[response.index('')+1]
+                if '. ' in response:
+                    # this is Frotz-style
+                    roomName = response[response.index('. ')+1]
+                else:
+		    roomName = response[response.index('')+1]
 
+                self._noticing = True
 		self._enterRoom(name=roomName,
 			firstTime = not roomName in self._seenRooms)
+                self._noticing = False
 
 		self._seenRooms.add(roomName)
 
 	def _enterRoom(self, name, firstTime):
-	    print 'Room name is [%s]. First? %d.' % (name, firstTime)
+	    print 'Room name is "%s". First? %d.' % (name, firstTime)
+
+	def notice(self, command_number, command, response):
+            print command
+            print response
+
+class Chimes(RoomNoticer):
+    def __init__(self):
+        super(Chimes, self).__init__()
+
+        self._result = {}
+        self._found = None
+
+    def _enterRoom(self, name, firstTime):
+        self._found = None
+        impl = self._implementation
+        count = 0
+
+        while not self._found and count<13:
+            impl.do('wait')
+            count += 1
+
+        print name, self._found
+
+        self._result[name] = self._found
+        self._found = None
+
+    def notice(self, command_number, command, response):
+        if 'chimes' in response:
+            self._found = response
+
+    def close(self):
+        super(Chimes, self).close()
+
+        print
+        print self._result
 
 class MakeInteractive(Monitor):
 
@@ -544,7 +589,6 @@ class MakeInteractive(Monitor):
         self._start_at = start_at
 
     def handle(self, command_number, command, response):
-
 
         if command_number != self._start_at:
             return
@@ -564,6 +608,8 @@ class MakeInteractive(Monitor):
 
 SCRIPTS = {
         'playthrough': Playthrough,
+        'rooms': RoomNoticer,
+        'chimes': Chimes,
         }
 
 def main():
@@ -579,6 +625,10 @@ def main():
             help='become interactive after command COMMAND (1-based)',
             metavar='COMMAND',
             type=int)
+        parser.add_argument(
+            '-q', '--quiet', 
+            help='don\'t dump everything that happens',
+            action="store_true")
         parser.add_argument(
             'scripts',
             help='play through the game with script SCRIPT (can be used multiply). Defaults to "playthrough"',
@@ -601,9 +651,10 @@ def main():
 
             implementation.addMonitor(SCRIPTS[script]())
 
-	implementation.addMonitor(Logger(
-		to_stdout = True,
-		to_filename = 't0run.log',
+        if not args.quiet:
+            implementation.addMonitor(Logger(
+    		to_stdout = True,
+    		to_filename = 't0run.log',
 		))
 
         if args.interactive is not None:
