@@ -10,6 +10,9 @@ Extend 'read' first * legible -> Read;
 Extend 'leave' first
     * 'no' 'stone' 'unturned' -> LeaveNoStone;
 
+Verb 'stone' *
+    creature -> Attack;
+
 [ ReadSub;
     << Examine noun >>;
     ];
@@ -195,4 +198,82 @@ with
     name "prehistoric" "claw",
     description
         "The webbed husk of leathery, prehistoric claw curls in on itself here.";
+
+Object Terns "Terns" FieldOfStone
+has
+    scenery animate
+with
+    ! XXX when the stoned tern is present, these should not
+    ! be a possible referent of "tern"
+    name "terns" "tern" "bird" "birds" "flock",
+    description "For every stone on the field, there must be a tern in the sky.
+    They tirelessly twirl in a circular swirl.",
+! Current state:
+!   0 = the terns have done nothing to you
+!   1 = bird poo missed you
+!   2 = bird poo almost hits you
+!        (now you can stone the terns)
+!   3 = you have stoned the terns
+    current_state 0,
+
+    before [;
+
+        Attack:
+            switch (self.current_state) {
+                    0: 1: "That's another turn down the drain. The terns have done nothing to
+you. At least not yet--you think as you take a side glance at the speckling of
+the stones.";
+
+                    3: "You've already settled your score with the terns (and turned your
+score in the process).";
+            }
+
+            ! if we get here, self.current_state must be 2
+
+            Achieved(1);
+            move StonedTern to location;
+         "Well, they do seem to be asking for it . . . so, here goes . . . you
+heave a random stone with all your might, giving it a sharp, curving spin. The
+terns protectively swirl in quicker, tighter circles until they form a dark
+funnel in the sky. The stone nicks a particularly plump specimen which starts
+to slide down the vortex. That is indeed a tern down the drain! The birds
+disperse and start their slow circling again.^^At the last minute, the falling
+tern attempts to right itself and rejoin the flock. Instead, it turns to stone
+and plummets. In addition, a feather has been knocked loose. The feather turns
+graceful somersaults in the air before finally coming to rest at your feet.";
+
+    ],
+
+    each_turn [;
+        if (random(3)~=1) {
+                rtrue;
+        }
+
+        switch (self.current_state) {
+
+         0:
+            self.current_state = 1;
+         "Something plummets from the sky and barely misses you. Whatever it
+was, it sears and speckles a nearby stone with an acid-like hiss.";
+
+        1:
+            self.current_state = 2;
+         "Something plummets from the sky and almost brushes against your
+hair. What? Are the terns taking aim? If this continues, you'll be seared,
+speckled, and scalped.";
+
+        ! XXX are there any more? Test and find out.
+
+        }
+
+    ];
+
+Object StonedTern "Stoned Tern"
+with
+    name
+        "stoned" "tern" "bird",
+    initial
+        "The dead weight of a stoned tern sits heavily here.",
+    description
+        "The stoned tern is dead weight personified.";
 
