@@ -1,5 +1,5 @@
 SOURCES = Calendar.inf grammar.h Library.inf \
-Objects.inf parser.h Present.inf T0english.h T-Zero.inf \
+Things.inf parser.h Present.inf T0english.h T-Zero.inf \
 Scoring.inf \
 verblib.h verblibm.h
 
