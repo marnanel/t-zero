@@ -1,8 +1,13 @@
+
+Class Thing
+with
+    ! Surprisingly, this makes "look" print
+    ! the "initial" property even when the
+    ! object has moved.
+    describe [; ];
+
 Attribute legible;
 
-! XXX Objects in room descriptions should ALWAYS
-!      use the "initial" property and never show
-!      the name
 ! XXX Split out grammar extensions to separate file
 
 Extend 'read' first * legible -> Read;
@@ -41,7 +46,7 @@ the disembodied claw of some prehistoric bird.";
 
 Attribute thighpocketwants; ! Your thigh pocket wants this
 
-Object CompassThing "Compass"
+Thing CompassThing "Compass"
 with
    name "compass",
    initial "There is a strange geo-temporal compass here.",
@@ -52,7 +57,7 @@ the 24 hours of the day.  Thus, north corresponds to high
 noon and south to midnight.  A stopwatch-like plunger and a
 dual-setting slider cap the whole affair.";
 
-Object PinkSlip "Pink Slip"
+Thing PinkSlip "Pink Slip"
 has
     legible
 with
@@ -80,7 +85,7 @@ been walking!",
         the current light.";
     ];
 
-Object JournalPage "Journal Page"
+Thing JournalPage "Journal Page"
 with
     name "journal" "page",
     ! XXX this isn't just the initial
@@ -95,7 +100,7 @@ with
     Read in the red light at noon.^
     Transcribe from the violet light at nine.";
 
-Object KhakiFatigues "Khaki Fatigues"
+Thing KhakiFatigues "Khaki Fatigues"
 has
     worn proper pluralname container open
 with
@@ -105,14 +110,14 @@ with
     commodious. Two pockets in particular catch your attention--
     a fob pocket and a thigh pocket.";
 
-Object FobPocket "Fob Pocket" KhakiFatigues
+Thing FobPocket "Fob Pocket" KhakiFatigues
 has
     container open
 with
     name "fob" "pocket",
     description "Your fob pocket is just the right size for a compass.";
 
-Object ThighPocket "Thigh Pocket" KhakiFatigues
+Thing ThighPocket "Thigh Pocket" KhakiFatigues
 has
     container open
 with
@@ -128,7 +133,7 @@ with
             }
     ];
 
-Object RedSuspenders "Red Suspenders"
+Thing RedSuspenders "Red Suspenders"
 has
     worn proper pluralname
 with
@@ -137,7 +142,7 @@ with
     Their two elastic bands can be
     crossed over your back to clasp your pants in place.";
 
-Object Poppy "Poppy" FieldOfPoppies
+Thing Poppy "Poppy" FieldOfPoppies
 has
     scenery
 with
@@ -153,7 +158,7 @@ with
             print (string) DryHusk.initial;
     ];
 
-Object DryHusk "Dry Husk" FieldOfPoppies
+Thing DryHusk "Dry Husk" FieldOfPoppies
 has
     concealed
 with
@@ -169,7 +174,7 @@ with
         << Take BadSeed >>;
         ];
 
-Object BadSeed "Bad Seed"
+Thing BadSeed "Bad Seed"
 has
     thighpocketwants
 with
@@ -178,7 +183,7 @@ with
     "This is a bad seed. Even with the fertilizer from a herd of
     elephants, it's not about to grow.";
 
-Object Stone "Stone" FieldOfStone
+Thing Stone "Stone" FieldOfStone
 has
     scenery
 with
@@ -193,13 +198,13 @@ with
             ! by LeaveNoStoneSub, q.v.
         ];
 
-Object Claw "Prehistoric Claw"
+Thing Claw "Prehistoric Claw"
 with
     name "prehistoric" "claw",
     description
         "The webbed husk of leathery, prehistoric claw curls in on itself here.";
 
-Object Terns "Terns" FieldOfStone
+Thing Terns "Terns" FieldOfStone
 has
     scenery animate
 with
@@ -268,7 +273,7 @@ speckled, and scalped.";
 
     ];
 
-Object StonedTern "Stoned Tern"
+Thing StonedTern "Stoned Tern"
 with
     name
         "stoned" "tern" "bird",
