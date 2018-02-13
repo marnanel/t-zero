@@ -237,6 +237,11 @@ score in the process).";
 
             Achieved(1);
             move StonedTern to location;
+            move Feather to location;
+            ! The original doesn't show the feather immediately
+            ! after this. I don't know why. Is the feather
+            ! actually present? Is this an intended feature?
+
             print "Well, they do seem to be asking for it . . . so, here goes . . . you
 heave a random stone with all your might, giving it a sharp, curving spin. The
 terns protectively swirl in quicker, tighter circles until they form a dark
@@ -300,3 +305,12 @@ with
 
         ];
 
+Thing Feather "Feather"
+with
+    name
+        "feather",
+    initial
+        "A feather has come to rest at your feet here.",
+    description
+        "The feather will serve nicely as a writing implement--but you need
+    some type of ink.";
