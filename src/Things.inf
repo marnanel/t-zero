@@ -237,7 +237,7 @@ score in the process).";
 
             Achieved(1);
             move StonedTern to location;
-         "Well, they do seem to be asking for it . . . so, here goes . . . you
+            print "Well, they do seem to be asking for it . . . so, here goes . . . you
 heave a random stone with all your might, giving it a sharp, curving spin. The
 terns protectively swirl in quicker, tighter circles until they form a dark
 funnel in the sky. The stone nicks a particularly plump specimen which starts
@@ -245,8 +245,9 @@ to slide down the vortex. That is indeed a tern down the drain! The birds
 disperse and start their slow circling again.^^At the last minute, the falling
 tern attempts to right itself and rejoin the flock. Instead, it turns to stone
 and plummets. In addition, a feather has been knocked loose. The feather turns
-graceful somersaults in the air before finally coming to rest at your feet.";
+graceful somersaults in the air before finally coming to rest at your feet.^";
 
+            <<Look>>;
     ],
 
     each_turn [;
@@ -280,5 +281,22 @@ with
     initial
         "The dead weight of a stoned tern sits heavily here.",
     description
-        "The stoned tern is dead weight personified.";
+        "The stoned tern is dead weight personified.",
+        before [;
+
+        Take:
+        "You might as well turn to stone.";
+
+        Touch:
+        ! I have no clue what DC was thinking here
+        deadflag = 1;
+         "You touch the stone tern and immediately turn to stone. You become
+         somewhat of an international celebrity as well as a local landmark, attracting
+         curious tourists from far-flung lands. A legend develops that you are a clue
+         to an intricate puzzle. Scholars peer at you as they make jottings on cryptic
+         pads. After eons and eons, you develop fissures and cracks and eventually blow
+         away to become the dust that settles under immovable objects in adventure
+         games.";
+
+        ];
 
