@@ -642,30 +642,42 @@ sw_to
 
 Object PlatformOverRiver "Platform Over River."
 has light
-with
+with 
+ne_to
+    SuspensionBridge,
 sw_to
     EnglishGarden,
 se_to
     Downstream,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u"!You can't go that way.\n\nPlatform Over River.", u'SW': u'ENGLSHGR', u'NE': u'!Something about this suspension bridge makes your usually animated\nself slow down ... to molasses-like ... sloth ... ful ... ness ...\nand come slowly ... sl-ow-ly ... to a standstill.\n\nSuspension Bridge.\nFrom twin towers, a delicate mesh of metal descends, forming a\nperfectly wrought footpath across canyon-like depths.  A crooked', u'N': u"!You can't go that way.\n\nPlatform Over River.", u'DOWN': u'!The platform covers the shaft directly below you.', u'S': u"!You can't go that way.", u'W': u'!The exit from the topiary lies in that direction.', u'fullname': u'Platform Over River.', u'SE': u'DWNSTRM', u'NW': u"!You can't go that way."}
-    description
+u_to
+    "There is only sky above you.",
+d_to
+    "The platform covers the shaft directly below you.",
+w_to
+    "The exit from the topiary lies in that direction.",
+description
         "A platform juts out over the river here, providing an entry
 point to the bridge to the northeast.  The platform has no
-apparent purpose.
-";
+apparent purpose.";
 
 Object Downstream "DownStream."
 has light
 with
 nw_to
     PlatformOverRiver,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The abyss would willingly swallow you if you went that way.', u'SW': u'!The prospect in that direction is uninspiring.', u'NE': u'!The abyss would willingly swallow you if you went that way.', u'N': u'!The abyss would willingly swallow you if you went that way.', u'DOWN': u'!There is only ground below you.', u'S': u'!The prospect in that direction is uninspiring.', u'W': u'!The prospect in that direction is uninspiring.', u'fullname': u'DownStream.', u'SE': u'!The abyss would willingly swallow you if you went that way.', u'NW': u'PLTFRMVR'}
-    description
+u_to
+    "There is only sky above you.",
+d_to
+    "There is only ground below you.",
+cant_go
+    "The abyss would willingly swallow you if you went that way.",
+sw_to
+    "The prospect in that direction is uninspiring.",
+description
         "You sense the nearness of the sea as the river far below you
 plummets over a cliff into unseen depths.  However, since you
 stand on the precipice of an abyss, you also undergo a sense
-of vertigo.
-";
+of vertigo.";
 
 Object SuspensionBridge "Suspension Bridge."
 has light
