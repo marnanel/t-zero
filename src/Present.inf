@@ -5,12 +5,20 @@ u_to
     EntranceToCave,
 s_to
     EntranceToCave,
-! No obvious cant_go value: explore dict is {u'UP': u'ENTRNCTC', u'E': u'!A seeping cave wall thwarts movement in that direction.', u'SW': u'!A seeping cave wall thwarts movement in that direction.', u'NE': u'!You rebound against a bulging boulder that blocks further passage.', u'N': u'!You rebound against a bulging boulder that blocks further passage.', u'DOWN': u'!There is only ground below you.', u'S': u'ENTRNCTC', u'W': u'!A seeping cave wall thwarts movement in that direction.', u'fullname': u'Cave.', u'SE': u'!A seeping cave wall thwarts movement in that direction.', u'NW': u'!You rebound against a bulging boulder that blocks further passage.'}
-    description
+n_to
+    "You rebound against a bulging boulder that blocks further passage.",
+ne_to
+    "You rebound against a bulging boulder that blocks further passage.",
+nw_to
+    "You rebound against a bulging boulder that blocks further passage.",
+d_to
+    "There is only ground below you.",
+cant_go
+    "A seeping cave wall thwarts movement in that direction.",
+description
         "An age-old cave-in prevents further access to the cave's interior.
 In particular, the arched entry to the adjoining cavern is blocked
-by a huge pock-marked boulder.
-";
+by a huge pock-marked boulder.";
 
 Object EntranceToCave "Entrance to Cave."
 has light
@@ -21,12 +29,18 @@ d_to
     Cave,
 s_to
     Woods,
-! No obvious cant_go value: explore dict is {u'UP': u'!The ledge is beyond your reach.', u'E': u'!The woods are dark and deep in that direction.', u'SW': u'!The woods are dark and deep in that direction.', u'NE': u'!The cave wall blocks your movement.', u'N': u'CV', u'DOWN': u'CV', u'S': u'WDS', u'W': u'!The woods are dark and deep in that direction.', u'fullname': u'Entrance to Cave.', u'SE': u'!The woods are dark and deep in that direction.', u'NW': u'!The cave wall blocks your movement.'}
-    description
+u_to
+    "The ledge is beyond your reach.",
+cant_go
+    "The woods are dark and deep in that direction.",
+ne_to
+    "The cave wall blocks your movement.",
+nw_to
+    "The cave wall blocks your movement.",
+description
         "You stand before a cavernous entrance--the jagged mouth of a cave is
 entwined with the gnarled roots of an ancient yew which grows from a
-ledge above.
-";
+ledge above.";
 
 Object Woods "Woods."
 has light
@@ -41,9 +55,9 @@ d_to
     EntranceToCave,
 s_to
     WoodsyCorridor,
-   cant_go
+cant_go
         "The woods are dark and deep in that direction.",
-    description
+description
         "The woods here are dark and deep.  They invoke a sense of reverence
 in you that is disturbed by slight scurryings at the periphery of
 your perception.
@@ -62,9 +76,9 @@ s_to
     ShallowDepression,
 nw_to
     BlacksmithS,
-   cant_go
+cant_go
         "The woods are dark and deep in that direction.",
-    description
+description
         "You are on a wide path through an old forest.  The trees, few and
 far between, are so massive that only a little light haunts the
 upper reaches of the nave-like corridor which slopes down from
@@ -84,8 +98,11 @@ d_to
     WoodsyCorridor,
 se_to
     EastEdgeOfPond,
-! No obvious cant_go value: explore dict is {u'UP': u'ESTDGFPN', u'E': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'SW': u'MBSSTRP', u'NE': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'N': u'WDSYCRRD', u'DOWN': u'WDSYCRRD', u'S': u"!You try to scrabble up to the crater but can't get past\nthe eroded lip.", u'W': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.', u'fullname': u'Shallow Depression.', u'SE': u'ESTDGFPN', u'NW': u'!Outcroppings of insurmountable rock prevent travel in that\ndirection.'}
-    description
+cant_go
+    "Outcroppings of insurmountable rock prevent travel in that direction.",
+s_to
+    "You try to scrabble up to the crater but can't get past the eroded lip.",
+description
         "A shallow depression, about 30 feet across and 10 feet deep, is
 permanently etched in solid rock.  The ridged edge of the small
 crater gives way to a rounded interior.  The north lip has eroded
@@ -101,12 +118,16 @@ ne_to
     ShallowDepression,
 se_to
     SouthEdgeOfPondPitstop,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'E': u'PND', u'SW': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'NE': u'SHLLWDPR', u'N': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'DOWN': u'!There is only ground below you.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'S': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'W': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running', u'fullname': u'Moebius Strip.', u'SE': u'STHDGFPN', u'NW': u'!You get confused by the hyper-bent gravity at work here and\nend up back where you were.\n\nMoebius Strip.\n\nThere are a tortoise and a hare here.  The hare is running'}
-    description
+u_to
+    "There is only sky above you.",
+d_to
+    "There is only ground below you.",
+cant_go
+    "You get confused by the hyper-bent gravity at work here and end up back where you were.",
+description
         "The racing strip here twists in on itself to form a continuous band
 without inside or out.  Contenders, defying gravity, adhere to the
-track whether right-side up or upside down.
-";
+track whether right-side up or upside down.";
 
 Object Pond "Pond."
 has light
@@ -470,8 +491,27 @@ loading stage.
 Object Greenhouse "Greenhouse."
 has light
 with
-description
-   "XXX FIXME";
+    description
+         "On one hand, arabesques of glass, and on the other, wicker slats,
+         distinguish the Victorian conservatory's two halves. The hothouse lies
+         northwest and the coldhouse lies northeast.",
+    e_to
+        Shed,
+    ne_to
+        Coldhouse,
+    n_to
+        CottageDoor,
+    nw_to
+        Hothouse,
+    w_to
+        BackOfMuseum,
+    sw_to
+        FountainCourt,
+    se_to
+        FountainCourt,
+    cant_go
+        "There's a wall in the way.";
+
 
 Object EnglishGarden "English Garden."
 has light
@@ -530,14 +570,39 @@ distinguish the Victorian conservatory's two halves.  The hothouse
 lies northwest and the coldhouse lies northeast.
 ";
 
-Object CaretakerSCottage "Caretaker's Cottage."
+Object CottageDoor "door"
+has
+    openable scenery static door
+with
+    description
+        [;
+            if (self has open)
+                    "The door is open.";
+            "The door is closed.";
+            ],
+    found_in
+        Cottage Greenhouse,
+    door_to
+        [;
+            if (self in Cottage) return Greenhouse;
+            return Cottage;
+            ],
+    door_dir
+        [;
+            if (self in Cottage) return n_to;
+            return s_to;
+            ];
+
+Object Cottage "Caretaker's Cottage."
 has light
 with
-! no explore data
     description
         "This is a cozy cottage with a homey hearth.  Scattered throughout
-are knickknacks, pilfered, over time, from the museum.
-";
+are knickknacks, pilfered, over time, from the museum.",
+    s_to
+        CottageDoor,
+    e_to
+        PresentPantry;
 
 Object Shed "Shed."
 has light
@@ -550,6 +615,30 @@ w_to
 about it.  Although shelves and hooks abound, most of them seem
 to be empty.
 ";
+
+Object Hothouse "Hothouse"
+has
+    light
+with
+description
+    "The arabesques of glass that enclose this humid room are patterned
+    after French trefoils.  Their many facets combine to create a solar
+    sweltering.  The resulting climate is used to display the lush
+    vegetation of the tropics.",
+se_to
+    Greenhouse;
+
+Object Coldhouse "Coldhouse."
+has
+    light
+with
+    description
+        "A clever lateral arrangement of wicker slats directs all sorts of
+drafts into this chilly room which is built on a base of naturally cold
+bedrock. The resulting climate is used to display the sparse vegetation of the
+tundra. An indentation mars the smooth floor.",
+sw_to
+    Greenhouse;
 
 Object PlatformOverRiver "Platform Over River."
 has light
@@ -906,13 +995,15 @@ the delivery ramp to the north.
 
 Object Pantry1 "Pantry."
 has light
+! XXX "As you enter the pantry..."
+! XXX When is that triggered?
 with
-! no explore data
     description
-        "The cupboards in this chilly pantry are bare.
-";
+        "The cupboards in this chilly pantry are bare.",
+    w_to
+        Cottage;
 
-Object Pantry2 "Pantry."
+Object PresentPantry "Pantry."
 has light
 with
 ! no explore data

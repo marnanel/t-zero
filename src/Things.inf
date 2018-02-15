@@ -314,3 +314,19 @@ with
     description
         "The feather will serve nicely as a writing implement--but you need
     some type of ink.";
+
+Thing Knicknacks "Knicknacks" Cottage
+with
+    description
+        ! This is one of the few strings which assigns a gender
+        ! to the player
+        "Well, they're odds and ends that the caretaker, namely you,
+has pilfered from the museum over time to enhance the modest
+decor of his cottage.";
+
+Thing EmptyJamJar "Empty Jam Jar" PresentPantry
+with
+    initial
+        "An empty jam jar stands here, licked clean.",
+    description
+        "Well, it looks like there's no jam today.";
