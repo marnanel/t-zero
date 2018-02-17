@@ -326,7 +326,76 @@ decor of his cottage.";
 
 Thing EmptyJamJar "Empty Jam Jar" PresentPantry
 with
+    name
+        "empty" "jam" "jar" "jamjar",
     initial
         "An empty jam jar stands here, licked clean.",
     description
         "Well, it looks like there's no jam today.";
+
+! The lever in the original game is actually two objects.
+! When you first pick it up, the second lever replaces
+! the first. We're modelling this with "general" to
+! show that the lever is the "second" leaver.
+!
+! XXX I think you can pull the lever if self hasnt general.
+! XXX I don't know how you can un-general the lever.
+Thing Lever "Lever" Coldhouse
+with
+    name
+        "lever",
+    initial
+        [;
+            if (self has general) {
+                "A lever is lying around here, providing no leverage at all.";
+            } else {
+                "A lance-like lever sticks out of an indentation here.";
+            }
+        ],
+    description
+        [;
+            if (self has general) {
+                "The handle of the lever is carved with the image of a wise man with
+         glazed-over eyes made of inlaid abalone shell. This lever is as elegant as an
+         English walking stick and pointed at the tip like a lance.";
+            } else {
+                "The lever is used to control the apertures between coldhouse slats.";
+            }
+        ],
+    before
+        [;
+            Take:
+                give self general;
+
+            Pull:
+                if (self has general) {
+                        ! not our problem; carry on
+                        rfalse;
+                }
+
+                print "A cold blast of arctic air howls through the slats as you open them.";
+
+                if (Token hasnt general) {
+                    move Token to location;
+                    give Token general;
+                    Achieved(2);
+
+                   "^^With the cold blast of air comes a cardboard token minted with the
+                frigid image of Count Zero.";
+
+                }
+
+        ];
+
+! "general" if it hasn't appeared before
+Thing Token "Token"
+with
+    name
+        "token",
+    initial
+        "A token, potent with buying power, takes up space here.",
+    description
+        "The token is rather large for coinage. It is about the size of a
+    legal pad and contains a picture of Count Zero in Roman profile and all sorts
+    of little textual scribblings that are unreadable.";
+
