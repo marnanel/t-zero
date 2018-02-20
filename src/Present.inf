@@ -604,7 +604,7 @@ are knickknacks, pilfered, over time, from the museum.",
     e_to
         PresentPantry;
 
-Object Shed "Shed."
+Object Shed "Shed"
 has light
 with
 w_to
@@ -615,6 +615,13 @@ w_to
 about it.  Although shelves and hooks abound, most of them seem
 to be empty.
 ";
+
+Object ShedShelf "Shelf" Shed
+has
+    scenery supporter
+with
+description
+        "The shelf is splintery but sturdy.";
 
 Object Hothouse "Hothouse"
 has

@@ -324,6 +324,11 @@ with
 has pilfered from the museum over time to enhance the modest
 decor of his cottage.";
 
+! XXX Original inventory description is like this:
+!  An Empty Jam Jar.
+!    The empty jam jar is closed.
+! XXX This should be a container, obviously.
+
 Thing EmptyJamJar "Empty Jam Jar" PresentPantry
 with
     name
@@ -398,4 +403,35 @@ with
         "The token is rather large for coinage. It is about the size of a
     legal pad and contains a picture of Count Zero in Roman profile and all sorts
     of little textual scribblings that are unreadable.";
+
+! XXX New class GardenTool which has a label you can read
+! and update. Cf "Balances."
+!
+! XXX The original game requires you to read the label
+! on each tool separately; you can't "read extractor" etc.
+! This isn't something we should replicate!
+! But the label needs to exist so you *can*.
+
+Thing RootExtractor "Root Extractor" ShedShelf
+with
+    name
+        "root" "extractor" "extracter" "tool",
+    initial
+       "A root extractor has been grounded here.",
+    description
+        "The root extractor is a fork-like implement used to pull up roots
+    and weeds and tubers and things. It is marked by a translucent label.";
+
+Thing FixerUpper "Fixer-Upper" ShedShelf
+with
+    name
+        "fixer" "upper" "fixer-upper" "tool",
+    initial
+        "A fixer-upper lies here, unfixed to anything.",
+    description
+        "The fixer-upper is a fork-like implement used to apply finishing
+touches. It looks like the root extractor turned on end. It is marked by a
+translucent label.";
+
+
 
