@@ -1,0 +1,104 @@
+
+Constant TOPIARY_PREFIX_COUNT = 24;
+Constant TOPIARY_SUFFIX_COUNT = 26;
+Constant TOPIARY_VERB_COUNT = 16;
+Constant TOPIARY_BLANK_LABEL = 100;
+
+[TopiaryPrefix n;
+
+    switch (n) {
+         0: "latch";
+         1: "bront";
+         2: "bug";
+         3: "bumble";
+         4: "catter";
+         5: "cobra";
+         6: "cock";
+         7: "croco";
+         8: "drag";
+         9: "elepo";
+        10: "equest";
+        11: "grue";
+        12: "gryph";
+        13: "harp";
+        14: "hippo";
+        15: "kanga";
+        16: "min";
+        17: "ptero";
+        18: "rin";
+        19: "squash";
+        20: "sphinx";
+        21: "thunder";
+        22: "uni";
+        23: "vamp";
+    }
+    RunTimeError(0);
+];
+
+[TopiarySuffix n;
+    switch (n) {
+         0: "key";
+         1: "aboo";
+         2: "asaurus";
+         3: "atoo";
+         4: "blatter";
+         5: "boon";
+         6: "corn";
+         7: "dactyl";
+         8: "eater";
+         9: "ephant";
+        10: "erpent";
+        11: "garoo";
+        12: "gator";
+        13: "griff";
+        14: "goyle";
+        15: "lizard";
+        16: "lope";
+        17: "oceros";
+        18: "opod";
+        19: "otaur";
+        20: "phoon";
+        21: "pillar";
+        22: "quatch";
+        23: "queen";
+        24: "rybdis";
+        25: "potamus";
+    }
+    RunTimeError(0);
+];
+
+[TopiaryVerb n gerund needse;
+
+    needse = 0;
+
+    switch (n) {
+         0: print "bellow";
+         1: print "bristl"; needse = 1;
+         2: print "caterwaul";
+         3: print "glower";
+         4: print "grumbl"; needse = 1;
+         5: print "hunker";
+         6: print "harumph";
+         7: print "lumber";
+         8: print "moan";
+         9: print "mumbl"; needse = 1;
+        10: print "ruminat"; needse = 1;
+        11: print "slaver";
+        12: print "slither";
+        13: print "sneer";
+        14: print "soar";
+        15: print "squat";
+                ! "squatting" vs "squats". What a nuisance.
+                if (gerund) { print "t"; }
+     }
+
+     if (gerund==1) {
+         print "ing";
+     } else {
+         if (needse==1) {
+                 print "es";
+         } else {
+                 print "s";
+         }
+     }
+];
