@@ -1,6 +1,7 @@
 SOURCES = Calendar.inf grammar.h Library.inf \
 Things.inf parser.h Present.inf T0english.h T-Zero.inf \
 Scoring.inf \
+Topiary.inf \
 verblib.h verblibm.h
 
 t-zero.z5: ${SOURCES}
