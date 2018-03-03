@@ -1,4 +1,5 @@
 import json
+import re
 
 def chimes_transform(data):
 
@@ -17,15 +18,34 @@ def chimes_transform(data):
 
     return result
 
-def main(source, transformation):
-    data = json.load(open(source, 'r'))
 
-    data = transformation(data)
+def scan_source(sourcecode, data):
 
     print data
+
+    source = open(sourcecode, 'r')
+
+    for line in source.readlines():
+        m = re.match(r'^Object.*"(.*)"', line)
+        if m:
+            roomname = m.groups()[0]
+            if roomname.endswith('.'):
+                roomname = roomname[:-1]
+
+            print roomname, roomname in data
+
+def main(source, transformation, sourcecode):
+    data = json.load(open(source, 'r'))
+    data = transformation(data)
+
+    scan_source(
+            sourcecode = sourcecode,
+            data = data,
+            )
 
 if __name__=='__main__':
     main(
         source='chimes-where',
         transformation=chimes_transform,
+        sourcecode='Present.inf',
         )
