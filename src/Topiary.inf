@@ -102,3 +102,13 @@ Constant TOPIARY_BLANK_LABEL = 100;
          }
      }
 ];
+
+Class TopiaryRoom
+with
+    ! probably wrong, but leave it for now
+    description "Tangled roots, none alike, twist and turn here.";
+
+
+! Now the rooms themselves. They're generated from a map.
+Include "TopiaryRooms.inf";
+
