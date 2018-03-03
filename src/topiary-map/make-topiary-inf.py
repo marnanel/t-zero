@@ -25,7 +25,7 @@ def main():
                     if topiary.get(key, '') in ('uturn', 'block'):
                         traffic_rules |= 1
 
-            print 'TopiaryRoom "Topiary" Topiary%d%d' % (x, y)
+            print 'TopiaryRoom Topiary%d%d "Topiary of Time"' % (x, y)
             print 'with'
 
             for direction in DIRECTIONS:
