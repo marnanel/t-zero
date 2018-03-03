@@ -1,6 +1,7 @@
 import subprocess
 import select
 import os
+import os.path
 import argparse
 import sys
 import tempfile
@@ -8,6 +9,7 @@ import glob
 import time
 import signal
 import re
+import json
 
 def copy_in_original(source, target):
 
@@ -45,7 +47,10 @@ class Implementation(object):
 	monitor.setImplementation(self)
 
     def read(self):
+
             buffer = ''
+            timeout_count = 0
+
             while True:
 
 		ready = select.select(
@@ -64,15 +69,22 @@ class Implementation(object):
 
                         if buffer.endswith('***MORE***'):
                             buffer = buffer[:-10]
-                            self._emu.stdin.write('\n')
+                            self._emu.stdin.write('\r\n')
 
                         if buffer.endswith(self._prompt):
                             # got it; return, but strip the prompt
                             return buffer[:-len(self._prompt)]
                 else:
                     # we timed out
-                    print '(timeout)'
-                    return buffer
+
+                    timeout_count += 1
+
+                    if timeout_count>3:
+                        print '(too many timeouts; giving up)'
+                        return buffer
+                    else:
+                        print '(timeout, sending CR)'
+                        self._emu.stdin.write('\r\n')
 
     def write(self, command):
 	self._emu.stdin.write(command + '\r\n')
@@ -606,10 +618,106 @@ class MakeInteractive(Monitor):
 
             self._implementation.do(command)
 
+class TopiaryExplorer(Monitor):
+
+    # This expects a savefile called "0-2-e.sav"
+    # to exist, in the initial room of the maze.
+
+    def __init__(self):
+        super(TopiaryExplorer, self).__init__()
+
+    def _move(self, filename, direction):
+
+        direction = direction.lower()
+        name, ext = os.path.splitext(filename.lower())
+        x, y, old_dir = name.split('-')
+
+        x = int(x)
+        y = int(y)
+
+        if direction=='n':
+            y -= 1
+        elif direction=='e':
+            x += 1
+        elif direction=='s':
+            y += 1
+        elif direction=='w':
+            x -= 1
+        else:
+            raise ValueError("unknown direction: "+direction)
+
+        x = str(x)
+        y = str(y)
+
+        return ('-'.join([x, y, direction]))+ext
+
+    def _first_monster(self, response):
+        response = response.replace('\r','')
+        words = response.split()
+
+        if 'A' in words:
+            return words[words.index('A')+1]
+
+        return None
+
+    def handle(self, command_number, command, response):
+
+        result = {
+                }
+        unexplored = set(['0-2-e.sav'])
+        impl = self._implementation
+
+        if command_number!=0:
+            return
+
+        while len(unexplored)!=0:
+
+            print 'Unexplored: ', unexplored
+            savefile = unexplored.pop()
+            print 'Savefile:', savefile
+
+            for direction in ('e', 'n', 's', 'w'):
+
+                restored = impl.do('restore '+savefile)
+
+                if 'Tangled' not in restored:
+                    raise ValueError('restoration of '+savefile+' failed with:\n'+restored)
+
+                monster = self._first_monster(impl.do('look'))
+                moved = impl.do(direction)
+
+                if 'Tangled roots' not in moved:
+                    print '(outside topiary)'
+                    result[keyname] = moved
+                    continue
+
+                keyname = savefile+' '+direction
+
+                if self._first_monster(moved) != monster:
+                    new_room = self._move(savefile, direction)
+
+                    if not os.path.exists('c/'+new_room):
+                        impl.do('save '+new_room)
+                        unexplored.add(new_room)
+                    else:
+                        print '(not saving)'
+
+                    result[keyname] = 0
+                else:
+                    result[keyname] = '\n'.join(moved.split('\n')[0:2])
+
+            print 'Result:'
+            print json.dumps(result, indent=2, sort_keys=True)
+            json.dump(
+                    result,
+                    open('topiary.json', 'w'), 
+                    indent=2, sort_keys=True)
+
 SCRIPTS = {
         'playthrough': Playthrough,
         'rooms': RoomNoticer,
         'chimes': Chimes,
+        'topiary': TopiaryExplorer,
         }
 
 def main():
