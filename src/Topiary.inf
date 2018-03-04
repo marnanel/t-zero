@@ -109,6 +109,12 @@ with
     description "Tangled roots, none alike, twist and turn here.";
 
 
+Constant TOPIARY_EDGE_HEDGE
+    "An unhacked hedge bounds the topiary in that direction.";
+
+Constant TOPIARY_MIDDLE_HEDGE
+    "Your path is blocked by a hedge growing in the middle of the maze.";
+
 ! Now the rooms themselves. They're generated from a map.
 Include "TopiaryRooms.inf";
 
