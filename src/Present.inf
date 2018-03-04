@@ -519,7 +519,7 @@ with
 ne_to
     PlatformOverRiver,
 n_to
-    TopiaryOfTime,
+    TopiaryEntrance,
 ! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'SW': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NE': u'PLTFRMVR', u'N': u'TPRYFTM', u'DOWN': u'!There is only ground below you.', u'S': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'W': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'fullname': u'English Garden.', u'SE': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NW': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.'}
     description
         "The intrepid English gardener who tends to this plot of symmetric
@@ -528,7 +528,7 @@ paths peter out into beds, and the trampled marigolds are going to
 pot.
 ";
 
-Object TopiaryOfTime "Topiary of Time."
+Object TopiaryEntrance "Topiary of Time."
 has light
 with
 n_to
@@ -550,7 +550,7 @@ with
 ne_to
     Greenhouse,
 s_to
-    TopiaryOfTime,
+    TopiaryEntrance,
 nw_to
     Greenhouse,
 ! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!There are many exits from this place.  E is not one of them.', u'SW': u'!There are many exits from this place.  SW is not one of them.', u'NE': u'GRNHS', u'N': u"!There's a wall in the way.", u'DOWN': u'!There is only ground below you.', u'S': u'TPRYFTM', u'W': u'!There are many exits from this place.  W is not one of them.', u'fullname': u'Fountain Court.', u'SE': u'!There are many exits from this place.  SE is not one of them.', u'NW': u'GRNHS'}
