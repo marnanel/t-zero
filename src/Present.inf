@@ -1,3 +1,14 @@
+Constant ONLY_SKY
+    "There is only sky above you.";
+Constant ONLY_GROUND
+    "There is only ground below you.";
+Constant DARK_AND_DEEP
+    "The woods are dark and deep in that direction.";
+Constant GO_WITH_THE_SLOPE
+    "Don't fight it, simply go with the slope.";
+Constant RUSHING_RIVER
+    "The rushing river runs in that direction, uncrossable, a rubicon of dreams.";
+
 Object Cave "Cave."
 has light
 with
@@ -12,7 +23,7 @@ ne_to
 nw_to
     "You rebound against a bulging boulder that blocks further passage.",
 d_to
-    "There is only ground below you.",
+    ONLY_GROUND,
 cant_go
     "A seeping cave wall thwarts movement in that direction.",
 description
@@ -32,7 +43,7 @@ s_to
 u_to
     "The ledge is beyond your reach.",
 cant_go
-    "The woods are dark and deep in that direction.",
+    DARK_AND_DEEP,
 ne_to
     "The cave wall blocks your movement.",
 nw_to
@@ -56,7 +67,7 @@ d_to
 s_to
     WoodsyCorridor,
 cant_go
-        "The woods are dark and deep in that direction.",
+        DARK_AND_DEEP,
 description
         "The woods here are dark and deep.  They invoke a sense of reverence
 in you that is disturbed by slight scurryings at the periphery of
@@ -77,7 +88,7 @@ s_to
 nw_to
     BlacksmithS,
 cant_go
-        "The woods are dark and deep in that direction.",
+        DARK_AND_DEEP,
 description
         "You are on a wide path through an old forest.  The trees, few and
 far between, are so massive that only a little light haunts the
@@ -119,9 +130,9 @@ ne_to
 se_to
     SouthEdgeOfPondPitstop,
 u_to
-    "There is only sky above you.",
+    ONLY_SKY,
 d_to
-    "There is only ground below you.",
+    ONLY_GROUND,
 cant_go
     "You get confused by the hyper-bent gravity at work here and end up back where you were.",
 description
@@ -134,9 +145,14 @@ has light
 with
 w_to
     MoebiusStrip,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!There is not another nearby pod to step across.', u'SW': u'!There is not another nearby pod to step across.', u'NE': u'!There is not another nearby pod to step across.', u'N': u'!There is not another nearby pod to step across.', u'DOWN': u'!If you want to jump in the pond, by all means, jump in the pond!', u'S': u'!There is not another nearby pod to step across.', u'W': u'MBSSTRP', u'fullname': u'Pond.', u'SE': u'!There is not another nearby pod to step across.', u'NW': u'!There is not another nearby pod to step across.'}
-    description
-        "The pond is an unsettling broth of vegetable slime with a tangled
+u_to
+    ONLY_SKY,
+d_to
+    "If you want to jump in the pond, by all means, jump in the pond!",
+cant_go
+    "There is not another nearby pod to step across.",
+description
+    "The pond is an unsettling broth of vegetable slime with a tangled
 network of vines just below the surface.  The vines support the
 heart-shaped pods which serve as stepping-stones across the pond.
 You stand on such a pod.
@@ -151,8 +167,11 @@ d_to
     ShallowDepression,
 nw_to
     ShallowDepression,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!Lesser patches of reeds lie in that direction.', u'SW': u'STHDGFPN', u'NE': u'!Lesser patches of reeds lie in that direction.', u'N': u'!Lesser patches of reeds lie in that direction.', u'DOWN': u'SHLLWDPR', u'S': u'!Lesser patches of reeds lie in that direction.', u'W': u'!Reeds, like a barrier of stiff spears, block your progress\ntoward the pond.', u'fullname': u'East Edge of Pond.', u'SE': u'!Lesser patches of reeds lie in that direction.', u'NW': u'SHLLWDPR'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "Lesser patches of reeds lie in that direction.",
+description
         "A pond is visible to the west but inaccessible due to a bank of
 tall reeds.
 ";
@@ -172,8 +191,11 @@ se_to
     PathToPond,
 nw_to
     MoebiusStrip,
-! No obvious cant_go value: explore dict is {u'UP': u'HLLSLP', u'E': u'!The tarry residue becomes thick, impeding travel in that\ndirection.', u'SW': u'HLLSLP', u'NE': u'ESTDGFPN', u'N': u'!The tarry residue becomes thick, impeding travel in that\ndirection.\n\nSouth Edge of Pond (Pitstop).', u'DOWN': u'PTHTPND', u'S': u'!The sunken ridge frowns inscrutably upon your intrusion.', u'W': u'!The tarry residue becomes thick, impeding travel in that\ndirection.', u'fullname': u'South Edge of Pond (Pitstop).', u'SE': u'PTHTPND', u'NW': u'MBSSTRP'}
-    description
+s_to
+    "The sunken ridge frowns inscrutably upon your intrusion.",
+cant_go
+    "The tarry residue becomes thick, impeding travel in that direction.",
+description
         "The path here skirts a sunken ridge to the south where fossilized
 images phosphoresce in spidery patterns.  A residual tarry substance
 adheres to the ground.
@@ -190,9 +212,9 @@ ne_to
     SouthEdgeOfPondPitstop,
 d_to
     SouthEdgeOfPondPitstop,
-   cant_go
-        "Don't fight it, simply go with the slope.",
-    description
+cant_go
+    GO_WITH_THE_SLOPE,
+description
         "The slope of the hill varies here, being gentle to the northeast
 and steep to the southwest.
 ";
@@ -206,8 +228,11 @@ d_to
     HillSlope,
 se_to
     OverTheHill,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'SW': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'NE': u'HLLSLP', u'N': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'DOWN': u'HLLSLP', u'S': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'W': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.', u'fullname': u'Obelisk Plateau.', u'SE': u'OVRTHHLL', u'NW': u'!The drop from the truncated plateau in that direction is too\nsteep.  You back off.'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "The drop from the truncated plateau in that direction is too steep. You back off.",
+description
         "A good portion of the hill has been truncated here to form a stark
 elliptical plateau.  This serves as a platform for a sleek black
 obelisk that pierces the sky and dominates the surrounding landscape.
@@ -313,7 +338,10 @@ w_to
     FieldOfPoppies,
 nw_to
     MeanderingMeadowPath,
-! No obvious cant_go value: explore dict is {u'UP': u'FLDFPPPS', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'SW': u'FLDFSTN', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'N': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'DOWN': u'!There is only ground below you.\n\nUpRiver.\n', u'S': u'RVRBD', u'W': u'FLDFPPPS', u'fullname': u'UpRiver.', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'NW': u'MNDRNGMD'}
+d_to
+    ONLY_GROUND,
+cant_go
+    RUSHING_RIVER,
     description
         "A river emerges from parallel cliffs to the northwest, reaches the
 level clearing here, and enters the mouth of a canyon some distance
@@ -331,8 +359,11 @@ se_to
     AbandonedMill,
 nw_to
     ObeliskPlateau,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'HLL', u'SW': u"!Don't fight it, simply go with the slope.", u'NE': u"!Don't fight it, simply go with the slope.", u'N': u"!Don't fight it, simply go with the slope.", u'DOWN': u'HLL', u'S': u"!Don't fight it, simply go with the slope.", u'W': u"!Don't fight it, simply go with the slope.", u'fullname': u'Over the Hill.', u'SE': u'ABNDNDML', u'NW': u'OBLSKPLT'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    GO_WITH_THE_SLOPE,
+description
         "You may not be over the hill yet but you are over its first hump.
 The going may not get easier as you ascend, but at least you know
 the ropes better.
@@ -657,7 +688,7 @@ sw_to
 se_to
     Downstream,
 u_to
-    "There is only sky above you.",
+    ONLY_SKY,
 d_to
     "The platform covers the shaft directly below you.",
 w_to
@@ -673,9 +704,9 @@ with
 nw_to
     PlatformOverRiver,
 u_to
-    "There is only sky above you.",
+    ONLY_SKY,
 d_to
-    "There is only ground below you.",
+    ONLY_GROUND,
 cant_go
     "The abyss would willingly swallow you if you went that way.",
 sw_to
