@@ -14,7 +14,7 @@ Constant MANY_EXITS_BUT_NOT_THAT
 Constant CEILING_IN_WAY
     "There's a ceiling in the way.";
 Constant WALL_IN_WAY
-    "There's a wall in the way."
+    "There's a wall in the way.";
 
 Object Cave "Cave."
 has light
