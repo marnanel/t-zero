@@ -7,64 +7,67 @@ Constant TOPIARY_BLANK_LABEL = 100;
 [TopiaryPrefix n;
 
     switch (n) {
-         0: "latch";
-         1: "bront";
-         2: "bug";
-         3: "bumble";
-         4: "catter";
-         5: "cobra";
-         6: "cock";
-         7: "croco";
-         8: "drag";
-         9: "elepo";
-        10: "equest";
-        11: "grue";
-        12: "gryph";
-        13: "harp";
-        14: "hippo";
-        15: "kanga";
-        16: "min";
-        17: "ptero";
-        18: "rin";
-        19: "squash";
-        20: "sphinx";
-        21: "thunder";
-        22: "uni";
-        23: "vamp";
+         0: print "latch";
+         1: print "bront";
+         2: print "bug";
+         3: print "bumble";
+         4: print "catter";
+         5: print "cobra";
+         6: print "cock";
+         7: print "croco";
+         8: print "drag";
+         9: print "elepo";
+        10: print "equest";
+        11: print "grue";
+        12: print "gryph";
+        13: print "harp";
+        14: print "hippo";
+        15: print "kanga";
+        16: print "min";
+        17: print "ptero";
+        18: print "rin";
+        19: print "squash";
+        20: print "sphinx";
+        21: print "thunder";
+        22: print "uni";
+        23: print "vamp";
+
+        default:
+            print "[?]";
     }
-    RunTimeError(0);
 ];
 
 [TopiarySuffix n;
     switch (n) {
-         0: "key";
-         1: "aboo";
-         2: "asaurus";
-         3: "atoo";
-         4: "blatter";
-         5: "boon";
-         6: "corn";
-         7: "dactyl";
-         8: "eater";
-         9: "ephant";
-        10: "erpent";
-        11: "garoo";
-        12: "gator";
-        13: "griff";
-        14: "goyle";
-        15: "lizard";
-        16: "lope";
-        17: "oceros";
-        18: "opod";
-        19: "otaur";
-        20: "phoon";
-        21: "pillar";
-        22: "quatch";
-        23: "queen";
-        24: "rybdis";
-        25: "potamus";
+         0: print "key";
+         1: print "aboo";
+         2: print "asaurus";
+         3: print "atoo";
+         4: print "blatter";
+         5: print "boon";
+         6: print "corn";
+         7: print "dactyl";
+         8: print "eater";
+         9: print "ephant";
+        10: print "erpent";
+        11: print "garoo";
+        12: print "gator";
+        13: print "griff";
+        14: print "goyle";
+        15: print "lizard";
+        16: print "lope";
+        17: print "oceros";
+        18: print "opod";
+        19: print "otaur";
+        20: print "phoon";
+        21: print "pillar";
+        22: print "quatch";
+        23: print "queen";
+        24: print "rybdis";
+        25: print "potamus";
+        default:
+            print "[?]";
     }
-    RunTimeError(0);
 ];
 
 [TopiaryVerb n gerund needse;
@@ -104,9 +107,21 @@ Constant TOPIARY_BLANK_LABEL = 100;
 ];
 
 Class TopiaryRoom
+has
+    light
 with
+cant_go [;
+    ! XXX figure out what we do when noun==u_to or d_to
+    print "You wouldn't want to mess with the ";
+    TopiaryVerb(1, 1);
+    print " ";
+    TopiaryPrefix(1);
+    TopiarySuffix(1);
+    ".";
+    ],
     ! probably wrong, but leave it for now
-    description "Tangled roots, none alike, twist and turn here.";
+description
+    "Tangled roots, none alike, twist and turn here.";
 
 
 Constant TOPIARY_EDGE_HEDGE
