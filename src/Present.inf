@@ -1,25 +1,60 @@
-Constant ONLY_SKY
-    "There is only sky above you.";
-Constant ONLY_GROUND
-    "There is only ground below you.";
 Constant DARK_AND_DEEP
     "The woods are dark and deep in that direction.";
 Constant GO_WITH_THE_SLOPE
     "Don't fight it, simply go with the slope.";
 Constant RUSHING_RIVER
     "The rushing river runs in that direction, uncrossable, a rubicon of dreams.";
-Constant MANY_EXITS_BUT_NOT_THAT
-    ! XXX obviously we need to change "SE" appropriately. But how?
-    "There are many exits from this place.  SE is not one of them.";
-Constant CEILING_IN_WAY
-    "There's a ceiling in the way.";
-Constant WALL_IN_WAY
-    "There's a wall in the way.";
-Constant FLOOR_IN_WAY
-    "There's a floor in the way.";
-Constant WASTE_OF_TIME
-    ! XXX change "N" as appropriate
-    "You decide that travel to the N would be a waste of time.";
+
+[PrintDirectionName d;
+
+    switch (d) {
+
+            n_to:  print "N";
+            ne_to: print "NE";
+            e_to:  print "E";
+            se_to: print "SE";
+            s_to:  print "S";
+            sw_to: print "SW";
+            w_to:  print "W";
+            nw_to: print "NW";
+            u_to:  print "U";
+            d_to:  print "D";
+
+        default:
+          print "[unknown direction]";
+
+    };
+];
+
+[WasteOfTime ;
+    if (noun==u_to) {
+        "There is only sky above you.";
+    } else if (noun==d_to) {
+        "There is only ground below you.";
+    } else {
+        print "You decide that travel to the ";
+        PrintDirectionName(noun);
+        " would be a waste of time.";
+    }
+];
+
+[ManyExitsButNotThat ;
+    print "There are many exits from this place. ";
+    PrintDirectionName(noun);
+    print "is not one of them.^";
+];
+
+[CeilingOrSomething ;
+
+    if (noun==u_to) {
+        "There's a ceiling in the way.";
+    } else if (noun==d_to) {
+        "There's a floor in the way.";
+    } else {
+        "There's a wall in the way.";
+    }
+
+];
 
 Object Cave "Cave."
 has light
@@ -35,7 +70,7 @@ ne_to
 nw_to
     "You rebound against a bulging boulder that blocks further passage.",
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     "A seeping cave wall thwarts movement in that direction.",
 description
@@ -139,9 +174,9 @@ ne_to
 se_to
     SouthEdgeOfPondPitstop,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     "You get confused by the hyper-bent gravity at work here and end up back where you were.",
 description
@@ -155,7 +190,7 @@ with
 w_to
     MoebiusStrip,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
     "If you want to jump in the pond, by all means, jump in the pond!",
 cant_go
@@ -176,7 +211,7 @@ d_to
 nw_to
     ShallowDepression,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "Lesser patches of reeds lie in that direction.",
 description
@@ -234,7 +269,7 @@ d_to
 se_to
     OverTheHill,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "The drop from the truncated plateau in that direction is too steep. You back off.",
 description
@@ -339,7 +374,7 @@ w_to
 nw_to
     MeanderingMeadowPath,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     RUSHING_RIVER,
     description
@@ -359,7 +394,7 @@ se_to
 nw_to
     ObeliskPlateau,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     GO_WITH_THE_SLOPE,
 description
@@ -377,10 +412,13 @@ e_to
 w_to
     OverTheHill,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
-    ! XXX obviously, fix actual direction in
-    "The hill is too slippery to proceed N.",
+    [ ;
+        print "The hill is too slippery to proceed ";
+        PrintDirectionName(noun);
+        ".";
+    ],
 description
         "The hill here rises from the spine of the landscape, with smooth
 contours culminating in a curvaceous hump.";
@@ -403,7 +441,7 @@ w_to
 se_to
     DesolateField,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "For fear of triggering an avalanche, you hold your ground.",
 description
@@ -425,7 +463,7 @@ w_to
 nw_to
     FieldOfPoppies,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     RUSHING_RIVER,
 description
@@ -441,7 +479,7 @@ ne_to
 nw_to
     OverTheHill,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "A morass of sawdust mulch bogs your progress down.",
 description
@@ -464,7 +502,7 @@ s_to
 nw_to
     FieldOfStone,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "The desolation merely worsens in that direction.",
 description
@@ -484,7 +522,7 @@ nw_to
 cant_go
     "The stairs do not sweep you in that direction.",
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 description
         "The double wings of the decrepit staircase fronting the museum
 do not exactly sweep (that was your job!) but they do seem to
@@ -494,7 +532,7 @@ Object PorticoOfMuseum "Portico of Museum."
 has light
 with
 u_to
-    CEILING_IN_WAY,
+    CeilingOrSomething,
 d_to
     MuseumStairs,
 ! n_to door
@@ -528,7 +566,7 @@ n_to
 s_to
     LoadingStage,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "There is nothing but desolate scruff in that direction.",
 description
@@ -568,7 +606,7 @@ ne_to
 n_to
     TopiaryEntrance,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 cant_go
     "You take a quick stroll through the garden but end up back
     where you started.",
@@ -588,9 +626,9 @@ s_to
 e_to
     Topiary02,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     TOPIARY_EDGE_HEDGE,
 description
@@ -610,13 +648,13 @@ s_to
 nw_to
     Greenhouse,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 n_to
-    WALL_IN_WAY,
+    CeilingOrSomething,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
-    MANY_EXITS_BUT_NOT_THAT,
+    ManyExitsButNotThat,
 description
         "The statue of some amorphous amphibian, centered in a limestone ring,
 is poised to spew forth water from a pouting mouth.  Nonetheless,
@@ -661,13 +699,9 @@ has light
 with
 w_to
     Greenhouse,
-u_to
-    CEILING_IN_WAY,
-d_to
-    FLOOR_IN_WAY,
 cant_go
-    WALL_IN_WAY,
-    description
+    CeilingOrSomething,
+description
         "This ramshackle shed has a sod floor and a comfortable musty air
 about it.  Although shelves and hooks abound, most of them seem
 to be empty.";
@@ -713,7 +747,7 @@ sw_to
 se_to
     Downstream,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
     ! XXX this is a door
     "The platform covers the shaft directly below you.",
@@ -730,9 +764,9 @@ with
 nw_to
     PlatformOverRiver,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
     "The abyss would willingly swallow you if you went that way.",
 sw_to
@@ -822,11 +856,11 @@ ne_to
 s_to
     Cornerstone,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 d_to
-    ONLY_GROUND,
+    WasteOfTime,
 cant_go
-    WASTE_OF_TIME,
+    WasteOfTime,
 description
         "A scruffy side path skirts the museum which is decked out in a
 vast array of windows.";
@@ -1020,7 +1054,7 @@ with
 n_to
     BackOfMuseum,
 u_to
-    ONLY_SKY,
+    WasteOfTime,
 se_to
     "The museum stops you.",
 cant_go
