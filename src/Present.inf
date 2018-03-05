@@ -15,6 +15,11 @@ Constant CEILING_IN_WAY
     "There's a ceiling in the way.";
 Constant WALL_IN_WAY
     "There's a wall in the way.";
+Constant FLOOR_IN_WAY
+    "There's a floor in the way.";
+Constant WASTE_OF_TIME
+    ! XXX change "N" as appropriate
+    "You decide that travel to the N would be a waste of time.";
 
 Object Cave "Cave."
 has light
@@ -385,8 +390,12 @@ e_to
     FieldOfStone,
 w_to
     OverTheHill,
-! No obvious cant_go value: explore dict is {u'UP': u'OVRTHHLL', u'E': u'FLDFSTN', u'SW': u'!The hill is too slippery to proceed SW.\n\nHill.', u'NE': u'!The hill is too slippery to proceed NE.\n\nHill.', u'N': u'!The hill is too slippery to proceed N.\n\nHill.', u'DOWN': u'!There is only ground below you.\n\nHill.', u'S': u'!The hill is too slippery to proceed S.\n\nHill.', u'W': u'OVRTHHLL', u'fullname': u'Hill.', u'SE': u'!The hill is too slippery to proceed SE.\n\nHill.', u'NW': u'!The hill is too slippery to proceed NW.\n\nHill.'}
-    description
+d_to
+    ONLY_GROUND,
+cant_go
+    ! XXX obviously, fix actual direction in
+    "The hill is too slippery to proceed N.",
+description
         "The hill here rises from the spine of the landscape, with smooth
 contours culminating in a curvaceous hump.
 ";
@@ -408,8 +417,11 @@ w_to
     Hill,
 se_to
     DesolateField,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'RVRBD', u'SW': u'ABNDNDML', u'NE': u'UPRVR', u'N': u'FLDFPPPS', u'DOWN': u'RVRBD', u'S': u'!For fear of triggering an avalanche, you hold your ground.', u'W': u'HLL', u'fullname': u'Field of Stone.', u'SE': u'DSLTFLD', u'NW': u'!For fear of triggering an avalanche, you hold your ground.'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "For fear of triggering an avalanche, you hold your ground.",
+description
         "You are on a gently sloping field of stones.  Terns swoop
 interminably in slow arcs across the sky.  The stones look as if
 they could be overturned.
@@ -428,10 +440,12 @@ w_to
     FieldOfStone,
 nw_to
     FieldOfPoppies,
-! No obvious cant_go value: explore dict is {u'UP': u'FLDFSTN', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'SW': u'DSLTFLD', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'N': u'UPRVR', u'DOWN': u'!There is only ground below you.\n\nRiver Bed.', u'S': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'W': u'FLDFSTN', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'NW': u'FLDFPPPS'}
-    description
-        "You are on the bed of a swiftly moving river.
-";
+d_to
+    ONLY_GROUND,
+cant_go
+    RUSHING_RIVER,
+description
+        "You are on the bed of a swiftly moving river.";
 
 Object AbandonedMill "Abandoned Mill."
 has light
@@ -493,12 +507,6 @@ description
         "The double wings of the decrepit staircase fronting the museum
 do not exactly sweep (that was your job!) but they do seem to
 embrace anyone about to ascend.";
-
-Object Cornerstone "Cornerstone."
-has light
-with
-description
-   "XXX FIXME";
 
 Object PorticoOfMuseum "Portico of Museum."
 has light
@@ -635,16 +643,6 @@ is poised to spew forth water from a pouting mouth.  Nonetheless,
 only a paltry trickle dribbles down its vented gills.
 ";
 
-Object  "=1154"
-has light
-with
-! no explore data
-    description
-        "On one hand, arabesques of glass, and on the other, wicker slats,
-distinguish the Victorian conservatory's two halves.  The hothouse
-lies northwest and the coldhouse lies northeast.
-";
-
 Object CottageDoor "door"
 has
     openable scenery static door
@@ -684,7 +682,12 @@ has light
 with
 w_to
     Greenhouse,
-! No obvious cant_go value: explore dict is {u'UP': u"!There's a ceiling in the way.", u'E': u"!There's a wall in the way.", u'SW': u"!There's a wall in the way.", u'NE': u"!There's a wall in the way.", u'N': u"!There's a wall in the way.", u'DOWN': u"!There's a floor in the way.", u'S': u"!There's a wall in the way.", u'W': u'GRNHS', u'fullname': u'Shed.', u'SE': u"!There's a wall in the way.", u'NW': u"!There's a wall in the way."}
+u_to
+    CEILING_IN_WAY,
+d_to
+    FLOOR_IN_WAY,
+cant_go
+    WALL_IN_WAY,
     description
         "This ramshackle shed has a sod floor and a comfortable musty air
 about it.  Although shelves and hooks abound, most of them seem
@@ -734,6 +737,7 @@ se_to
 u_to
     ONLY_SKY,
 d_to
+    ! XXX this is a door
     "The platform covers the shaft directly below you.",
 w_to
     "The exit from the topiary lies in that direction.",
@@ -815,32 +819,11 @@ a slight list and is capped by a clapboard contrivance which
 prevents its blades from turning in the ample breeze.
 ";
 
-Object  "=1141"
+Object PointOfView "Point of View"
 has light
 with
 ! no explore data
-    description
-        "The arabesques of glass that enclose this humid room are patterned
-after French trefoils.  Their many facets combine to create a solar
-sweltering.  The resulting climate is used to display the lush
-vegetation of the tropics.
-";
-
-Object  "=1151"
-has light
-with
-! no explore data
-    description
-        "A clever lateral arrangement of wicker slats directs all sorts of
-drafts into this chilly room which is built on a base of naturally
-cold bedrock.  The resulting climate is used to display the sparse
-vegetation of the tundra.  An indentation mars the smooth floor.
-";
-
-Object  "=1506"
-has light
-with
-! no explore data
+! XXX separate out sign, obviously
     description
         "This lookout point is nestled on the edge of a cliff overlooking
 a canyon.  The glorious view it affords includes glimpses of
@@ -850,7 +833,7 @@ to a deep chasm below.
 There is a sign here.
 ";
 
-Object  "=1482"
+Object Cornerstone "Cornerstone"
 has light
 with
 ! no explore data
@@ -867,8 +850,13 @@ ne_to
     BackOfMuseum,
 s_to
     Cornerstone,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!You decide that travel to the E would be a waste of time.', u'SW': u'!You decide that travel to the SW would be a waste of time.', u'NE': u'BCKFMSM', u'N': u'!You decide that travel to the N would be a waste of time.', u'DOWN': u'!There is only ground below you.', u'S': u'CRNRSTN', u'W': u'!You decide that travel to the W would be a waste of time.', u'fullname': u'West Side of Museum.', u'SE': u'!You decide that travel to the SE would be a waste of time.', u'NW': u'!You decide that travel to the NW would be a waste of time.'}
-    description
+u_to
+    ONLY_SKY,
+d_to
+    ONLY_GROUND,
+cant_go
+    WASTE_OF_TIME,
+description
         "A scruffy side path skirts the museum which is decked out in a
 vast array of windows.
 ";
@@ -914,8 +902,9 @@ Object Foyer "Foyer."
 has light
 with
 ! no explore data
+! XXX there is a generated adjective before "fresco". What is it?
     description
-        "The walls here sport a three-part fresco, lit by ~8light from the
+        "The walls here sport a three-part fresco, lit by light from the
 skylight above.
 ";
 
@@ -1081,8 +1070,14 @@ has light
 with
 n_to
     BackOfMuseum,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The ramp lies to the N.', u'SW': u'!The museum stops you.', u'NE': u'!The ramp lies to the N.', u'N': u'BCKFMSM', u'DOWN': u'!There is only ground below you.', u'S': u'!The door is closed.', u'W': u'!The ramp lies to the N.', u'fullname': u'Loading Stage.', u'SE': u'!The museum stops you.', u'NW': u'!The ramp lies to the N.'}
-    description
+u_to
+    ONLY_SKY,
+se_to
+    "The museum stops you.",
+cant_go
+    ! sic; it's "N" in all cases.
+    "The ramp lies to the N.",
+description
         "This barren square of concrete is formed by the leveling off of
 the delivery ramp to the north.
 ";
