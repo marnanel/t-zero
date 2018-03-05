@@ -83,8 +83,7 @@ cant_go
 description
         "The woods here are dark and deep.  They invoke a sense of reverence
 in you that is disturbed by slight scurryings at the periphery of
-your perception.
-";
+your perception.";
 
 Object WoodsyCorridor "Woodsy Corridor."
 has light
@@ -105,8 +104,7 @@ description
         "You are on a wide path through an old forest.  The trees, few and
 far between, are so massive that only a little light haunts the
 upper reaches of the nave-like corridor which slopes down from
-south to north.
-";
+south to north.";
 
 Object ShallowDepression "Shallow Depression."
 has light
@@ -129,8 +127,7 @@ description
         "A shallow depression, about 30 feet across and 10 feet deep, is
 permanently etched in solid rock.  The ridged edge of the small
 crater gives way to a rounded interior.  The north lip has eroded
-away.
-";
+away.";
 
 Object MoebiusStrip "Moebius Strip."
 has light
@@ -167,8 +164,7 @@ description
     "The pond is an unsettling broth of vegetable slime with a tangled
 network of vines just below the surface.  The vines support the
 heart-shaped pods which serve as stepping-stones across the pond.
-You stand on such a pod.
-";
+You stand on such a pod.";
 
 Object EastEdgeOfPond "East Edge of Pond."
 has light
@@ -185,8 +181,7 @@ cant_go
     "Lesser patches of reeds lie in that direction.",
 description
         "A pond is visible to the west but inaccessible due to a bank of
-tall reeds.
-";
+tall reeds.";
 
 Object SouthEdgeOfPondPitstop "South Edge of Pond (Pitstop)."
 has light
@@ -210,8 +205,7 @@ cant_go
 description
         "The path here skirts a sunken ridge to the south where fossilized
 images phosphoresce in spidery patterns.  A residual tarry substance
-adheres to the ground.
-";
+adheres to the ground.";
 
 Object HillSlope "Hill Slope."
 has light
@@ -228,8 +222,7 @@ cant_go
     GO_WITH_THE_SLOPE,
 description
         "The slope of the hill varies here, being gentle to the northeast
-and steep to the southwest.
-";
+and steep to the southwest.";
 
 Object ObeliskPlateau "Obelisk Plateau."
 has light
@@ -247,8 +240,7 @@ cant_go
 description
         "A good portion of the hill has been truncated here to form a stark
 elliptical plateau.  This serves as a platform for a sleek black
-obelisk that pierces the sky and dominates the surrounding landscape.
-";
+obelisk that pierces the sky and dominates the surrounding landscape.";
 
 Object PathToPond "Path to Pond."
 has light
@@ -264,8 +256,7 @@ nw_to
    cant_go
         "You decide to stick to the path.",
     description
-        "The path veers away from the cliff to approach an upland pond.
-";
+        "The path veers away from the cliff to approach an upland pond.";
 
 Object PathThroughOutskirtsOfMeadow "Path Through Outskirts of Meadow."
 has light
@@ -284,8 +275,7 @@ se_to
         "You decide to stick to the path.",
     description
         "The meadow flowers thin out as the path approaches a cliff with a
-viewpoint over the river to the northeast.
-";
+viewpoint over the river to the northeast.";
 
 Object Viewpoint "Viewpoint."
 has light
@@ -310,8 +300,7 @@ nw_to
         "You decide to stick to the path.",
     description
         "The path wanders hither and thither, carefree and aimless,
-populated by stray meadow poppies and dented with potholes.
-";
+populated by stray meadow poppies and dented with potholes.";
 
 Object FieldOfPoppies "Field of Poppies."
 has light
@@ -334,8 +323,7 @@ se_to
         "Either your vision is becoming near-sighted or this scene has all
 the pointillist charm of a Monet painting.  A subdued green and
 violet background is punctuated by bright orange meadow poppies.
-They waft a fragrance which makes you slightly sleepy.
-";
+They waft a fragrance which makes you slightly sleepy.";
 
 Object Upriver1 "UpRiver."
 has light
@@ -357,8 +345,7 @@ cant_go
     description
         "A river emerges from parallel cliffs to the northwest, reaches the
 level clearing here, and enters the mouth of a canyon some distance
-to the south-southeast.  Shallow pools dot the river shore.
-";
+to the south-southeast.  Shallow pools dot the river shore.";
 
 Object OverTheHill "Over the Hill."
 has light
@@ -378,8 +365,7 @@ cant_go
 description
         "You may not be over the hill yet but you are over its first hump.
 The going may not get easier as you ascend, but at least you know
-the ropes better.
-";
+the ropes better.";
 
 Object Hill "Hill."
 has light
@@ -397,8 +383,7 @@ cant_go
     "The hill is too slippery to proceed N.",
 description
         "The hill here rises from the spine of the landscape, with smooth
-contours culminating in a curvaceous hump.
-";
+contours culminating in a curvaceous hump.";
 
 Object FieldOfStone "Field of Stone."
 has light
@@ -424,8 +409,7 @@ cant_go
 description
         "You are on a gently sloping field of stones.  Terns swoop
 interminably in slow arcs across the sky.  The stones look as if
-they could be overturned.
-";
+they could be overturned.";
 
 Object Riverbed "River Bed."
 has light
@@ -462,8 +446,7 @@ cant_go
     "A morass of sawdust mulch bogs your progress down.",
 description
         "Yellow dew-drenched mushrooms pop through the scattered timbers
-and redwood sawdust that mark the site of an abandoned mill.
-";
+and redwood sawdust that mark the site of an abandoned mill.";
 
 Object Windmill "Windmill."
 has light
@@ -487,8 +470,7 @@ cant_go
 description
         "You are in a desolate field whose only distinguishing mark is its
 complete and utter barrenness.  Nothing, not even a weed, thrives
-here.
-";
+here.";
 
 Object MuseumStairs "Museum Stairs."
 has light
@@ -594,8 +576,7 @@ description
         "The intrepid English gardener who tends to this plot of symmetric
 flowerbeds is fighting a losing battle.  Beds spill over into paths,
 paths peter out into beds, and the trampled marigolds are going to
-pot.
-";
+pot.";
 
 Object TopiaryEntrance "Topiary of Time."
 has light
@@ -617,8 +598,7 @@ description
 imitations of fabled mythological creatures.  Seemingly surrendering
 to the adjacent museum's theme of time, the grounds are overgrown
 and seedy.
-There is a sign posted here.
-";
+There is a sign posted here.";
 
 Object FountainCourt "Fountain Court."
 has light
@@ -640,8 +620,7 @@ cant_go
 description
         "The statue of some amorphous amphibian, centered in a limestone ring,
 is poised to spew forth water from a pouting mouth.  Nonetheless,
-only a paltry trickle dribbles down its vented gills.
-";
+only a paltry trickle dribbles down its vented gills.";
 
 Object CottageDoor "door"
 has
@@ -691,8 +670,7 @@ cant_go
     description
         "This ramshackle shed has a sod floor and a comfortable musty air
 about it.  Although shelves and hooks abound, most of them seem
-to be empty.
-";
+to be empty.";
 
 Object ShedShelf "Shelf" Shed
 has
@@ -773,8 +751,7 @@ with
         "From twin towers, a delicate mesh of metal descends, forming a
 perfectly wrought footpath across canyon-like depths.  A crooked
 stanchion sticks out of the side of the suspension bridge like
-a sore thumb.
-";
+a sore thumb.";
 
 Object AcrossTheRiver "Across the River."
 has light
@@ -783,8 +760,7 @@ with
     description
         "There seems to be little on this side of the river that would
 warrant the presence of a bridge.  Yet here you stand as if in
-a vacuum.
-";
+a vacuum.";
 
 Object Junkyard "Junkyard."
 has light
@@ -793,8 +769,7 @@ with
     description
         "This once pristine spot has become the dumping grounds for some
 arcane cult.  There is a stack, a dump, and a heap here.
-Bugs are crawling all over the place.
-";
+Bugs are crawling all over the place.";
 
 Object MoebiusStripOnTheTrack "Moebius Strip, on the Track."
 has light
@@ -806,8 +781,7 @@ and the hare is behind.
 
 You reach the spot where the tortoise was, but, in the meantime, the
 tortoise has inched ahead.  The hare reaches the spot where you were,
-but, in the meantime, you have zoomed ahead.
-";
+but, in the meantime, you have zoomed ahead.";
 
 Object  "=1491"
 has light
@@ -816,8 +790,7 @@ with
     description
         "The windmill here, former power supply to the adjacent mill, has
 a slight list and is capped by a clapboard contrivance which
-prevents its blades from turning in the ample breeze.
-";
+prevents its blades from turning in the ample breeze.";
 
 Object PointOfView "Point of View"
 has light
@@ -830,8 +803,7 @@ a canyon.  The glorious view it affords includes glimpses of
 mysterious sparklings from an opposite ledge.  A protective
 guardrail is all that separates you from a precipitous drop
 to a deep chasm below.
-There is a sign here.
-";
+There is a sign here.";
 
 Object Cornerstone "Cornerstone"
 has light
@@ -840,8 +812,7 @@ with
     description
         "A crumbled, moss-covered cornerstone lies here, separated from
 the foundation of the museum by a foot or two.  The engraved
-words etched in the granite are lost in spongy curves of moss.
-";
+words etched in the granite are lost in spongy curves of moss.";
 
 Object WestSideOfMuseum "West Side of Museum."
 has light
@@ -858,8 +829,7 @@ cant_go
     WASTE_OF_TIME,
 description
         "A scruffy side path skirts the museum which is decked out in a
-vast array of windows.
-";
+vast array of windows.";
 
 Object  "=3039"
 has light
@@ -867,8 +837,7 @@ with
 ! no explore data
     description
         "You are running on a moebius beltway.  A tortoise plods along in
-the opposite direction.
-";
+the opposite direction.";
 
 Object  "=3039"
 has light
@@ -877,8 +846,7 @@ with
     description
         "You are running on a moebius beltway.  The tortoise is ahead of you.
 You reach the spot where the tortoise was, but, in the meantime, the
-tortoise has inched ahead.
-";
+tortoise has inched ahead.";
 
 Object  "=3039"
 has light
@@ -887,16 +855,14 @@ with
     description
         "You are running on a moebius beltway.  The tortoise is behind you.
 The tortoise reaches the spot where you were, but, in the meantime,
-you have zoomed ahead.
-";
+you have zoomed ahead.";
 
 Object  "=3039"
 has light
 with
 ! no explore data
     description
-        "You are the lone runner on a moebius beltway.
-";
+        "You are the lone runner on a moebius beltway.";
 
 Object Foyer "Foyer."
 has light
@@ -905,8 +871,7 @@ with
 ! XXX there is a generated adjective before "fresco". What is it?
     description
         "The walls here sport a three-part fresco, lit by light from the
-skylight above.
-";
+skylight above.";
 
 Object HallOfClocks "Hall of Clocks."
 has light
@@ -916,8 +881,7 @@ with
         "Clocks of all shapes and sizes, ordered roughly by nationality,
 tick-tock with well-regulated syncopation.  Along the east wall,
 a Swiss carousel and a German cuckoo catch your fleeting attention.
-A Tibetan gong stands in silent counterpoint to the west.
-";
+A Tibetan gong stands in silent counterpoint to the west.";
 
 Object CounterClockwiseRoom "Counter-Clockwise Room."
 has light
@@ -926,8 +890,7 @@ with
     description
         "This room seems to run counter to all your expectations, sweeping
 you in along a path that proceeds counter-clockwise along the room's
-circular perimeter.
-";
+circular perimeter.";
 
 Object SupplyRoom "Supply Room."
 has light
@@ -936,8 +899,7 @@ with
     description
         "Antiseptic and orderly, this room reminds you of a lemon-scented
 linen closet.  You shake off the fact that the stock is transparent
-and the smell quite vile.
-";
+and the smell quite vile.";
 
 Object ComputerRoom "Computer Room."
 has light
@@ -946,8 +908,7 @@ with
     description
         "The banks of lights here blink with the soporific rhythm of uneasy
 dreams.  You sense the presence of a powerful processor but can see
-no controls.  Your eyes rapidly move across the zigzag of lights.
-";
+no controls.  Your eyes rapidly move across the zigzag of lights.";
 
 Object CountDownBooth "Count-Down Booth."
 has light
@@ -956,8 +917,7 @@ with
     description
         "You feel as if you've been gravitating to this locale for many a
 moon.  However, now that you're here, all that presents itself to
-your view is a huge screen that doubles as a digital readout.
-";
+your view is a huge screen that doubles as a digital readout.";
 
 Object AdministrativeOffices "Administrative Offices."
 has light
@@ -967,8 +927,7 @@ with
         "This well-appointed office has all the posh trappings of power--
 from brushed leather to oiled mahogany to shiny chrome.  Ignorant
 of trappings, a nicked-up roll-top desk is tucked away in the corner.
-Mounted on the wall is an almost-complete butterfly collection.
-";
+Mounted on the wall is an almost-complete butterfly collection.";
 
 Object WestEastHall "West-East Hall."
 has light
@@ -976,16 +935,14 @@ with
 ! no explore data
     description
         "This long hall proceeds from west to east with passageways on
-all sides.
-";
+all sides.";
 
 Object TurnInHall "Turn in Hall."
 has light
 with
 ! no explore data
     description
-        "The two branches of the hall merge here in a right-angle turn.
-";
+        "The two branches of the hall merge here in a right-angle turn.";
 
 Object SouthNorthHall "South-North Hall."
 has light
@@ -993,8 +950,7 @@ with
 ! no explore data
     description
         "This short hall proceeds from south to north with passageways on
-all sides except west.
-";
+all sides except west.";
 
 Object SpiralStaircase "Spiral Staircase."
 has light
@@ -1003,8 +959,7 @@ with
     description
         "Taking its cue from the counter-clockwise room below, the staircase
 here turns in on itself for a single flight up and a single flight
-down.
-";
+down.";
 
 Object BellTurret "Bell Turret."
 has light
@@ -1013,8 +968,7 @@ with
     description
         "Octagonal and enclosed, this turret is dominated by a massive
 bell connected via a pulley to rope.  You are presented with a
-scenic view in each and every direction you look.
-";
+scenic view in each and every direction you look.";
 
 Object ClockwiseRoom "Clockwise Room."
 has light
@@ -1022,8 +976,7 @@ with
 ! no explore data
     description
         "This room sweeps you in along a path that proceeds clockwise along
-the room's circular perimeter.
-";
+the room's circular perimeter.";
 
 Object  "=3017"
 has light
@@ -1032,8 +985,7 @@ with
     description
         "Well, you've been over the hill and lived to tell about it!
 The going may not get easier as you descend, but at least you
-know the ropes better.
-";
+know the ropes better.";
 
 Object CloakCloset "Cloak Closet."
 has light
@@ -1041,8 +993,7 @@ with
 ! no explore data
     description
         "There are no garments in this cloak closet--just a lowly timepunch
-used to keep track of employees.
-";
+used to keep track of employees.";
 
 Object OnTheRocks "On the Rocks."
 has light
@@ -1052,8 +1003,7 @@ with
         "Humpbacked rocks here protrude from the river's frothy flow.  Being
 on the rocks, you are slightly shaky, but you nevertheless steady
 your spirits and peer downstream towards the sea.  To the west,
-across the river, is the entrance to a shaft.
-";
+across the river, is the entrance to a shaft.";
 
 Object AmazingSpace "Amazing Space."
 has light
@@ -1062,8 +1012,7 @@ with
     description
         "This space was designed by the maker of the labyrinth to give the
 adventurer a well-deserved pause.  A monstrous lopped-off stump,
-with concentric rings exposed, dominates the space.
-";
+with concentric rings exposed, dominates the space.";
 
 Object LoadingStage "Loading Stage."
 has light
@@ -1079,8 +1028,7 @@ cant_go
     "The ramp lies to the N.",
 description
         "This barren square of concrete is formed by the leveling off of
-the delivery ramp to the north.
-";
+the delivery ramp to the north.";
 
 Object Pantry1 "Pantry."
 has light
@@ -1098,8 +1046,7 @@ with
 ! no explore data
     description
         "You are in a pantry whose cupboards are filled from floor to
-ceiling with jar upon jar of scrumptious fruit jam.
-";
+ceiling with jar upon jar of scrumptious fruit jam.";
 
 Object BlacksmithS "Blacksmith's."
 has light
@@ -1112,8 +1059,7 @@ se_to
     description
         "An anvil and a fiery forge dominate this workshop.  A blacksmith
 seems intent on hammering black materials into flinty arrowheads.
-He works beneath an overarching sign.
-";
+He works beneath an overarching sign.";
 
 Object FieldOfPoppies2 "Field of Poppies."
 has light
@@ -1136,8 +1082,7 @@ se_to
         "Either you're becoming especially keen-sighted or this scene has
 all the clarity of a Mondrian.  Abstract splotches of green and
 violet burst with healthy orange meadow poppies that waft an eye-
-opening fragrance which keeps you wide awake.
-";
+opening fragrance which keeps you wide awake.";
 
 Object Upriver2 "UpRiver."
 has light
@@ -1154,8 +1099,7 @@ nw_to
     MeanderingMeadowPath,
 ! No obvious cant_go value: explore dict is {u'UP': u'FLDFPPPS', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'SW': u'FLDFSTN', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'N': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'DOWN': u'!There is only ground below you.\n\nUpRiver.\n', u'S': u'RVRBD', u'W': u'FLDFPPPS', u'fullname': u'UpRiver.', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.\n\nUpRiver.\n', u'NW': u'MNDRNGMD'}
     description
-        "=4016
-";
+        "=4016";
 
 Object FieldOfStone2 "Field of Stone."
 has light
@@ -1178,8 +1122,7 @@ se_to
     description
         "You are on a gently sloping field of stones.  There are no terns
 in the sky since they have all returned to the sea.  The stones
-are still here.
-";
+are still here.";
 
 Object Riverbed2 "Riverbed."
 has light
@@ -1196,8 +1139,7 @@ nw_to
     FieldOfPoppies,
 ! No obvious cant_go value: explore dict is {u'UP': u'FLDFSTN', u'E': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'SW': u'DSLTFLD', u'NE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'N': u'UPRVR', u'DOWN': u'!There is only ground below you.\n\nRiver Bed.', u'S': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'W': u'FLDFSTN', u'SE': u'!The rushing river runs in that direction, uncrossable, a rubicon\nof dreams.', u'NW': u'FLDFPPPS'}
     description
-        "=4020
-";
+        "=4020";
 
 Object DesolationRow "Desolation Row."
 has light
@@ -1205,8 +1147,7 @@ with
 ! no explore data
     description
         "Nothing is here, neither hint nor whisper--nothing but the dour
-wind of desolation.
-";
+wind of desolation.";
 
 Object Graveyard "Graveyard."
 has light
@@ -1216,8 +1157,7 @@ with
         "Crumbling walls outline the room divisions that once formed a
 monumental museum of time.  In the weedy spaces between the
 outlines, flagstones serve as gravemarkers.  A shack lies to the
-East.
-";
+East.";
 
 Object Tombstone "Tombstone."
 has light
@@ -1225,8 +1165,7 @@ with
 ! no explore data
     description
         "An oblong tongue of stone rises from the earth to form a tombstone
-here.  An inscription might be made out amidst the graffiti.
-";
+here.  An inscription might be made out amidst the graffiti.";
 
 Object Shack "Shack."
 has light
@@ -1234,8 +1173,7 @@ with
 ! no explore data
     description
         "This is the ultimate hacker's hut--a chair, a table, and a computer
-in a skunkworks shack.
-";
+in a skunkworks shack.";
 
 Object OnTheRiver "On the River."
 has light
@@ -1244,8 +1182,7 @@ with
     description
         "You are cradled in a tortoise shell that floats down a swiftly moving
 river.  You swirl to the south-southeast as you approach the mouth of
-the canyon that the river enters.
-";
+the canyon that the river enters.";
 
 Object OnTheRiverBetweenCanyons "On the River, Between Canyons."
 has light
@@ -1254,8 +1191,7 @@ with
     description
         "Your tortoise shell boat is dwarfed by the sheer immensity of
 towering canyon walls but nevertheless manages to steer a clear,
-unwavering path over foamy rapids.
-";
+unwavering path over foamy rapids.";
 
 Object  "=3081"
 has light
@@ -1264,8 +1200,7 @@ with
     description
         "You have emerged from a canyon in your continuing trek down a
 swiftly moving river.  Ahead of you, a twin-towered suspension
-bridge rises only to disappear in a billow of clouds.
-";
+bridge rises only to disappear in a billow of clouds.";
 
 Object OnTheRiverUnderBridge "On the River, Under Bridge."
 has light
@@ -1275,8 +1210,7 @@ with
         "Your tortoise shell bark navigates past a humpbacked rock that
 lies beneath a suspension bridge.  The cloudy shadow of the bridge
 casts a dark brow across your path.  The entrance to a shaft lies
-to the West.
-";
+to the West.";
 
 Object  "=3081"
 has light
@@ -1284,8 +1218,7 @@ with
 ! no explore data
     description
         "You continue your journey down the river.  The onrushing roar of
-a waterfall assaults you from ahead.
-";
+a waterfall assaults you from ahead.";
 
 Object OverTheFalls "Over the Falls."
 has light
@@ -1294,8 +1227,7 @@ with
     description
         "You are plummeting over dappled falls, the tortoise shell serving
 as a toboggan.  Your face is sprayed with a refreshing mist from
-the falls.
-";
+the falls.";
 
 Object TidesOfTime "Tides of Time."
 has light
@@ -1303,16 +1235,14 @@ with
 ! no explore data
     description
         "You are on a beach overlooking the sea.  Ebb tide is at hand.
-Terns gracefully sweep the sky, scavengers and overseers alike.
-";
+Terns gracefully sweep the sky, scavengers and overseers alike.";
 
 Object Ramp "Ramp."
 has light
 with
 ! no explore data
     description
-        "A boat ramp slopes down here from riverbed to river.
-";
+        "A boat ramp slopes down here from riverbed to river.";
 
 Object  "=1482"
 has light
@@ -1321,8 +1251,7 @@ with
     description
         "A crumbled cornerstone lies here, separated from the foundation
 of the museum by a foot or two.  The moss has been scraped from
-the cornerstone to reveal an age-old inscription.
-";
+the cornerstone to reveal an age-old inscription.";
 
 Object  "=3021"
 has light
@@ -1330,16 +1259,14 @@ with
 ! no explore data
     description
         "The redwood sawdust has been blown from the scattered timbers here.
-Dusty yellow mushrooms dot the scene.
-";
+Dusty yellow mushrooms dot the scene.";
 
 Object  "=1491"
 has light
 with
 ! no explore data
     description
-        "=4156
-";
+        "=4156";
 
 Object GreenRoom "Green Room."
 has light
@@ -1348,8 +1275,7 @@ with
     description
         "This room is dominated by a door to the north with an inset window.
 Looking into the window, you see a subaquarium universe of bottle
-glass green, stirred by cold black currents.  There is a sign here.
-";
+glass green, stirred by cold black currents.  There is a sign here.";
 
 Object Archives "Archives."
 has light
@@ -1360,8 +1286,7 @@ with
 hive of paper pulp, furred with wispy corrugations of gnawed cardboard.
 Even the air is papery and sharp, you can feel paper cuts crisscrossing
 your skin.  The records are ruined!  Black ants crawl all over the
-place.
-";
+place.";
 
 Object  "=3097"
 has light
@@ -1369,8 +1294,7 @@ with
 ! no explore data
     description
         "The records have been recovered!  Neatly stacked ledgers of ancient
-origin line the room.  Three in particular catch your attention.
-";
+origin line the room.  Three in particular catch your attention.";
 
 Object CrossroadsInTheSky "Crossroads in the Sky."
 has light
@@ -1379,6 +1303,5 @@ with
     description
         "You are suspended in the sky, at a junction point where clouds, winds,
 and pressure-points conspire to create your everyday weather.  Directly
-below you lies the Museum of Time.
-";
+below you lies the Museum of Time.";
 
