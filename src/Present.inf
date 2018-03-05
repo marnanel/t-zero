@@ -8,6 +8,13 @@ Constant GO_WITH_THE_SLOPE
     "Don't fight it, simply go with the slope.";
 Constant RUSHING_RIVER
     "The rushing river runs in that direction, uncrossable, a rubicon of dreams.";
+Constant MANY_EXITS_BUT_NOT_THAT
+    ! XXX obviously we need to change "SE" appropriately. But how?
+    "There are many exits from this place.  SE is not one of them.";
+Constant CEILING_IN_WAY
+    "There's a ceiling in the way.";
+Constant WALL_IN_WAY
+    "There's a wall in the way."
 
 Object Cave "Cave."
 has light
@@ -435,8 +442,11 @@ ne_to
     FieldOfStone,
 nw_to
     OverTheHill,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!A morass of sawdust mulch bogs your progress down.', u'SW': u'WNDMLL', u'NE': u'FLDFSTN', u'N': u'!A morass of sawdust mulch bogs your progress down.', u'DOWN': u'!There is only ground below you.', u'S': u'!A morass of sawdust mulch bogs your progress down.', u'W': u'!A morass of sawdust mulch bogs your progress down.', u'fullname': u'Abandoned Mill.', u'SE': u'!A morass of sawdust mulch bogs your progress down.', u'NW': u'OVRTHHLL'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "A morass of sawdust mulch bogs your progress down.",
+description
         "Yellow dew-drenched mushrooms pop through the scattered timbers
 and redwood sawdust that mark the site of an abandoned mill.
 ";
@@ -456,8 +466,11 @@ s_to
     BackOfMuseum,
 nw_to
     FieldOfStone,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!The desolation merely worsens in that direction.', u'SW': u'!The desolation merely worsens in that direction.', u'NE': u'RVRBD', u'N': u'!The desolation merely worsens in that direction.', u'DOWN': u'!There is only ground below you.', u'S': u'BCKFMSM', u'W': u'!The desolation merely worsens in that direction.', u'fullname': u'Desolate Field.', u'SE': u'!The desolation merely worsens in that direction.', u'NW': u'FLDFSTN'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "The desolation merely worsens in that direction.",
+description
         "You are in a desolate field whose only distinguishing mark is its
 complete and utter barrenness.  Nothing, not even a weed, thrives
 here.
@@ -472,12 +485,14 @@ n_to
     PorticoOfMuseum,
 nw_to
     Cornerstone,
-! No obvious cant_go value: explore dict is {u'UP': u'PRTCFMSM', u'E': u'!The stairs do not sweep you in that direction.', u'SW': u'!The stairs do not sweep you in that direction.', u'NE': u'!The stairs do not sweep you in that direction.', u'N': u'PRTCFMSM', u'DOWN': u'!There is only ground below you.', u'S': u'!The stairs do not sweep you in that direction.', u'W': u'!The stairs do not sweep you in that direction.', u'fullname': u'Museum Stairs.', u'SE': u'!The stairs do not sweep you in that direction.', u'NW': u'CRNRSTN'}
-    description
+cant_go
+    "The stairs do not sweep you in that direction.",
+d_to
+    ONLY_GROUND,
+description
         "The double wings of the decrepit staircase fronting the museum
 do not exactly sweep (that was your job!) but they do seem to
-embrace anyone about to ascend.
-";
+embrace anyone about to ascend.";
 
 Object Cornerstone "Cornerstone."
 has light
@@ -488,19 +503,28 @@ description
 Object PorticoOfMuseum "Portico of Museum."
 has light
 with
+u_to
+    CEILING_IN_WAY,
 d_to
     MuseumStairs,
+! n_to door
+ne_to
+    "The museum stops you.",
+e_to
+    "The case stops you.",
 s_to
     MuseumStairs,
-! No obvious cant_go value: explore dict is {u'UP': u"!There's a ceiling in the way.", u'E': u'!The case stops you.', u'SW': u'!The shoulders of the staircase stop you.', u'NE': u'!The museum stops you.', u'N': u'!The door is closed.', u'DOWN': u'MSMSTRS', u'S': u'MSMSTRS', u'W': u'!The shoulders of the staircase stop you.', u'fullname': u'Portico of Museum.', u'SE': u'!The shoulders of the staircase stop you.', u'NW': u'!The museum stops you.'}
-    description
+nw_to
+    "The museum stops you.",
+cant_go
+    "The shoulders of the staircase stop you.",
+description
         "You are in the open-air portico of a stately museum.  To the south
 are the double wings of a spiral staircase.  To the north are double
 oak doors extracted from a medieval monastery.  To the east is a
 display case proffered as a tawdry enticement to the charms inside.
 Since the covered portico only admits morning and evening light,
-a sundial is curiously placed in its center.
-";
+a sundial is curiously placed in its center.";
 
 Object BackOfMuseum "Back of Museum."
 has light
@@ -513,11 +537,13 @@ n_to
     DesolateField,
 s_to
     LoadingStage,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'GRNHS', u'SW': u'WSTSDFMS', u'NE': u'!There is nothing but desolate scruff in that direction.', u'N': u'DSLTFLD', u'DOWN': u'!There is only ground below you.', u'S': u'LDNGSTG', u'W': u'!There is nothing but desolate scruff in that direction.', u'fullname': u'Back of Museum.', u'SE': u'!There is nothing but desolate scruff in that direction.', u'NW': u'!There is nothing but desolate scruff in that direction.'}
-    description
-        "A wide loading ramp leads from a well-worn turnaround to a square
-loading stage.
-";
+u_to
+    ONLY_SKY,
+cant_go
+    "There is nothing but desolate scruff in that direction.",
+description
+    "A wide loading ramp leads from a well-worn turnaround to a square
+loading stage.";
 
 Object Greenhouse "Greenhouse."
 has light
@@ -551,8 +577,12 @@ ne_to
     PlatformOverRiver,
 n_to
     TopiaryEntrance,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'SW': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NE': u'PLTFRMVR', u'N': u'TPRYFTM', u'DOWN': u'!There is only ground below you.', u'S': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'W': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.', u'fullname': u'English Garden.', u'SE': u'!You take a quick stroll through the garden but end up back\nwhere you started.', u'NW': u'!You take a quick stroll through the garden but end up back\nwhere you started.\n\nEnglish Garden.'}
-    description
+u_to
+    ONLY_SKY,
+cant_go
+    "You take a quick stroll through the garden but end up back
+    where you started.",
+description
         "The intrepid English gardener who tends to this plot of symmetric
 flowerbeds is fighting a losing battle.  Beds spill over into paths,
 paths peter out into beds, and the trampled marigolds are going to
@@ -566,8 +596,15 @@ n_to
     FountainCourt,
 s_to
     EnglishGarden,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.\n\nTopiary of Time.', u'E': u'!As you enter the topiary of time, you hear the dry rustling of\nleaves as the creatures, shape-shifters all, assume imposing\npostures.\n\nTopiary of Time.\nA cockogriff squats to the Northeast.\nA vampboon glowers to the Northwest.\nA crocodactyl moans to the Southwest.', u'SW': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.', u'NE': u'!An unhacked hedge bounds the topiary in that direction.', u'N': u'FNTNCRT', u'DOWN': u'!There is only ground below you.\n\nTopiary of Time.', u'S': u'ENGLSHGR', u'W': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.', u'fullname': u'Topiary of Time.', u'SE': u'!An unhacked hedge bounds the topiary in that direction.', u'NW': u'!An unhacked hedge bounds the topiary in that direction.\n\nTopiary of Time.'}
-    description
+e_to
+    Topiary02,
+u_to
+    ONLY_SKY,
+d_to
+    ONLY_GROUND,
+cant_go
+    TOPIARY_EDGE_HEDGE,
+description
         "The hedges here have been hacked away into imperfectly rendered
 imitations of fabled mythological creatures.  Seemingly surrendering
 to the adjacent museum's theme of time, the grounds are overgrown
@@ -584,8 +621,15 @@ s_to
     TopiaryEntrance,
 nw_to
     Greenhouse,
-! No obvious cant_go value: explore dict is {u'UP': u'!There is only sky above you.', u'E': u'!There are many exits from this place.  E is not one of them.', u'SW': u'!There are many exits from this place.  SW is not one of them.', u'NE': u'GRNHS', u'N': u"!There's a wall in the way.", u'DOWN': u'!There is only ground below you.', u'S': u'TPRYFTM', u'W': u'!There are many exits from this place.  W is not one of them.', u'fullname': u'Fountain Court.', u'SE': u'!There are many exits from this place.  SE is not one of them.', u'NW': u'GRNHS'}
-    description
+u_to
+    ONLY_SKY,
+n_to
+    WALL_IN_WAY,
+d_to
+    ONLY_GROUND,
+cant_go
+    MANY_EXITS_BUT_NOT_THAT,
+description
         "The statue of some amorphous amphibian, centered in a limestone ring,
 is poised to spew forth water from a pouting mouth.  Nonetheless,
 only a paltry trickle dribbles down its vented gills.
