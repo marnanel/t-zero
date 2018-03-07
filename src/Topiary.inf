@@ -138,28 +138,38 @@ initial
         TopiarySuffix(1);
         print " ";
         TopiaryVerb(1, 0);
-        " to the northwest.";
+        print " to the ";
+        print (string) self.dirname;
+        print ".";
     ];
 
 TopiaryMonster TopiaryMonsterNE
 with
+dirname
+    "northeast",
 offset
-    (1) (-1);
+    1   0;
 
 TopiaryMonster TopiaryMonsterSE
 with
+dirname
+    "southeast",
 offset
-    (1) (1);
+    1   1;
 
 TopiaryMonster TopiaryMonsterSW
 with
+dirname
+    "southwest",
 offset
-    (-1) (1);
+    0   1;
 
 TopiaryMonster TopiaryMonsterNW
 with
+dirname
+    "northwest",
 offset
-    (-1) (-1);
+    0   0;
 
 Class TopiaryRoom
 has
