@@ -85,7 +85,7 @@ with
 
 [ Initialise;
     player = Custodian;
-    location = RiverBed;
+    location = TopiaryEntrance;
 
     move CompassThing to Player;
     move PinkSlip to Player;

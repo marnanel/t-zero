@@ -624,7 +624,10 @@ n_to
 s_to
     EnglishGarden,
 e_to
-    Topiary02,
+    [ ;
+        TopiaryReset();
+        return Topiary02;
+    ],
 u_to
     WasteOfTime,
 d_to

@@ -106,6 +106,61 @@ Constant TOPIARY_BLANK_LABEL = 100;
      }
 ];
 
+[TopiaryMoveFloaters whither;
+
+    move TopiaryMonsterNE to whither;
+    move TopiaryMonsterSE to whither;
+    move TopiaryMonsterSW to whither;
+    move TopiaryMonsterNW to whither;
+
+];
+
+[TopiaryReset ;
+
+    ! XXX reset monsters here
+
+    TopiaryMoveFloaters(Topiary02);
+
+    "As you enter the topiary of time, you hear the dry rustling of
+    leaves as the creatures, shape-shifters all, assume imposing postures.";
+];
+
+Class TopiaryMonster
+has
+    animate
+with
+description
+    "XXX",
+initial
+    [;
+        print "A ";
+        TopiaryPrefix(1);
+        TopiarySuffix(1);
+        print " ";
+        TopiaryVerb(1, 0);
+        " to the northwest.";
+    ];
+
+TopiaryMonster TopiaryMonsterNE
+with
+offset
+    (1) (-1);
+
+TopiaryMonster TopiaryMonsterSE
+with
+offset
+    (1) (1);
+
+TopiaryMonster TopiaryMonsterSW
+with
+offset
+    (-1) (1);
+
+TopiaryMonster TopiaryMonsterNW
+with
+offset
+    (-1) (-1);
+
 Class TopiaryRoom
 has
     light
@@ -122,7 +177,6 @@ cant_go [;
     ! probably wrong, but leave it for now
 description
     "Tangled roots, none alike, twist and turn here.";
-
 
 Constant TOPIARY_EDGE_HEDGE
     "An unhacked hedge bounds the topiary in that direction.";
