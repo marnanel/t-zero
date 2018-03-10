@@ -1,7 +1,7 @@
 
-Constant TOPIARY_PREFIX_COUNT = 24;
-Constant TOPIARY_SUFFIX_COUNT = 26;
-Constant TOPIARY_VERB_COUNT = 16;
+Constant TOPIARY_PREFIX_MAX = 23;
+Constant TOPIARY_SUFFIX_MAX = 25;
+Constant TOPIARY_VERB_MAX = 15;
 
 Constant TOPIARY_MONSTER_COUNT = 36;
 Array topiary_monster_prefix -> TOPIARY_MONSTER_COUNT;
@@ -138,26 +138,26 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
 
     ! Note that random() in Inform is 1-based.
 
-    pn = random(TOPIARY_PREFIX_COUNT)-1;
-    sn = random(TOPIARY_SUFFIX_COUNT)-1;
+    pn = random(TOPIARY_PREFIX_MAX)-1;
+    sn = random(TOPIARY_SUFFIX_MAX)-1;
 
     for (i=0 : i<TOPIARY_MONSTER_COUNT : i++) {
             if (i==pn) {
                     topiary_monster_prefix -> i = 0;
             } else {
                     topiary_monster_prefix -> i =
-                        random(TOPIARY_PREFIX_COUNT);
+                        random(TOPIARY_PREFIX_MAX);
             }
 
             if (i==sn) {
                     topiary_monster_suffix -> i = 0;
             } else {
                     topiary_monster_suffix -> i =
-                        random(TOPIARY_SUFFIX_COUNT);
+                        random(TOPIARY_SUFFIX_MAX);
             }
 
             topiary_monster_verb -> i =
-                  random(TOPIARY_VERB_COUNT) - 1;
+                  random(TOPIARY_VERB_MAX) - 1;
     }
 
     "As you enter the topiary of time, you hear the dry rustling of
