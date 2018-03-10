@@ -157,8 +157,6 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
                   random(TOPIARY_VERB_COUNT) - 1;
     }
 
-    TopiaryMoveFloaters(Topiary02);
-
     "As you enter the topiary of time, you hear the dry rustling of
     leaves as the creatures, shape-shifters all, assume imposing postures.";
 ];
@@ -273,7 +271,9 @@ cant_go [;
     TopiarySuffix(1);
     ".";
     ],
-    ! probably wrong, but leave it for now
+after [;
+    TopiaryMoveFloaters(self);
+    ],
 description
     ""; ! do the topiary rooms have any description at all?
 
