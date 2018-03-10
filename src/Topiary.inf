@@ -37,7 +37,7 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
         23: print "vamp";
 
         default:
-            print "[?]";
+            print n;
     }
 ];
 
@@ -70,7 +70,7 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
         24: print "rybdis";
         25: print "potamus";
         default:
-            print "[?]";
+            print n;
     }
 ];
 
@@ -97,6 +97,9 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
         15: print "squat";
                 ! "squatting" vs "squats". What a nuisance.
                 if (gerund) { print "t"; }
+
+        default:
+            print n;
      }
 
      if (gerund==1) {
