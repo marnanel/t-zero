@@ -2,7 +2,11 @@
 Constant TOPIARY_PREFIX_COUNT = 24;
 Constant TOPIARY_SUFFIX_COUNT = 26;
 Constant TOPIARY_VERB_COUNT = 16;
-Constant TOPIARY_BLANK_LABEL = 100;
+
+Constant TOPIARY_MONSTER_COUNT = 36;
+Array topiary_monster_prefix -> TOPIARY_MONSTER_COUNT;
+Array topiary_monster_suffix -> TOPIARY_MONSTER_COUNT;
+Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
 
 [TopiaryPrefix n;
 
@@ -108,6 +112,8 @@ Constant TOPIARY_BLANK_LABEL = 100;
 
 [TopiaryMoveFloaters whither;
 
+    move TangledRoots to whither;
+
     move TopiaryMonsterNE to whither;
     move TopiaryMonsterSE to whither;
     move TopiaryMonsterSW to whither;
@@ -115,9 +121,41 @@ Constant TOPIARY_BLANK_LABEL = 100;
 
 ];
 
-[TopiaryReset ;
+[TopiaryReset i pn sn;
 
-    ! XXX reset monsters here
+    ! The prefixes and suffixes are random, except
+    ! that one prefix and one suffix must be zero
+    ! (and no other prefixes or suffixes may be zero).
+
+    ! pn is the array index where the prefix will be 0;
+    ! sn is the same for the suffix.
+
+    ! I don't know whether we should make
+    ! sure that pn and sn differ.
+
+    ! Note that random() in Inform is 1-based.
+
+    pn = random(TOPIARY_PREFIX_COUNT)-1;
+    sn = random(TOPIARY_SUFFIX_COUNT)-1;
+
+    for (i=0 : i<TOPIARY_MONSTER_COUNT : i++) {
+            if (i==pn) {
+                    topiary_monster_prefix -> i = 0;
+            } else {
+                    topiary_monster_prefix -> i =
+                        random(TOPIARY_PREFIX_COUNT);
+            }
+
+            if (i==sn) {
+                    topiary_monster_suffix -> i = 0;
+            } else {
+                    topiary_monster_suffix -> i =
+                        random(TOPIARY_SUFFIX_COUNT);
+            }
+
+            topiary_monster_verb -> i =
+                  random(TOPIARY_VERB_COUNT) - 1;
+    }
 
     TopiaryMoveFloaters(Topiary02);
 
@@ -127,49 +165,100 @@ Constant TOPIARY_BLANK_LABEL = 100;
 
 Class TopiaryMonster
 has
-    animate
+    animate static
 with
 description
     "XXX",
 initial
-    [;
-        print "A ";
-        TopiaryPrefix(1);
-        TopiarySuffix(1);
-        print " ";
-        TopiaryVerb(1, 0);
-        print " to the ";
-        print (string) self.dirname;
-        print ".";
+    [ reacting ourx oury index;
+
+        ! This routine produces both the
+        !  "A foo bars to the northwest."
+        ! and
+        !  "You wouldn't want to mess with the barring foo."
+        ! messages. "reacting" is 1 for the "you wouldn't
+        ! want to mess".
+
+        ourx = location.pos_x + self.pos_x;
+        oury = location.pos_y + self.pos_y;
+
+        index = oury*6 + ourx;
+
+        if (reacting) {
+
+            print "You wouldn't want to mess with the ";
+            TopiaryVerb(topiary_monster_verb -> index, 1);
+            print " ";
+            TopiaryPrefix(topiary_monster_prefix -> index);
+            TopiarySuffix(topiary_monster_suffix -> index);
+            print ".^";
+
+         } else {
+
+            print "A ";
+            TopiaryPrefix(topiary_monster_prefix -> index);
+            TopiarySuffix(topiary_monster_suffix -> index);
+            print " ";
+            TopiaryVerb(topiary_monster_verb -> index, 0);
+            print " to the ";
+            print (string) self.dirname;
+            print ".";
+
+         }
+    ],
+react_before
+    [ ;
+        Go:
+        if (noun==self.door_to) {
+                self.initial(1);
+                rtrue;
+        }
+        rfalse;
     ];
 
 TopiaryMonster TopiaryMonsterNE
 with
 dirname
     "northeast",
-offset
-    1   0;
+door_to
+    ne_to,
+pos_x
+    1,
+pos_y
+    0;
 
 TopiaryMonster TopiaryMonsterSE
 with
 dirname
     "southeast",
-offset
-    1   1;
+door_to
+    se_to,
+pos_x
+    1,
+pos_y
+    1;
 
 TopiaryMonster TopiaryMonsterSW
 with
 dirname
     "southwest",
-offset
-    0   1;
+door_to
+    sw_to,
+pos_x
+    0,
+pos_y
+    1;
 
 TopiaryMonster TopiaryMonsterNW
 with
 dirname
     "northwest",
-offset
-    0   0;
+door_to
+    nw_to,
+pos_x
+    0,
+pos_y
+    0;
 
 Class TopiaryRoom
 has
@@ -186,6 +275,11 @@ cant_go [;
     ],
     ! probably wrong, but leave it for now
 description
+    ""; ! do the topiary rooms have any description at all?
+
+Object TangledRoots "tangled roots"
+with
+initial
     "Tangled roots, none alike, twist and turn here.";
 
 Constant TOPIARY_EDGE_HEDGE

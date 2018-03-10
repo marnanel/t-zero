@@ -31,8 +31,10 @@ def main():
 
             output.write('TopiaryRoom Topiary%d%d "Topiary of Time"\n' % (x, y))
             output.write('with\n')
-            output.write('position\n')
-            output.write('   %d %d,\n' % (x, y))
+            output.write('pos_x\n')
+            output.write('   %d,\n' % (x,))
+            output.write('pos_y\n')
+            output.write('   %d,\n' % (y,))
 
             for direction in DIRECTIONS:
 
