@@ -2,6 +2,7 @@
 Constant TOPIARY_PREFIX_MAX = 23;
 Constant TOPIARY_SUFFIX_MAX = 25;
 Constant TOPIARY_VERB_MAX = 15;
+Constant TOPIARY_LABEL_BLANK = 100;
 
 Constant TOPIARY_MONSTER_COUNT = 36;
 Array topiary_monster_prefix -> TOPIARY_MONSTER_COUNT;
@@ -163,6 +164,40 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
     "As you enter the topiary of time, you hear the dry rustling of
     leaves as the creatures, shape-shifters all, assume imposing postures.";
 ];
+
+! XXX New class GardenTool which has a label you can read
+! and update. Cf "Balances."
+!
+! XXX The original game requires you to read the label
+! on each tool separately; you can't "read extractor" etc.
+! This isn't something we should replicate!
+! But the label needs to exist so you *can*.
+
+Class TopiaryTool
+class Thing
+with
+    label TOPIARY_LABEL_BLANK;
+
+TopiaryTool RootExtractor "Root Extractor" ShedShelf
+with
+    name
+        "root" "extractor" "extracter" "tool",
+    initial
+       "A root extractor has been grounded here.",
+    description
+        "The root extractor is a fork-like implement used to pull up roots
+    and weeds and tubers and things. It is marked by a translucent label.";
+
+TopiaryTool FixerUpper "Fixer-Upper" ShedShelf
+with
+    name
+        "fixer" "upper" "fixer-upper" "tool",
+    initial
+        "A fixer-upper lies here, unfixed to anything.",
+    description
+        "The fixer-upper is a fork-like implement used to apply finishing
+touches. It looks like the root extractor turned on end. It is marked by a
+translucent label.";
 
 Class TopiaryMonster
 has
