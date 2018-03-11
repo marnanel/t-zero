@@ -175,29 +175,62 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
 
 Class TopiaryTool
 class Thing
+has
+    legible,
 with
-    label TOPIARY_LABEL_BLANK;
+label
+    TOPIARY_LABEL_BLANK;
+
+Constant LABEL_IS_BLANK = "The label is a blank slate.^";
+Constant LABEL_READS = "The label reads: ~";
 
 TopiaryTool RootExtractor "Root Extractor" ShedShelf
 with
     name
-        "root" "extractor" "extracter" "tool",
+        "root" "extractor" "extracter" "tool" "label",
     initial
        "A root extractor has been grounded here.",
     description
         "The root extractor is a fork-like implement used to pull up roots
-    and weeds and tubers and things. It is marked by a translucent label.";
+    and weeds and tubers and things. It is marked by a translucent label.",
+    before [;
+        Consult, Read:
+        if (self.label==TOPIARY_LABEL_BLANK) {
+             print (string) LABEL_IS_BLANK;
+             rtrue;
+        } else {
+             print (string) LABEL_READS;
+             ! XXX check I haven't got these the wrong way round
+             TopiaryPrefix(self.label);
+             "~.";
+        }
+    ];
 
 TopiaryTool FixerUpper "Fixer-Upper" ShedShelf
 with
     name
-        "fixer" "upper" "fixer-upper" "tool",
+        "fixer" "upper" "fixer-upper" "tool" "label",
     initial
         "A fixer-upper lies here, unfixed to anything.",
     description
         "The fixer-upper is a fork-like implement used to apply finishing
 touches. It looks like the root extractor turned on end. It is marked by a
-translucent label.";
+translucent label.",
+    before [;
+        Consult, Read:
+        if (self.label==TOPIARY_LABEL_BLANK) {
+             print (string) LABEL_IS_BLANK;
+             rtrue;
+        } else {
+             print (string) LABEL_READS;
+             ! XXX check I haven't got these the wrong way round
+             TopiarySuffix(self.label);
+             "~.";
+        }
+    ];
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Class TopiaryMonster
 has
