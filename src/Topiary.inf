@@ -165,13 +165,9 @@ Array topiary_monster_verb   -> TOPIARY_MONSTER_COUNT;
     leaves as the creatures, shape-shifters all, assume imposing postures.";
 ];
 
-! XXX New class GardenTool which has a label you can read
-! and update. Cf "Balances."
-!
-! XXX The original game requires you to read the label
+! The original game requires you to read the label
 ! on each tool separately; you can't "read extractor" etc.
-! This isn't something we should replicate!
-! But the label needs to exist so you *can*.
+! I haven't replicated this because it seems like a mistake.
 
 Class TopiaryTool
 class Thing
