@@ -316,6 +316,8 @@ with
     some type of ink.";
 
 Thing Knicknacks "Knicknacks" Cottage
+has
+    scenery
 with
     description
         ! This is one of the few strings which assigns a gender
@@ -323,6 +325,16 @@ with
         "Well, they're odds and ends that the caretaker, namely you,
 has pilfered from the museum over time to enhance the modest
 decor of his cottage.";
+
+Thing Bell "Bell" Cottage
+with
+name
+    "bell",
+initial
+    "An unrung bell has found a temporary niche here.",
+description
+    "The bell is plump, buxom, and definitively bell-shaped.";
+
 
 ! XXX Original inventory description is like this:
 !  An Empty Jam Jar.
