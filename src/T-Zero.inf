@@ -85,16 +85,13 @@ with
 
 [ Initialise;
     player = Custodian;
-    location = TopiaryEntrance;
+    location = RiverBed;
 
     move CompassThing to Player;
     move PinkSlip to Player;
     move JournalPage to Player;
     move KhakiFatigues to Player;
     move RedSuspenders to Player;
-
-    move RootExtractor to Player;
-    move FixerUpper to Player;
 
     print "^^^
 You awake from uneasy dreams.  Since you're no longer on easy street,
