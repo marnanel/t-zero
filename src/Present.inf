@@ -667,6 +667,8 @@ Object CottageDoor "door"
 has
     openable scenery static door
 with
+name
+    "door",
     description
         [;
             if (self has open)

@@ -738,7 +738,7 @@ Constant COMMA__TX      = ", ";
         4:  print "You open ", (the) x1, ", revealing ";
             if (WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT) == 0) "nothing.";
             ".";
-        5:  "You open ", (the) x1, ".";
+        5:  "Opened.";
     }
   Order:    print (The) x1;
             if (x1 has pluralname) print " have"; else print " has";
