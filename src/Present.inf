@@ -713,6 +713,8 @@ Object ShedShelf "Shelf" Shed
 has
     scenery supporter
 with
+name
+    "shelf",
 description
         "The shelf is splintery but sturdy.";
 
