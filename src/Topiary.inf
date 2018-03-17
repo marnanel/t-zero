@@ -238,7 +238,7 @@ initial
     [ reacting ourx oury index;
 
         ! This routine produces both the
-        !  "A foo bars to the northwest."
+        !  "A foo bars to the Northwest."
         ! and
         !  "You wouldn't want to mess with the barring foo."
         ! messages. "reacting" is 1 for the "you wouldn't
@@ -284,7 +284,7 @@ react_before
 TopiaryMonster TopiaryMonsterNE
 with
 dirname
-    "northeast",
+    "Northeast",
 door_to
     ne_to,
 pos_x
@@ -295,7 +295,7 @@ pos_y
 TopiaryMonster TopiaryMonsterSE
 with
 dirname
-    "southeast",
+    "Southeast",
 door_to
     se_to,
 pos_x
@@ -306,7 +306,7 @@ pos_y
 TopiaryMonster TopiaryMonsterSW
 with
 dirname
-    "southwest",
+    "Southwest",
 door_to
     sw_to,
 pos_x
@@ -317,7 +317,7 @@ pos_y
 TopiaryMonster TopiaryMonsterNW
 with
 dirname
-    "northwest",
+    "Northwest",
 door_to
     nw_to,
 pos_x
