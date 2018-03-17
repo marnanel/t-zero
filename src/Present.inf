@@ -1071,23 +1071,16 @@ description
         "This barren square of concrete is formed by the leveling off of
 the delivery ramp to the north.";
 
-Object Pantry1 "Pantry."
-has light
-! XXX "As you enter the pantry..."
-! XXX When is that triggered?
-with
-    description
-        "The cupboards in this chilly pantry are bare.",
-    w_to
-        Cottage;
-
 Object PresentPantry "Pantry."
+! XXX this room needs to be verified in the original
 has light
 with
 ! no explore data
     description
         "You are in a pantry whose cupboards are filled from floor to
-ceiling with jar upon jar of scrumptious fruit jam.";
+ceiling with jar upon jar of scrumptious fruit jam.",
+    w_to
+        Cottage;
 
 Object BlacksmithS "Blacksmith's."
 has light
