@@ -337,12 +337,34 @@ copy_in [ outpos s inpos;
         return outpos;
 
     ],
+initial
+    [ index;
+
+        index = (location.pos_x + self.pos_x) +
+            (location.pos_y + self.pos_y)*6;
+
+        print "A ";
+        self.short_name();
+        print " ";
+        TopiaryVerb(topiary_monster_verb->(index), 0);
+        print " to the ";
+        print (string) self.dirname;
+        print ".";
+    ],
+grid_index
+    [;
+        return (location.pos_x + self.pos_x) +
+            (location.pos_y + self.pos_y)*6;
+    ],
 react_before
     [ ;
         Go:
         if (noun==self.door_to) {
-                self.initial(1);
-                rtrue;
+            print "You wouldn't want to mess with the ";
+            TopiaryVerb(topiary_monster_verb->(self.grid_index()), 1);
+            print " ";
+            self.short_name();
+            ".";
         }
         rfalse;
     ];
