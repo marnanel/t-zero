@@ -240,14 +240,21 @@ has
     animate static
 with
 description
-    "XXX",
+    [ ;
+        self.short_name();
+        " ... "; ! XXX FIXME
+    ],
 monstername
     ! can't we declare this as an array of length N?
     0 0 0 0 0 0 0 0,
 parse_name [i j w matched;
         if (parser_action==##TheSame) {
-                ! Idk whether we need something here.
-                ! Let's assume not until we know otherwise.
+
+                if (parser_one == parser_two) {
+                    return -1;
+                } else {
+                    return -2;
+                }
                 return 0;
         }
 
@@ -266,9 +273,13 @@ parse_name [i j w matched;
 
                         if (TextReader()==0) return i;
 
-                        for (j=0: j<8: j++)
+                        ! The restraint of 6 is because Inform
+                        ! only checks the first six letters
+                        ! of any word.
+                        for (j=0: j<=6: j++) {
                                 if ((self.&monstername)->j ~= text_buffer->j)
                                         return i;
+                        }
 
                         matched = 1;
 
