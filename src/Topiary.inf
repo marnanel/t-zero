@@ -286,7 +286,7 @@ article
     "the",
 
 short_name [ i;
-        while (((self.&number)->i) ~= 0)
+        while (((self.&monstername)->i) ~= 0)
                 print (char) (self.&monstername)->i++;
         rtrue;
     ],
@@ -311,7 +311,6 @@ room_init [ i index;
             topiary_suffixes -->
              (topiary_monster_suffix -> index));
     ],
-
 copy_in [ outpos s inpos;
 
         print "(begins)^";
