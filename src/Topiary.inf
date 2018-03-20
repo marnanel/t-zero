@@ -422,6 +422,7 @@ cant_go [;
     ".";
     ],
 after [;
+    Go:
     TopiaryMoveFloaters(self);
     ],
 description
