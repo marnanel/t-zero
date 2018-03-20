@@ -291,12 +291,9 @@ short_name [ i;
         rtrue;
     ],
 
-room_init [ i index;
+room_init [ i;
 
         move self to location;
-
-        index = (location.pos_x + self.pos_x) +
-            (location.pos_y + self.pos_y)*6;
 
         for (i=0:i<TEXT_BUFFER_LENGTH:i++) {
                 text_buffer->i = 0;
@@ -305,11 +302,11 @@ room_init [ i index;
 
         i = self.copy_in(0,
             topiary_prefixes -->
-             (topiary_monster_prefix -> index));
+             (topiary_monster_prefix -> self.grid_index()));
 
         self.copy_in(i,
             topiary_suffixes -->
-             (topiary_monster_suffix -> index));
+             (topiary_monster_suffix -> self.grid_index()));
     ],
 copy_in [ outpos s inpos;
 
@@ -338,15 +335,12 @@ copy_in [ outpos s inpos;
 
     ],
 initial
-    [ index;
-
-        index = (location.pos_x + self.pos_x) +
-            (location.pos_y + self.pos_y)*6;
+    [ ;
 
         print "A ";
         self.short_name();
         print " ";
-        TopiaryVerb(topiary_monster_verb->(index), 0);
+        TopiaryVerb(topiary_monster_verb->(self.grid_index()), 0);
         print " to the ";
         print (string) self.dirname;
         print ".";
