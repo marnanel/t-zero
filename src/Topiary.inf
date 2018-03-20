@@ -300,13 +300,17 @@ room_init [ i;
                 self.&monstername->i = 0;
         }
 
+        self.grid_index = (location.pos_x + self.pos_x) +
+            (location.pos_y + self.pos_y)*6;
+
         i = self.copy_in(0,
             topiary_prefixes -->
-             (topiary_monster_prefix -> self.grid_index()));
+             (topiary_monster_prefix -> self.grid_index));
 
         self.copy_in(i,
             topiary_suffixes -->
-             (topiary_monster_suffix -> self.grid_index()));
+             (topiary_monster_suffix -> self.grid_index));
+
     ],
 copy_in [ outpos s inpos;
 
@@ -328,22 +332,19 @@ initial
         print "A ";
         self.short_name();
         print " ";
-        TopiaryVerb(topiary_monster_verb->(self.grid_index()), 0);
+        TopiaryVerb(topiary_monster_verb->(self.grid_index), 0);
         print " to the ";
         print (string) self.dirname;
         print ".";
     ],
 grid_index
-    [;
-        return (location.pos_x + self.pos_x) +
-            (location.pos_y + self.pos_y)*6;
-    ],
+    0,
 react_before
     [ ;
         Go:
         if (noun==self.door_to) {
             print "You wouldn't want to mess with the ";
-            TopiaryVerb(topiary_monster_verb->(self.grid_index()), 1);
+            TopiaryVerb(topiary_monster_verb->(self.grid_index), 1);
             print " ";
             self.short_name();
             ".";
