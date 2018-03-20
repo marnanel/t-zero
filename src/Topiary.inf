@@ -310,26 +310,14 @@ room_init [ i;
     ],
 copy_in [ outpos s inpos;
 
-        print "(begins)^";
         s.print_to_array(text_buffer);
 
-        print "  copied^";
         for (:inpos < text_buffer->1: inpos++) {
 
                 self.&monstername->(outpos) = text_buffer->(inpos+2);
 
-                print "  monstername ";
-                print outpos;
-                print " becomes ";
-                print self.&monstername->(outpos);
-                print " ";
-                print (char) self.&monstername->(outpos);
-                print "^";
-
                 outpos++;
         }
-
-        print "(ends)^";
 
         return outpos;
 
