@@ -431,7 +431,9 @@ after [;
     TopiaryMoveFloaters(self);
     ],
 description
-    ""; ! do the topiary rooms have any description at all?
+    [ ;
+        ! do the topiary rooms have any description at all?
+    ];
 
 Object TangledRoots "tangled roots"
 with
