@@ -25,6 +25,9 @@ Include "Library.inf";
 Extend 'inv' replace
     * -> InvT0;
 
+Extend 'pull'
+    * noun 'with' held -> PullWith;
+
 [ InvT0Sub o;
 
     print "You have in your possession:^";
@@ -56,6 +59,15 @@ Extend 'inv' replace
     }
 
     AfterRoutines();
+];
+
+[ PullWithSub;
+
+    ! XXX check this is the right response
+    print "Your pull is next to nothing when it comes to ";
+    print (the) noun;
+    ".";
+
 ];
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
