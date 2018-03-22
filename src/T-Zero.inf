@@ -105,10 +105,6 @@ with
     move KhakiFatigues to Player;
     move RedSuspenders to Player;
 
-    move RootExtractor to Player;
-    move FixerUpper to Player;
-    location = TopiaryEntrance;
-
     print "^^^
 You awake from uneasy dreams.  Since you're no longer on easy street,
 maybe that's the way your dreams are going to be from now on.  Exactly
