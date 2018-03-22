@@ -26,7 +26,7 @@ Extend 'inv' replace
     * -> InvT0;
 
 Extend 'pull'
-    * noun 'with' held -> PullWith;
+    * noun 'with' held -> PullWith reverse;
 
 [ InvT0Sub o;
 
@@ -65,7 +65,7 @@ Extend 'pull'
 
     ! XXX check this is the right response
     print "Your pull is next to nothing when it comes to ";
-    print (the) noun;
+    print (the) second;
     ".";
 
 ];
@@ -104,6 +104,10 @@ with
     move JournalPage to Player;
     move KhakiFatigues to Player;
     move RedSuspenders to Player;
+
+    move RootExtractor to Player;
+    move FixerUpper to Player;
+    location = TopiaryEntrance;
 
     print "^^^
 You awake from uneasy dreams.  Since you're no longer on easy street,

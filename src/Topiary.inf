@@ -200,9 +200,22 @@ with
              rtrue;
         } else {
              print (string) LABEL_READS;
-             ! XXX check I haven't got these the wrong way round
              TopiaryPrefix(self.label);
              "~.";
+        }
+
+        PullWith:
+        if (second ofclass TopiaryMonster) {
+
+                self.label = topiary_monster_prefix -> second.grid_index;
+
+                print "The disembodied prefix of ";
+                print (the) second;
+                print " fixes itself to the translucent label of ";
+                print (the) self;
+                print " which now reads ~";
+                print (string) topiary_prefixes --> self.label;
+                "~.";
         }
     ];
 
@@ -223,9 +236,22 @@ translucent label.",
              rtrue;
         } else {
              print (string) LABEL_READS;
-             ! XXX check I haven't got these the wrong way round
-             TopiarySuffix(self.label);
+             print (string) topiary_suffixes --> self.label;
              "~.";
+        }
+
+        PullWith:
+        if (second ofclass TopiaryMonster) {
+
+                self.label = topiary_monster_suffix -> second.grid_index;
+
+                print "The disembodied suffix of ";
+                print (the) second;
+                print " fixes itself to the translucent label of ";
+                print (the) self;
+                print " which now reads ~";
+                print (string) topiary_suffixes --> self.label;
+                "~.";
         }
     ];
 
@@ -292,16 +318,13 @@ parse_name [i j w matched;
 
         }
     ],
-
 article
     "the",
-
 short_name [ i;
         while (((self.&monstername)->i) ~= 0)
                 print (char) (self.&monstername)->i++;
         rtrue;
     ],
-
 room_init [ i;
 
         move self to location;
@@ -360,8 +383,7 @@ react_before
             self.short_name();
             ".";
         }
-        rfalse;
-    ];
+   ];
 
 
 !  Copies word "wn" from what the player most recently typed, putting it as
