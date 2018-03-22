@@ -59,7 +59,7 @@ def main():
                     output.write('TopiaryEntrance,\n')
                 elif (x, y, direction) == (4,3,'e'):
                     output.write('AmazingSpace,\n') # win
-                elif (x, y, direction) in [(2,3,'e'), (3,3,'w')]:
+                elif (x, y, direction) in [(2,2,'e'), (3,2,'w')]:
                     output.write('TOPIARY_MIDDLE_HEDGE,\n')
                 elif new_x<0 or new_y<0 or new_x>4 or new_y>4:
                     output.write('TOPIARY_EDGE_HEDGE,\n')

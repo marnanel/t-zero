@@ -626,7 +626,7 @@ s_to
 e_to
     [ ;
         TopiaryReset();
-        return Topiary02;
+        return Topiary01;
     ],
 u_to
     WasteOfTime,
