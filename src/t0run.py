@@ -329,6 +329,7 @@ class Playthrough(GameScript):
 		# Topiary
 
 		topiary_path = 'EESSENNNESWSESSWWWWNNESWSEEEEN'
+                used_tools = set()
 
 		for move in topiary_path:
 			result = impl.do(move, 'to the Northwest')
@@ -347,16 +348,30 @@ class Playthrough(GameScript):
 				for (affix, tool) in ( ('latch', 'extractor'),
 					('key', 'fixer-upper') ):
 
-					if affix in monster:
-						impl.do('pull '+monster+' with '+tool,
-							expect='which now reads')
+		    		    if affix not in monster:
+                                        continue
+
+				    impl.do('pull '+monster+' with '+tool,
+					expect='which now reads')
+
+                                    used_tools.add(tool)
+
+                                    if len(used_tools)==2:
+                        	        impl.do('attach fixer-upper to extractor', expect='lightning')
+		                        impl.do('get latchkey', expect='Taken')
+
+                if len(used_tools)!=2:
+                    # FIXME: we don't know for sure that
+                    # the latch* and the *key are both
+                    # on topiary_path. At some point
+                    # we're going to need a better
+                    # explore routine.
+                    raise ValueError("Latchkey wasn't found; try again")
 
 		impl.do('e', expect='Amazing Space')
 
 		# Amazing Space
 
-		impl.do('attach fixer-upper to extractor', expect='lightning')
-		impl.do('get latchkey', expect='Taken')
 		impl.do('get orange', expect='Taken')
 
 		impl.do('e', expect='Platform Over River')
@@ -618,6 +633,21 @@ class MakeInteractive(Monitor):
 
             self._implementation.do(command)
 
+class ScoreNoticer(Monitor):
+
+    def __init__(self):
+
+        super(Monitor, self).__init__()
+
+    def handle(self, command_number, command, response):
+
+        if "\007" in response:
+            self._implementation.do('score')
+
+        if "[Your score" in response:
+            self._implementation.do('rank')
+
+
 class TopiaryExplorer(Monitor):
 
     # This expects a savefile called "0-2-e.sav"
@@ -718,6 +748,7 @@ SCRIPTS = {
         'rooms': RoomNoticer,
         'chimes': Chimes,
         'topiary': TopiaryExplorer,
+        'score': ScoreNoticer,
         }
 
 def main():
