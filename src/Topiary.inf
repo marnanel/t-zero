@@ -3,6 +3,7 @@ Constant TOPIARY_PREFIX_MAX = 23;
 Constant TOPIARY_SUFFIX_MAX = 25;
 Constant TOPIARY_VERB_MAX = 15;
 Constant TOPIARY_LABEL_BLANK = 100;
+Constant LATCHKEY_LABEL = 0;
 
 Constant TOPIARY_MONSTER_COUNT = 36;
 Array topiary_monster_prefix -> TOPIARY_MONSTER_COUNT;
@@ -113,7 +114,25 @@ has
     legible,
 with
 label
-    TOPIARY_LABEL_BLANK;
+    TOPIARY_LABEL_BLANK,
+before [;
+    Tie:
+        if (second ofclass TopiaryTool &&
+                RootExtractor.label==LATCHKEY_LABEL &&
+                FixerUpper.label==LATCHKEY_LABEL) {
+
+            remove RootExtractor;
+            remove FixerUpper;
+            
+            ! yes, location, not player;
+            ! idk why, but the original does it
+            move Latchkey to location;
+            Achieved(4);
+
+            "With a flash of lightning, the extractor and fixer fuse, and, lo and
+            behold, a latchkey results!";
+        }
+];
 
 Constant LABEL_IS_BLANK = "The label is a blank slate.^";
 Constant LABEL_READS = "The label reads: ~";

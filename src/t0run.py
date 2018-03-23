@@ -351,6 +351,9 @@ class Playthrough(GameScript):
 		    		    if affix not in monster:
                                         continue
 
+                                    if tool in used_tools:
+                                        continue
+
 				    impl.do('pull '+monster+' with '+tool,
 					expect='which now reads')
 

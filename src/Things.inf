@@ -416,4 +416,9 @@ with
     legal pad and contains a picture of Count Zero in Roman profile and all sorts
     of little textual scribblings that are unreadable.";
 
-
+Thing Latchkey "Latchkey"
+with
+name
+    "latchkey",
+initial
+    "The latchkey lying here could probably unlock a thing or two.";
