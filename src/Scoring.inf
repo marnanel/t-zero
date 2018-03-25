@@ -6,11 +6,12 @@ Constant NUMBER_TASKS = 20;
 Constant MAX_SCORE = 366;
 
 Array task_scores ->
-  4 3 4 5 7 3 4 3 3 3
-  4 3 5 5 6 3 3 4 5 5
-  5; ! and more to come
+  4  3  4  5  7  3  4  3  3  3
+  4  3  5  5  6  3  3  4  5  5
+  5  3  5  4  3  8  4  5  2  3
+  3  6 11; ! and more to come
 
-[PrintTaskName task_number;
+ [PrintTaskName task_number;
 
     ! Note: the tasks aren't named in the original game.
     switch (task_number) {
@@ -36,6 +37,18 @@ Array task_scores ->
        18: "putting the ring in the pool"; ! 5 XXX
        19: "being quixotic"; ! 5
        20: "a turtle eclipse"; ! 5
+       21: "getting a banner"; ! 3
+       22: "giving a banner"; ! 5
+       23: "making an arrow"; ! 4
+       24: "hitting your target"; ! 3
+       25: "coming to fruition"; ! 8
+       26: "tying yourself up"; ! 4
+       27: "eavesdropping"; ! 5
+       28: "reading copy"; ! 2
+       29: "catching the lizard";!  3
+       30: "reading the printout"; ! 3
+       31: "wearing the shell"; ! 6
+       32: "pressing the plunger"; ! 11
        ! ... and more to come
     }
 ];
