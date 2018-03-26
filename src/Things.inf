@@ -422,3 +422,10 @@ name
     "latchkey",
 initial
     "The latchkey lying here could probably unlock a thing or two.";
+
+Thing ClockworkOrange "Clockwork Orange" AmazingSpace
+with
+name
+    "clockwork" "orange",
+initial
+    "A clockwork orange, ticking and unhatched, marks time here.";
