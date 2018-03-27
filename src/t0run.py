@@ -612,15 +612,15 @@ class Chimes(RoomNoticer):
 
 class MakeInteractive(Monitor):
 
-    def __init__(self, start_at = 2):
+    def __init__(self, trigger):
 
         super(MakeInteractive, self).__init__()
 
-        self._start_at = start_at
+        self._trigger = trigger
 
     def handle(self, command_number, command, response):
 
-        if command_number != self._start_at:
+        if self._trigger not in response:
             return
 
         print
@@ -764,9 +764,9 @@ def main():
             action="store_true")
         parser.add_argument(
             '-i', '--interactive', 
-            help='become interactive after command COMMAND (1-based)',
-            metavar='COMMAND',
-            type=int)
+            help='become interactive when TRIGGER is in response',
+            metavar='TRIGGER',
+            type=str)
         parser.add_argument(
             '-q', '--quiet', 
             help='don\'t dump everything that happens',
@@ -800,7 +800,7 @@ def main():
 		))
 
         if args.interactive is not None:
-            implementation.addMonitor(MakeInteractive(start_at=args.interactive))
+            implementation.addMonitor(MakeInteractive(trigger=args.interactive))
 
 	implementation.run()
 	implementation.close()
