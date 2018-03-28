@@ -617,12 +617,18 @@ class MakeInteractive(Monitor):
         super(MakeInteractive, self).__init__()
 
         self._trigger = trigger
+        self._interactive = False
 
     def handle(self, command_number, command, response):
 
         if self._trigger not in response:
             return
 
+        if self._interactive:
+            # avoid infinite recursion
+            return
+
+        self._interactive = True
         print
         print '=== The game is now interactive'
         print 'Give commands at stdin. EOF will continue game.'
