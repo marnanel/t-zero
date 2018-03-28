@@ -785,6 +785,7 @@ stand on the precipice of an abyss, you also undergo a sense
 of vertigo.";
 
 Object SuspensionBridge "Suspension Bridge."
+! "general" if you're suspended here
 has light
 with
 ! no explore data
@@ -792,7 +793,20 @@ with
         "From twin towers, a delicate mesh of metal descends, forming a
 perfectly wrought footpath across canyon-like depths.  A crooked
 stanchion sticks out of the side of the suspension bridge like
-a sore thumb.";
+a sore thumb.",
+before [;
+    Go:
+    if (self has general) {
+       "You are in a state of suspended animation.";
+    }
+],
+after [;
+    Go:
+    give self general;
+    print "Something about this suspension bridge makes your usually animated
+    self slow down ... to molasses-like ... sloth ... ful ... ness ...
+    and come slowly ... sl-ow-ly ... to a standstill.^";
+    ];
 
 Object AcrossTheRiver "Across the River."
 has light
