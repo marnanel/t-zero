@@ -1049,11 +1049,14 @@ across the river, is the entrance to a shaft.";
 Object AmazingSpace "Amazing Space."
 has light
 with
-! no explore data
     description
         "This space was designed by the maker of the labyrinth to give the
 adventurer a well-deserved pause.  A monstrous lopped-off stump,
-with concentric rings exposed, dominates the space.";
+with concentric rings exposed, dominates the space.",
+u_to
+    WasteOfTime,
+e_to
+    PlatformOverRiver;
 
 Object LoadingStage "Loading Stage."
 has light
