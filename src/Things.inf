@@ -18,6 +18,8 @@ Extend 'leave' first
 Verb 'stone' *
     creature -> Attack;
 
+Verb 'snap' * noun -> Attack;
+
 [ ReadSub;
     << Examine noun >>;
     ];
@@ -140,7 +142,16 @@ with
     name "red" "suspenders" "braces",
     description "Your red suspenders are real snappy.
     Their two elastic bands can be
-    crossed over your back to clasp your pants in place.";
+    crossed over your back to clasp your pants in place.",
+before [;
+    Attack: 
+        if (player in SuspensionBridge && SuspensionBridge has general) {
+                give SuspensionBridge ~general;
+                "You cockily pull the elastic on your suspenders--producing a loud
+                snapping retort. SNAP! You've temporarily snapped out of suspended animation.";
+        }
+       "You idly snap your suspenders but nothing happens.";
+];
 
 Thing Poppy "Poppy" FieldOfPoppies
 has
