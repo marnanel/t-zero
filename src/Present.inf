@@ -798,7 +798,13 @@ before [;
     Go:
     if (self has general) {
        "You are in a state of suspended animation.";
+    } else if (noun==ne_obj || noun==sw_obj) {
+        print "You're glad to be moving again--the suspension was killing you.^";
+        rfalse;
     }
+
+    give self general;
+    rfalse;
 ],
 after [;
     Go:
@@ -806,16 +812,34 @@ after [;
     print "Something about this suspension bridge makes your usually animated
     self slow down ... to molasses-like ... sloth ... ful ... ness ...
     and come slowly ... sl-ow-ly ... to a standstill.^";
-    ];
+    ],
+ne_to
+    AcrossTheRiver,
+sw_to
+    PlatformOverRiver,
+u_to
+    "You have no desire to fall off the bridge.",
+d_to
+    "It's a long drop to the humpbacked rocks in the river below the
+bridge.";
 
 Object AcrossTheRiver "Across the River."
 has light
 with
-! no explore data
     description
         "There seems to be little on this side of the river that would
 warrant the presence of a bridge.  Yet here you stand as if in
-a vacuum.";
+a vacuum.",
+u_to
+    Junkyard,
+e_to
+    Junkyard,
+sw_to
+    SuspensionBridge,
+d_to
+    WasteOfTime,
+cant_go
+    "As if by a vacuum, you're sucked back to your starting point.";
 
 Object Junkyard "Junkyard."
 has light
