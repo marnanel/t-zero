@@ -18,6 +18,8 @@ Include "Things.inf";
 Include "Topiary.inf";
 Include "Library.inf";
 
+Include "Anagram.inf";
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !
 ! Inventory

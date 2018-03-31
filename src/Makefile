@@ -3,6 +3,7 @@ Things.inf parser.h Present.inf T0english.h T-Zero.inf \
 Scoring.inf \
 Topiary.inf \
 TopiaryRooms.inf \
+Anagram.inf \
 verblib.h verblibm.h
 
 t-zero.z5: ${SOURCES}

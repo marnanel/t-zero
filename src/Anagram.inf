@@ -1,0 +1,28 @@
+! Anagram, the magic rag man and programmer
+
+Object Anagram "Anagram"
+has
+    animate proper
+with
+name
+    "anagram" "rag" "man" "ragman",
+initial
+    "Anagram is here, purposeful and intent.",
+description
+    "Anagram is clad in multicolored scraps. He seems purposeful and
+intent.";
+
+! Anagram's alter ego is a rag man
+
+Object RagMan "rag man" Junkyard
+has
+    animate
+with
+name
+    "rag" "man" "ragman",
+initial
+    "A rag man, looking pretty mixed-up, mumbles to himself here,
+scrabbling around in search of something.",
+description
+    "The rag man is clad in multicolored scraps. He scrabbles around in
+search of something. He looks pretty mixed-up.";
