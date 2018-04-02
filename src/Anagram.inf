@@ -1,5 +1,25 @@
 ! Anagram, the magic rag man and programmer
 
+[ AnagramScope;
+
+    switch (scope_stage) {
+
+            1: return false; ! one Anagram, there's only one Anagram
+
+            2: PlaceInScope(Anagram); rtrue;
+
+            3: CallSub();
+    }
+];
+
+Verb 'call'
+    * creature -> Call
+    * creature scope=AnagramScope -> Call;
+
+[ CallSub ;
+    "You call but are met with no response.";
+];
+
 Object Anagram "Anagram"
 has
     animate proper
@@ -25,4 +45,25 @@ initial
 scrabbling around in search of something.",
 description
     "The rag man is clad in multicolored scraps. He scrabbles around in
-search of something. He looks pretty mixed-up.";
+search of something. He looks pretty mixed-up.",
+before [;
+
+    Call:
+        if (second==Anagram) {
+            remove self;
+            move Anagram to location;
+            move AnagramCard to player;
+            Achieved(8);
+
+            "You call the rag man by his proper name, Anagram. He gathers his
+            rags about him, unscrambles himself, and perks up. He no longer looks mixed
+            up. His eyes shine with magical purpose as he hands you a card.";
+        }
+];
+
+Object AnagramCard "card"
+with
+name
+    "card",
+description
+    "FIXME";
