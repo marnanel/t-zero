@@ -3,22 +3,22 @@ Constant Headline "^an adventure for the time being^in memoriam Dennis M. Cunnin
 Constant DEBUG;
 Constant DEATH_MENTION_UNDO;
 
-Include "Scoring.inf";
+Include "./Scoring.inf";
 
 Replace DrawStatusLine;
 Replace AdvanceWorldClock;
 
-Include "parser";
-Include "verblib";
-Include "grammar";
+Include "./parser";
+Include "./verblib";
+Include "./grammar";
 
-Include "Calendar.inf";
-Include "Present.inf";
-Include "Things.inf";
-Include "Topiary.inf";
-Include "Library.inf";
+Include "./Calendar.inf";
+Include "./Present.inf";
+Include "./Things.inf";
+Include "./Topiary.inf";
+Include "./Library.inf";
 
-Include "Anagram.inf";
+Include "./Anagram.inf";
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !

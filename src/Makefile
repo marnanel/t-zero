@@ -7,7 +7,7 @@ Anagram.inf \
 verblib.h verblibm.h
 
 t-zero.z5: ${SOURCES}
-	inform -D +language_name=T0english T-Zero.inf t-zero.z5
+	inform -D +language_name=./T0english T-Zero.inf t-zero.z5
 
 TopiaryRooms.inf: make-topiary-rooms-inf.py
 	python make-topiary-rooms-inf.py

@@ -43,7 +43,7 @@ Object LibraryMessages;
 #Endif; ! NO_PLACES
 
 #Ifdef USE_MODULES;
-Link "verblibm";
+Link "./verblibm";
 #Ifnot;
 Include "verblibm";
 #Endif; ! USE_MODULES

@@ -424,5 +424,5 @@ Constant TOPIARY_MIDDLE_HEDGE
     "Your path is blocked by a hedge growing in the middle of the maze.";
 
 ! Now the rooms themselves. They're generated from a map.
-Include "TopiaryRooms.inf";
+Include "./TopiaryRooms.inf";
 
